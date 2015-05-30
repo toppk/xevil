@@ -7,13 +7,13 @@ creates:
  xevil binary
 
 == Why?
-# everyone deserves to play xevil
+* everyone deserves to play xevil
 
 == Project Plan
-# start with last released version http://www.xevil.com/download/stable/xevilsrc2.02r2.zip
-# make work
-# publish
-# hack as needed
+* start with last released version http://www.xevil.com/download/stable/xevilsrc2.02r2.zip
+* make work
+* publish
+* hack as needed
 
 == Rules for Project
 * support only what you use (rm -rf win32)
