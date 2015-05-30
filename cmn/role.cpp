@@ -266,7 +266,7 @@ void Role::_error(const char *msg) {
 
 
 void Role::error(const char *msg1,const char *msg2,const char *msg3) {
-  ostrstream str;
+  std::ostrstream str;
 
   if (msg2 == NULL) {
     str << msg1 << std::ends;
@@ -287,7 +287,7 @@ void Role::error(const char *msg1,const char *msg2,const char *msg3) {
 
 
 void Role::message(const char *msg1,const char *msg2,const char *msg3) {
-  ostrstream str;
+  std::ostrstream str;
 
   if (msg2 == NULL) {
     str << msg1 << std::ends;
@@ -605,7 +605,7 @@ Client::Client(char *sName,char *portName,CMN_PORT clientPrt,char *hName,
   // Display message that we are looking up IP address.
   // Assumes that caller will call Client::connect_server after a turn or two, 
   // so the message will be displayed on the Ui.
-  ostrstream str;
+  std::ostrstream str;
   str << "Looking up IP address for server " << serverName << std::ends;
   // Display for a long time.
   errLocator->arena_message_enq(str.str(),NULL,1000000); 
@@ -663,7 +663,7 @@ void Client::connect_server() {
     }
   }
   if (n == CLIENT_PORT_TRIES) {
-    ostrstream str;
+    std::ostrstream str;
     str << "Could not bind local UDP port to any of " 
         << clientPortBase << "-" << (clientPortBase + CLIENT_PORT_TRIES - 1) 
         << std::ends;
@@ -703,7 +703,7 @@ void Client::connect_server() {
 
   // Inform user of failed connection
   if (!ok()) {
-    strstream msg;
+    std::strstream msg;
     msg << "Could not connect to " << serverName << " on port " <<
       port << "." << std::ends;
     error(msg.str());
@@ -713,7 +713,7 @@ void Client::connect_server() {
   }
 
   // Inform user of successful connection
-  strstream msg;
+  std::strstream msg;
   msg << hostName << " connected to " << serverName << " on port " <<
     port << std::ends;
   message(msg.str());
@@ -889,7 +889,7 @@ void Client::yield(CMN_TIME startTime,int quanta,IGameManagerP manager,
     assert(turnMax >= netData->get_last_modified());
     if (turnMax - netData->get_last_modified() >= CLIENT_OLD_OBJECT_KILL) {
 #if 0
-      ostrstream str;
+      std::ostrstream str;
       str << "killing old object " << p->get_class_name()
           << " turn=" << turn << " turnMax=" << turnMax << std::ends;
       message(str.str());
@@ -967,7 +967,7 @@ void Client::_error(const char *msg) {
   Role::_error(msg);
 
   if (errorLocator) {
-    ostrstream str2;
+    std::ostrstream str2;
     str2 << "ERROR: " << msg << std::ends;
     errorLocator->arena_message_enq(str2.str(),NULL,ROLE_FAILED_TIME);
     // Don't delete str2.str(), give memory to the Locator.
@@ -986,7 +986,7 @@ void Client::_message(const char *msg) {
   Role::_error(msg);
 
   if (errorLocator) {
-    ostrstream str2;
+    std::ostrstream str2;
     str2 << msg << std::ends;
     errorLocator->arena_message_enq(str2.str());
     // Don't delete str2.str(), give memory to the Locator.
@@ -1256,7 +1256,7 @@ void Client::process_object(InStreamP inStream,WorldP world,LocatorP locator) {
   if (turn > turnMax) {
     turnMax = turn;
     if (echoPingPong) {
-      ostrstream str;
+      std::ostrstream str;
       str << "PONG the server with turn " << turnMax << std::ends;
       message(str.str());
       delete str.str();
@@ -1365,7 +1365,7 @@ void Client::process_object(InStreamP inStream,WorldP world,LocatorP locator) {
         }
       }
       else {
-        ostrstream str;
+        std::ostrstream str;
         str << "No context for classId " << classId << std::ends;
         error(str.str());
         delete str.str();
@@ -1473,7 +1473,7 @@ void Client::check_alive(IGameManagerP /*manager*/) {
     connected = CONN_FAILED;
     error("Lost connection to server ",serverName);
 #if 0
-    strstream str;
+    std::strstream str;
     str << "tcpIn: " << (int)tcpIn->alive() 
         << " tcpOut: " << (int)tcpOut->alive() 
         << " udpIn: " << (int)udpIn->alive()
@@ -1582,7 +1582,7 @@ char* Connection::get_full_client_name() {
     return Utils::strdup(clientName);
   }
 
-  ostrstream str;
+  std::ostrstream str;
   str << '\"' << intel->get_name() << "\"@" << clientName << std::ends;
   return str.str();
 }
@@ -1695,7 +1695,7 @@ void Connection::clock(Boolean turnWindowAllocated) {
       }
     
 #ifdef SKIP_MESSAGES
-      ostrstream msg;
+      std::ostrstream msg;
       msg << "Average delay is " << avg << " out of " 
         << delaysNum << " samples." << std::ends;
       server->message(msg.str());
@@ -1703,7 +1703,7 @@ void Connection::clock(Boolean turnWindowAllocated) {
 #endif
 
 #if 0
-      ostrstream msg2;
+      std::ostrstream msg2;
       msg2 << "clientTurn=" << lastClientTurn 
         << " serverTurn=" << lastServerTurn 
         << " diff=" << (lastServerTurn - lastClientTurn)
@@ -1723,7 +1723,7 @@ void Connection::clock(Boolean turnWindowAllocated) {
 //            server->error("Client has reached maximum skip value.");
 //          }
 #ifdef SKIP_MESSAGES
-        ostrstream msg;
+        std::ostrstream msg;
         msg << "Increasing skip to " << skip << std::ends;
         server->message(msg.str());
         delete msg.str();
@@ -1734,7 +1734,7 @@ void Connection::clock(Boolean turnWindowAllocated) {
         skip--;
 
 #ifdef SKIP_MESSAGES
-        ostrstream msg;
+        std::ostrstream msg;
         msg << "Decreasing skip to " << skip << std::ends;
         server->message(msg.str());
         delete msg.str();
@@ -1843,7 +1843,7 @@ void Server::run() {
 
   // Give address to both the TCP and UDP sockets.
   if (bind(tcpSock, (CMN_SOCKADDR *)&serverAddr, sizeof(serverAddr)) < 0) {
-    ostrstream str;
+    std::ostrstream str;
     str << "Couldn't bind socket name to TCP socket on port " 
         << port << "."  << std::ends;
     error(str.str());
@@ -1851,7 +1851,7 @@ void Server::run() {
     return;
   }
   if (bind(udpSock, (CMN_SOCKADDR *)&serverAddr, sizeof(serverAddr)) < 0) {
-    ostrstream str;
+    std::ostrstream str;
     str << "Couldn't bind socket name to UDP socket on port " 
         << port << "."  << std::ends;
     error(str.str());
@@ -1868,7 +1868,7 @@ void Server::run() {
   assert(udpIn);
 
   // Message to server log.
-  strstream msg;
+  std::strstream msg;
   msg << "Set up server on port " << port << std::ends;
   message(msg.str());
   delete(msg.str());
@@ -1951,7 +1951,7 @@ void Server::human_created(IGameManagerP manager,
     localHumanId = hId;
 
     // Log the human's name.
-    strstream msg;
+    std::strstream msg;
     msg << "Player 0 \"" << human->get_name() << '\"' << "@SERVER" << std::ends;
     message(msg.str());
     delete(msg.str());
@@ -1985,7 +1985,7 @@ void Server::human_created(IGameManagerP manager,
 
   // Log all the players in the game, some code duplication for the
   // local human.
-  ostrstream str;
+  std::ostrstream str;
   char* fullName = cn->get_full_client_name();
   str << "Player " << num << " " << fullName << std::ends;
   message(str.str());
@@ -2007,7 +2007,7 @@ void Server::human_created(IGameManagerP manager,
     // anyway.
     for (m = 0; m < connections.length() && m != n; m++) {
       char* fullName = cn->get_full_client_name();
-      ostrstream str;
+      std::ostrstream str;
       str << fullName << " has joined the game" << std::ends;
       delete fullName;
 
@@ -2101,7 +2101,7 @@ void Server::delete_dead_connections(IGameManagerP manager,WorldP world,
           // Give the connection some slack when it is first starting up.
           turn - cn->get_start_turn() >= MINIMUM_CUTOFF) {
         char* fullName = cn->get_full_client_name();
-        ostrstream str;
+        std::ostrstream str;
         str << fullName
             << " has not responded in "
             << diff << " turns.  Disconnect." << std::ends;
@@ -2147,7 +2147,7 @@ void Server::send_pings(Boolean turnWindowAllocated[]) {
           diff == NO_ACTIVITY_WARN_2 ||
           diff == NO_ACTIVITY_WARN_3) {
         if (echoPingPong) {
-          ostrstream str;
+          std::ostrstream str;
           str << "Haven't heard from " << cn->get_client_name()
               << " in " << diff << " turns, sending PING." << std::ends;
           message(str.str());
@@ -2713,7 +2713,7 @@ void Server::_error(const char *msg) {
   // Careful to set the propagate flag to False so the message doesn't get
   // sent to the clients.
   if (errorLocator) {
-    ostrstream str2;
+    std::ostrstream str2;
     str2 << "SERVER: " << msg << std::ends;
     errorLocator->arena_message_enq(str2.str(),NULL,ROLE_FAILED_TIME,False);
     // Don't delete str2.str(), give memory to the Locator.
@@ -2728,7 +2728,7 @@ void Server::_error(const char *msg) {
 void Server::display_chat_message(LocatorP l,const char* sender,
                                   const char* msg) {
   // Log the chat message, then let Role handle it.
-  strstream logMsg;
+  std::strstream logMsg;
   logMsg << '<' << sender << '>' << msg << std::ends;
   message(logMsg.str());
   delete logMsg.str();
@@ -2851,7 +2851,7 @@ void Server::accept_connection(IGameManagerP manager,WorldP world,LocatorP l) {
   udpAddr->sin_port = htons(udpPort);
 
   // Log the connection.
-  strstream msg;
+  std::strstream msg;
   msg << clientName <<
 	" connected (TCP port " << ntohs(tcpAddr.sin_port) << 
     ", UDP port " << udpPort << ")" << std::ends;
@@ -2874,7 +2874,7 @@ void Server::accept_connection(IGameManagerP manager,WorldP world,LocatorP l) {
   XETP::send_reset(out,manager->get_game_style_type());
 
   // Say hello to the new client.
-  ostrstream greeting;
+  std::ostrstream greeting;
   greeting << "Welcome to " << hostName << ".";
 
   if (get_humans_num() == 1) {
@@ -2918,7 +2918,7 @@ void Server::delete_connection(IGameManagerP manager,WorldP,LocatorP l,int n) {
       Connection* cm = get_connection(m);
 
       char* fullName = cn->get_full_client_name();
-      ostrstream str;
+      std::ostrstream str;
       str << fullName << " has disconnected";
       if (intel) {
         str << ", " << kills << " human kills";

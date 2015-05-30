@@ -1056,7 +1056,7 @@ void Viewport::set_menu_learn_controls(Boolean val) {
 
 void Viewport::set_menu_humans_num(int val) {
   assert(menusNum > menuHumansNum);
-  ostrstream str;
+  std::ostrstream str;
   str << val << std::ends;
   ((WritePanel *)menus[menuHumansNum])->set_value(str.str());
   delete str.str();
@@ -1066,7 +1066,7 @@ void Viewport::set_menu_humans_num(int val) {
 
 void Viewport::set_menu_enemies_num(int val) {
   assert(menusNum > menuEnemiesNum);
-  ostrstream str;
+  std::ostrstream str;
   str << val << std::ends;
   ((WritePanel *)menus[menuEnemiesNum])->set_value(str.str());
   delete str.str();
@@ -1128,7 +1128,7 @@ void Viewport::set_style_and_role_type(GameStyleType style,RoleType roleType) {
 
 void Viewport::set_quanta(Quanta quanta) {
   assert(menusNum > menuQuanta);
-  ostrstream str;
+  std::ostrstream str;
   str << quanta << std::ends;
   ((WritePanel *)menus[menuQuanta])->set_value(str.str());
   delete str.str();  
@@ -1144,7 +1144,7 @@ void Viewport::set_cooperative(Boolean val) {
 
 
 void Viewport::set_humans_playing(int val) {  
-  ostrstream msg;
+  std::ostrstream msg;
   if (val == 1) {
     msg << "1 Human" << std::ends;
   }
@@ -1160,7 +1160,7 @@ void Viewport::set_humans_playing(int val) {
 
 
 void Viewport::set_enemies_playing(int val) {  
-  ostrstream msg;
+  std::ostrstream msg;
   if (val == 1) {
     msg << "1 Enemy" << std::ends; 
   }
@@ -1701,7 +1701,7 @@ void Viewport::draw() {
       pos.y += xvars.fontSize[dpyNum].height;
       
       for (int n = 0; n < DIFFICULTY_LEVELS_NUM; n++) {
-        ostrstream str;
+        std::ostrstream str;
         str << "[" << n;
         if (n == DIFF_NORMAL) {
           str << ",space]  ";
@@ -2195,17 +2195,17 @@ void Viewport::update_statuses() {
 
   const IntelStatus *status = intel->get_intel_status();
   
-  ostrstream name;
+  std::ostrstream name;
   name << status->name << std::ends;
   statuses[statusName]->set_message(name.str());
   delete name.str();
 
-  ostrstream className;
+  std::ostrstream className;
   className << status->className << std::ends;
   statuses[statusClassName]->set_message(className.str());
   delete className.str();
   
-  ostrstreamealth;
+  std::ostrstreamealth;
   if (status->health == -1) {
     health << "Dead" << std::ends;
   }
@@ -2215,12 +2215,12 @@ void Viewport::update_statuses() {
   statuses[statusHealth]->set_message(health.str());
   delete health.str();
   
-  ostrstream mass;
+  std::ostrstream mass;
   mass << status->mass << " Mass" << std::ends;
   statuses[statusMass]->set_message(mass.str());
   delete mass.str();
   
-  ostrstream weapon;
+  std::ostrstream weapon;
   if (status->weaponClassId == A_None) {
     weapon << "No Weapon";
   }
@@ -2237,7 +2237,7 @@ void Viewport::update_statuses() {
   statuses[statusWeapon]->set_message(weapon.str());
   delete weapon.str();
   
-  ostrstream item;
+  std::ostrstream item;
   if (status->itemClassId == A_None) {
     item << "No Item";
   }
@@ -2248,7 +2248,7 @@ void Viewport::update_statuses() {
   statuses[statusItem]->set_message(item.str());
   delete item.str();
   
-  ostrstream livesHKills;
+  std::ostrstream livesHKills;
   if (styleInfo->get_game_style_type() == EXTENDED) {
     // Takes soups into account.
     livesHKills << (status->humanKills - status->soups) 
@@ -2271,7 +2271,7 @@ void Viewport::update_statuses() {
   statuses[statusLivesHKills]->set_message(livesHKills.str());
   delete livesHKills.str();
   
-  ostrstream killsMKills;
+  std::ostrstream killsMKills;
   if (styleInfo->get_game_style_type() == EXTENDED) {
     killsMKills << status->enemyKills << " Machine Kills" << std::ends;
   }

@@ -454,7 +454,7 @@ void Explosion::act() {
     }
 	}
 
-	ostrstream msg;
+	std::ostrstream msg;
 	msg << "Explosion hits " << hit << " objects." << std::ends;
 	locator->message_enq(msg.str());
 
@@ -1001,7 +1001,7 @@ Boolean AltarOfSin::corporeal_attack(PhysicalP other,int) {
   if (other && (other->get_class_id() != A_AltarOfSin) &&
       (intel = other->get_intel())) {
     LocatorP locator = get_locator();
-    ostrstream str;
+    std::ostrstream str;
     
     // Turned into a frog/baby seal.
     if (Utils::coin_flip() && other->is_moving() && 
@@ -1075,8 +1075,8 @@ void AltarOfSin::collide(PhysicalP other) {
       (intel = other->get_intel()) && intel->is_human()) {
     int lives = intel->get_lives();
     LocatorP locator = get_locator();
-    ostrstream msg;
-    ostrstream arenaMsg;
+    std::ostrstream msg;
+    std::ostrstream arenaMsg;
 
     // Choose different blessings to give.
     int n = 0;
@@ -1946,7 +1946,7 @@ void Bomb::use(PhysicalP bomberP) {
     LocatorP locator = get_locator();
 #if 0
     // Don't send the 4,3,2,etc to to message bar anymore.
-    ostrstream msg;
+    std::ostrstream msg;
     msg << frame << std::ends;
     locator->message_enq(msg.str());
 #endif    
@@ -1972,7 +1972,7 @@ void Bomb::act() {
 	    
 #if 0
 	    LocatorP locator = get_locator();
-	    ostrstream msg;
+	    std::ostrstream msg;
 	    msg << frame << std::ends;
 	    locator->message_enq(msg.str());
 #endif
@@ -2088,7 +2088,7 @@ void Trapdoor::act()
 		assert(seal);
 
 		char sealStr[20];
-		ostrstream str(sealStr,20);
+		std::ostrstream str(sealStr,20);
 		str << "seal-" << sealsNum << std::ends;
 		NeutralP sealIntel = new SealIntel(w,l,sealStr,homeId);
 		seal->set_intel(sealIntel);

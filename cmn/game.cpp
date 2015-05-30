@@ -1500,7 +1500,7 @@ void Game::ui_settings_check(RestartEnd &restartEnd) {
 
     if (mask & UIconnectServer) {
       delete role;
-      ostrstream portName;
+      std::ostrstream portName;
       portName << settings.connectPort << std::ends;
       IViewportInfo* vInfo = Ui::get_viewport_info();
       ClientP client = new Client(settings.connectHostname,portName.str(),
@@ -1544,7 +1544,7 @@ void Game::ui_settings_check(RestartEnd &restartEnd) {
       }
 
       delete role;
-      ostrstream portName;
+      std::ostrstream portName;
       portName << settings.serverPort << std::ends;
       role = new Server(settings.localHuman,portName.str(),&locator);
       delete portName.str();
@@ -1573,7 +1573,7 @@ void Game::set_style_next(GameStyleType styleType) {
     ui->set_style(styleType);
   }
 
-  ostrstream str;
+  std::ostrstream str;
   styleNext->describe(str);
   locator.message_enq(str.str());
 }
@@ -1589,7 +1589,7 @@ void Game::reincarnations_check() {
     human->reincarnate();
     obj->set_intel(human);
       
-    ostrstream msg;
+    std::ostrstream msg;
     msg << human->get_name() << " is back from the dead." << std::ends;
     locator.message_enq(msg.str());
   }
@@ -1615,7 +1615,7 @@ void Game::game_over_check(int humansPlaying,int enemiesPlaying) {
 void Game::new_level_check(int enemiesPlaying) {
   assert(state == gameOn);
 
-  ostrstream str;
+  std::ostrstream str;
   Boolean lStrChanged = False;
   int val = style->new_level_check(enemiesPlaying,&world,&locator,
                                    level,lStrChanged,str,timer,
@@ -1876,7 +1876,7 @@ void Game::end_game(Boolean showMessages) {
   if (showMessages) {
     for (int n = 0; n < locator.humans_registered(); n++) {
       HumanP human = locator.get_human(n);
-      ostrstream msg;
+      std::ostrstream msg;
 
       // Soups are only taken into account if you have unlimited lives.
       int totalKills;
@@ -1919,8 +1919,8 @@ void Game::new_level() {
   // Will clean out non-persistent teams.
   locator.level_reset();
 
-  ostrstream lStr;       // For level box on the side of the ui->
-  ostrstream lTitleStr;  // For Ui title screen.
+  std::ostrstream lStr;       // For level box on the side of the ui->
+  std::ostrstream lTitleStr;  // For Ui title screen.
   Boolean doBonus;
 
   // Possibly increment level count number.
@@ -2184,7 +2184,7 @@ void Game::reset() {
   
   // Moved resetting world rooms to new_level(); 
 
-  ostrstream msg;
+  std::ostrstream msg;
   msg << wittySayings[Utils::choose(WITTY_SAYINGS_NUM)] << std::ends;
   locator.message_enq(msg.str());
 
@@ -2242,7 +2242,7 @@ void Game::process_x_resources(int *,char **)
           { // Right keys.
             right[n][which] = 0;
             
-            ostrstream strm;
+            std::ostrstream strm;
             if (which == 0)
               strm << "right_" << keysNames[n] << std::ends;
             else
@@ -2262,7 +2262,7 @@ void Game::process_x_resources(int *,char **)
 	      { // Left Keys.
             left[n][which] = 0;
             
-            ostrstream strm;
+            std::ostrstream strm;
             if (which == 0)
               strm << "left_" << keysNames[n] << std::ends;
             else
@@ -2291,7 +2291,7 @@ void Game::process_x_resources(int *,char **)
 void Game::parse_args(int *argc,char **argv) {
   // Create a bunch of "-name<x>" strings for comparing with command-line 
   // args.
-  ostrstream dashName[Locator::HUMANS_MAX];
+  std::ostrstream dashName[Locator::HUMANS_MAX];
   int n;
   for (n = 0; n < Locator::HUMANS_MAX; n++) {
     dashName[n] << "-name" << n << std::ends;
@@ -2741,7 +2741,7 @@ void Game::parse_args(int *argc,char **argv) {
 char **Game::display_names(int *argc,char **argv) {
 
 #if X11
-  ostrstream dashDisplay[UI_VIEWPORTS_MAX][2];
+  std::ostrstream dashDisplay[UI_VIEWPORTS_MAX][2];
   char **displayNames = new charP [UI_VIEWPORTS_MAX];
 
   int n;
@@ -2954,7 +2954,7 @@ void Game::intro() {
   
   // Put message in the status bar when the game starts up.
   // Use \n in string for locator.message_enq.
-  ostrstream msg;
+  std::ostrstream msg;
   msg 
     << "XEvil(TM) " << VERSION 
     << "  http://www.xevil.com  satan@xevil.com  " << XETP::versionStr << "\n"
@@ -3075,7 +3075,7 @@ PhysicalP Game::create_enemy(PhysicalP obj,Boolean addToLocator) {
   IntelOptions ops;
   ITmask opMask = intel_options_for(ops,obj->get_class_id());
 
-  ostrstream name;
+  std::ostrstream name;
   name << "Machine-" << (enemyNameCount++) << std::ends;
   EnemyP enemy = new Enemy(&world,&locator,name.str(),&ops,opMask);
   assert(enemy);
@@ -3235,7 +3235,7 @@ void Game::demo_setup()
   switch (Utils::choose(8)) {
     case 0: { // A bunch of Heros and an Alien.
     	for (int n = 0; n < 10; n++) {
-        ostrstream name;
+        std::ostrstream name;
         name << "Enemy-" << n << std::ends;
         IntelOptions ops;
         ops.harmless = True;
@@ -3268,7 +3268,7 @@ void Game::demo_setup()
     
     case 1: { // Hero, FThrower, and a bunch of Frogs (does not mean Frenchmen).
 	    for (int n = 0; n < 15; n++) {
-	      ostrstream name;
+	      std::ostrstream name;
 	      name << "Enemy-" << n << std::ends;
 	      IntelOptions ops;
 	      ops.psychotic = Utils::coin_flip();
@@ -3304,7 +3304,7 @@ void Game::demo_setup()
     case 2: { // A bunch of Enforcers.
       for (int n = 0; n < 10; n++)
 	      {
-	        ostrstream name;
+	        std::ostrstream name;
 	        name << "Enemy-" << n << std::ends;
 	        IntelOptions ops;
 	        ops.classFriends = False;
@@ -3327,7 +3327,7 @@ void Game::demo_setup()
 
     case 3: { // A bunch of Ninjas and a chainsaw.
       for (int n = 0; n < 10; n++) {
-	      ostrstream name;
+	      std::ostrstream name;
 	      name << "Enemy-" << n << std::ends;
 	      IntelOptions ops;
 	      ops.classFriends = False;
@@ -3373,7 +3373,7 @@ void Game::demo_setup()
       }	    
 
       for (int m = 0; m < 10; m++) {
-        ostrstream name;
+        std::ostrstream name;
         name << "Enemy-" << m << std::ends;
         EnemyP enemy = new Enemy(&world,&locator,name.str(),
                                  NULL,ITnone);
@@ -3414,7 +3414,7 @@ void Game::demo_setup()
     case 5: { // Ninjas and ChopperBoys.
       int n;
       for (n = 0; n < 10; n++) {
-	      ostrstream name;
+	      std::ostrstream name;
 	      name << "Enemy-" << n << std::ends;
 	      IntelOptions ops;
 	      ops.classFriends = False;
@@ -3458,7 +3458,7 @@ void Game::demo_setup()
       // and the scenario isn't set up yet.
 
       for (n = 0; n < 9; n++) {
-        ostrstream name;
+        std::ostrstream name;
         name << "Dog-" << n << std::ends;
         EnemyP intel = new Enemy(&world,&locator,name.str(),NULL,ITnone);
         assert(intel);
@@ -3473,7 +3473,7 @@ void Game::demo_setup()
   	  }
 
       for (n = 0; n < 3; n++) {
-        ostrstream name;
+        std::ostrstream name;
         name << "Enemy-" << n << std::ends;
         IntelOptions ops;
         ops.harmless = True;
@@ -3510,7 +3510,7 @@ void Game::demo_setup()
         Segmented::create_and_add_composite(ret,&world,&locator,Dragon::SEGMENTS_NUM,pos,
                                             Dragon::create,NULL);
         for (int m = 0; m < ret.length(); m++) {
-          ostrstream name;
+          std::ostrstream name;
           name << "Enemy-" << n << std::ends;
           IntelOptions ops;
           ops.harmless = True;

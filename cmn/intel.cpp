@@ -2093,7 +2093,7 @@ Boolean Pet::is_pet()
 #ifdef PRINT_MODES
 void mode_helper(int prev,int curr) {
 	char buffer[80];
-	ostrstream str(buffer,80);
+	std::ostrstream str(buffer,80);
 	str << "mode changing from:" << Pet::mode_string(prev) <<
 		" to: " << Pet::mode_string(curr) << std::endl << std::ends;
 #if WIN32

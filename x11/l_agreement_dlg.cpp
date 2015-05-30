@@ -370,7 +370,7 @@ void LAgreementDlg::check_viewed_before() {
     return;
   }
 
-  ostrstream str;
+  std::ostrstream str;
   str << home;
   if (home[strlen(home)-1] != '/') {
     str << "/";

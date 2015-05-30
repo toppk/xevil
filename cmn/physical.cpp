@@ -523,7 +523,7 @@ void Physical::heat_attack(PhysicalP,int h,Boolean secondary) {
       
     if (heat == 0 && heatNext > 0) {
       LocatorP l = get_locator();
-      ostrstream str;
+      std::ostrstream str;
       str << get_class_name() << " is on fire." << std::ends;
       locator->message_enq(str.str());
     }
@@ -2556,7 +2556,7 @@ void Item::act() {
 
 void Item::die() {
   LocatorP locator = get_locator();
-  ostrstream msg;
+  std::ostrstream msg;
   switch (dieMessage) {
   case NONE:
     break;
@@ -2650,7 +2650,7 @@ void Drugs::taken(PhysicalP p) {
   // Prevent non-biologicals from picking up drugs.
 
   if (p->is_creature() && !((CreatureP)p)->biological()) {
-    ostrstream msg;
+    std::ostrstream msg;
     msg << "Non-Biological Creatures Cannot Use Drugs" << std::ends;
     LocatorP locator = get_locator();
     locator->arena_message_enq(msg.str(),p);
@@ -2673,11 +2673,11 @@ void Drugs::use(PhysicalP p)
     assert(context->odChance >= 0);
     if (context->odChance && Utils::choose(context->odChance) == 0) {
       p->kill_self();
-      ostrstream msg;
+      std::ostrstream msg;
       msg << p->get_class_name() << " dies from crack overdose." << std::ends;
       locator->message_enq(msg.str());
       
-      ostrstream arenaMsg;
+      std::ostrstream arenaMsg;
       arenaMsg << "You Died From Drug Overdose" << std::ends;
       locator->arena_message_enq(arenaMsg.str(),p);
 
@@ -2693,7 +2693,7 @@ void Drugs::use(PhysicalP p)
   }
   else {
     // Shouldn't get here, should kill self when picking it up.
-    ostrstream msg;
+    std::ostrstream msg;
     msg << "Non-Biological Creatures Cannot Use Drugs" << std::ends;
     locator->arena_message_enq(msg.str(),p);
   }
@@ -4334,7 +4334,7 @@ void Creature::update() {
   if (!get_quiet_death() && !alive() && 
       (corpseTimer.ready() || (get_health() < - cc->corpseHealth))) {
     LocatorP locator = get_locator();
-    ostrstream msg;
+    std::ostrstream msg;
     if (corpseTimer.ready()) {
 	    msg << get_class_name() << " corpse has decomposed." << std::ends;
 	    locator->message_enq(msg.str());
@@ -4399,7 +4399,7 @@ void Creature::die() {
     set_vel_next(velNew);
     set_stance_next(CO_air);
     
-    ostrstream msg;
+    std::ostrstream msg;
     msg << get_class_name() << " has died." << std::ends;
     locator->message_enq(msg.str());
     
@@ -6072,7 +6072,7 @@ Boolean User::collide(PhysicalP other) {
     }
     // If User is already holding the max number of weapons.
     else if (weaponsNum >= PH_WEAPONS_MAX) {
-      ostrstream msg;
+      std::ostrstream msg;
       msg << "Can only hold " << PH_WEAPONS_MAX << " weapons" << std::ends;          
       LocatorP locator = cre->get_locator();
       locator->arena_message_enq(msg.str(),cre);
@@ -6124,12 +6124,12 @@ Boolean User::collide(PhysicalP other) {
   else {
     LocatorP locator = cre->get_locator();
     if (itemsNum == PH_ITEMS_MAX) {
-      ostrstream msg;
+      std::ostrstream msg;
       msg << "Can only hold " << PH_ITEMS_MAX << " items" << std::ends;          
       locator->arena_message_enq(msg.str(),cre);
     }
     else if (itemClassCount >= ITEM_CLASS_MAX) {
-      ostrstream msg;
+      std::ostrstream msg;
       msg << "Can only hold " << ITEM_CLASS_MAX 
         << " of any one item" << std::ends;
       locator->arena_message_enq(msg.str(),cre);
@@ -6661,7 +6661,7 @@ void Carrier::act() {
         ((ItemP)p)->use(cre);
       }
       else {
-        ostrstream str;
+        std::ostrstream str;
         str << "Cannot use " << p->get_class_name() << std::ends;
         locator->arena_message_enq(str.str(),cre);
       }

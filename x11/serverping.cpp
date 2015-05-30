@@ -140,7 +140,7 @@ ServerPing::ServerPing(int argc,char** argv) {
     error("Error opening client UDP socket.");
   }
   
-  ostrstream str;
+  std::ostrstream str;
   str << "Looking up IP address for server " << serverName << std::ends;
   message(str.str());
   delete str.str();
@@ -157,7 +157,7 @@ ServerPing::ServerPing(int argc,char** argv) {
   serverAddr.sin_port = htons((u_short)serverPort);
 
 #if 0
-  ostrstream str2;
+  std::ostrstream str2;
   str2 << serverName << " has address " 
        << hex << serverAddr.sin_addr.s_addr << std::ends;
   message(str2.str());
@@ -171,7 +171,7 @@ ServerPing::ServerPing(int argc,char** argv) {
   client.sin_addr.s_addr = htonl(INADDR_ANY);
   client.sin_port = htons((u_short)clientPort);
   if (bind(udpSock,(CMN_SOCKADDR *)&client,sizeof(client)) < 0) {
-    ostrstream str;
+    std::ostrstream str;
     str << "Could not bind local UDP port " << clientPort << std::ends;
     error(str.str());
     delete str.str();
@@ -197,7 +197,7 @@ void ServerPing::go() {
   // Send "count" number of SERVER_PINGs.
   for (int tries = 0; tries < count; tries++) {
     // Send the ping.
-    ostrstream msg;
+    std::ostrstream msg;
     msg << "Sending XETP::SERVER_PING to " 
         << serverName << ':' << serverPort << std::ends;
     message(msg.str());
@@ -248,7 +248,7 @@ void ServerPing::go() {
   }
 
   // If we get here, we failed to reach the server.
-  ostrstream msg;
+  std::ostrstream msg;
   msg << "No return from " << serverName << ':' << serverPort << " after " 
       << count << " tries." << std::ends;
   error(msg.str());
@@ -271,7 +271,7 @@ void ServerPing::error(const char* msg) {
 
 
 void ServerPing::error(const char* msg1,const char* msg2) {
-  ostrstream str;
+  std::ostrstream str;
   str << msg1 << msg2 << std::ends;
   error(str.str());
 

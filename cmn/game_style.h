@@ -91,7 +91,7 @@ public:
   
   virtual GameStyle *clone() = 0;
   
-  virtual void describe(ostrstream &) = 0;
+  virtual void describe(std::ostrstream &) = 0;
   /* EFFECTS: Write a two-line description of the style to the stream. */
 
   virtual GameStyleType get_type() = 0;
@@ -137,7 +137,7 @@ public:
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
                               int level,
-                              Boolean &lStrChanged,ostrstream &levelStr,
+                              Boolean &lStrChanged,std::ostrstream &levelStr,
                               Timer &timer,
                               IPhysicalManagerP);
   /* MODIFIES: lStrChanged */
@@ -166,7 +166,7 @@ public:
 
   virtual void new_level(int level,WorldP,LocatorP,
                          const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP,int humansNum) = 0;
   /* MODIFIES: level */
   /* EFFECTS: Start a new level.  Use levelStr levelTitleStr to 
@@ -249,7 +249,7 @@ public:
 
   virtual GameStyleP clone();
 
-  virtual void describe(ostrstream &);
+  virtual void describe(std::ostrstream &);
   
   virtual GameStyleType get_type();
 
@@ -269,7 +269,7 @@ public:
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
                               int level,Boolean &lStrChanged,
-                              ostrstream &levelStr,Timer &timer,
+                              std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual Boolean advance_level();
@@ -277,7 +277,7 @@ public:
   virtual Boolean award_bonus();
 
   virtual void new_level(int level,WorldP,LocatorP,const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP,int humansNum);
 
   virtual void new_level_set_timer(Timer &timer);
@@ -305,7 +305,7 @@ public:
   
   virtual GameStyleP clone();
 
-  virtual void describe(ostrstream &);
+  virtual void describe(std::ostrstream &);
   
   virtual GameStyleType get_type();
 
@@ -314,11 +314,11 @@ public:
   virtual void reset(WorldP,LocatorP,const DifficultyLevel &,int enemiesNumNext);
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void new_level(int level,WorldP,LocatorP,const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP,int humansNum);
 
   virtual void new_level_set_timer(Timer &timer);
@@ -340,7 +340,7 @@ public:
 
   virtual GameStyleP clone();
 
-  virtual void describe(ostrstream &);
+  virtual void describe(std::ostrstream &);
 
   virtual GameStyleType get_type();
 
@@ -355,7 +355,7 @@ public:
   virtual Boolean game_over_check(int humansPlaying,int enemiesPlaying);
 
   virtual void new_level(int level,WorldP,LocatorP,const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP,int humansNum);
 
   virtual void refill_enemies(Boolean enemiesRefill,WorldP,LocatorP,IPhysicalManagerP);
@@ -376,7 +376,7 @@ public:
   
   virtual GameStyleP clone();
 
-  virtual void describe(ostrstream &);
+  virtual void describe(std::ostrstream &);
 
   virtual GameStyleType get_type();
 
@@ -389,7 +389,7 @@ public:
   virtual Boolean game_over_check(int humansPlaying,int enemiesPlaying);
 
   virtual void new_level(int level,WorldP,LocatorP,const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP,int humansNum);
 
   virtual void refill_enemies(Boolean enemiesRefill,WorldP,LocatorP,IPhysicalManagerP);
@@ -408,7 +408,7 @@ public:
   
   virtual GameStyleP clone();
 
-  virtual void describe(ostrstream &);
+  virtual void describe(std::ostrstream &);
 
   virtual GameStyleType get_type();
 
@@ -423,7 +423,7 @@ public:
   virtual Boolean game_over_check(int humansPlaying,int enemiesPlaying);
 
   virtual void new_level(int level,WorldP,LocatorP,const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP,int humansNum);
 
   virtual void refill_enemies(Boolean enemiesRefill,WorldP,LocatorP,IPhysicalManagerP);
@@ -442,7 +442,7 @@ public:
 
   virtual GameStyleP clone();
 
-  virtual void describe(ostrstream &);
+  virtual void describe(std::ostrstream &);
 
   virtual GameStyleType get_type();
 
@@ -451,7 +451,7 @@ public:
   virtual void reset(WorldP,LocatorP,const DifficultyLevel &dLevel,int);
 
   virtual void new_level(int level,WorldP,LocatorP,const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP,int humansNum);
 
   virtual void refill_enemies(Boolean enemiesRefill,WorldP,LocatorP,IPhysicalManagerP);
@@ -466,7 +466,7 @@ public:
 
   virtual GameStyleP clone();
 
-  virtual void describe(ostrstream &);
+  virtual void describe(std::ostrstream &);
 
   virtual GameStyleType get_type();
 
@@ -485,7 +485,7 @@ public:
   virtual void reset(WorldP,LocatorP,const DifficultyLevel &,int enemiesNumNext);
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual Boolean advance_level();
@@ -493,7 +493,7 @@ public:
   virtual Boolean award_bonus();
 
   virtual void new_level(int level,WorldP,LocatorP,const DifficultyLevel &dLevel,
-                         ostrstream &levelStr,ostrstream &levelTitleStr,
+                         std::ostrstream &levelStr,std::ostrstream &levelTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual void new_level_set_timer(Timer &timer);

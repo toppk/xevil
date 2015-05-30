@@ -961,7 +961,7 @@ void Ui::menu_learn_controls_CB(void* value,
     ui->lControls[dpyNum].input = ui->lControls[dpyNum].key = 
       ui->lControls[dpyNum].which = 0;
       
-    ostrstream str;
+    std::ostrstream str;
     str << "There are 2 sets of controls for the players on the right and" 
         << "\n"
         << "left sides of the keyboard, respectively." << "\n"
@@ -1167,7 +1167,7 @@ void Ui::learn_controls_CB(Panel* panel,void* value,void* closure) {
     return;
   }
 
-  ostrstream str;
+  std::ostrstream str;
   str << (ui->lControls[dpyNum].input ? "Left" : "Right") 
       << " player: The "
       << (ui->lControls[dpyNum].which ? "second" : "first") << " key for <" 
@@ -1225,7 +1225,7 @@ void Ui::learn_controls_CB(Panel* panel,void* value,void* closure) {
 	<< ">." << std::ends;
 
   // Add message in front of str.str().
-  ostrstream fullStr;
+  std::ostrstream fullStr;
   if (ui->lControls[dpyNum].input == UI_KEYS_LEFT) {
     fullStr << "You may dismiss this dialog now if you only want to" << "\n"
            << "set the controls for one player." 
@@ -1537,7 +1537,7 @@ void Ui::create_help() {
   Line::set_text_columns(HELP_COLS);
   Page page(NULL,helpMessage);
   const PtrList& lines = page.get_lines();
-  ostrstream message;
+  std::ostrstream message;
   for (int n = 0; n < lines.length(); n++) {
     Line* line = (Line*)lines.get(n);
     char* text = line->alloc_text();
@@ -1621,7 +1621,7 @@ void Ui::controls_redraw(int dpyNum) {
   // Loop through all keys.
   for (int n = 0; n < UI_KEYS_MAX; n++) {
     // String for right side.
-    strstream str0;
+    std::strstream str0;
     str0 << keysNames[n] << ":  " << XKeysymToString(keymaps[0][n][0][0]);
     if (keymaps[0][n][0][1] && strlen(XKeysymToString(keymaps[0][n][0][1])))
       str0 << ", " << XKeysymToString(keymaps[0][n][0][1]);
@@ -1634,7 +1634,7 @@ void Ui::controls_redraw(int dpyNum) {
     str0 << std::ends;
     
     // String for left side.
-    strstream str1;
+    std::strstream str1;
     str1 << keysNames[n] << ":  " << XKeysymToString(keymaps[1][n][0][0]);
     if (keymaps[1][n][0][1] && strlen(XKeysymToString(keymaps[1][n][0][1]))) {
       str1 << ", " << XKeysymToString(keymaps[1][n][0][1]);

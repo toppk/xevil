@@ -422,7 +422,7 @@ const char* Utils::game_style_to_string(GameStyleType gsType) {
 
 
 char* Utils::get_OS_info() {
-  ostrstream ret;
+  std::ostrstream ret;
 
 
 #ifdef WIN32

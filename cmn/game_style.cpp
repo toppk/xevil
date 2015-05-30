@@ -109,13 +109,13 @@ public:
   /* DEFAULT: True */
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP) = 0;
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &) = 0;
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum) = 0;
   /* EFFECTS: These two functions start a new level in a scenario.  setup_world() should
      just setup the map and size of the world.  new_level() is called after world.reset()
@@ -158,13 +158,13 @@ public:
   virtual ScenarioType get_scenario_type() {return EXTERMINATE;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
 
@@ -183,13 +183,13 @@ public:
   virtual Boolean can_refill_game_objects();
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual void new_level_set_timer(Timer &timer);
@@ -209,7 +209,7 @@ public:
   virtual ScenarioType get_scenario_type() {return HIVE;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual Boolean award_bonus();
@@ -218,7 +218,7 @@ public:
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual void refill_enemies(Boolean enemiesRefill,WorldP,LocatorP,IPhysicalManagerP);
@@ -242,13 +242,13 @@ public:
   virtual ScenarioType get_scenario_type() {return CAPTURE_THE_FLAG;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual void refill_enemies(Boolean enemiesRefill,WorldP,LocatorP,IPhysicalManagerP);
@@ -269,7 +269,7 @@ public:
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual Boolean advance_level();  
@@ -292,7 +292,7 @@ protected:
   
   virtual Boolean (*get_team())(LocatorP,PhysicalP,PhysicalP) = 0;
   
-  virtual void set_level_strings(int level,ostrstream &lStr,ostrstream &lTitleStr) = 0;
+  virtual void set_level_strings(int level,std::ostrstream &lStr,ostrstream &lTitleStr) = 0;
   /* EFFECTS: Called in new_level() to set the appropriate messages. */
 
   
@@ -311,7 +311,7 @@ public:
   virtual ScenarioType get_scenario_type() {return SEALS;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual Boolean award_bonus();
@@ -323,7 +323,7 @@ protected:
 #endif
   virtual Boolean (*get_team())(LocatorP,PhysicalP,PhysicalP);
 
-  virtual void set_level_strings(int level,ostrstream &lStr,ostrstream &lTitleStr);
+  virtual void set_level_strings(int level,std::ostrstream &lStr,ostrstream &lTitleStr);
 
 
 private:
@@ -342,7 +342,7 @@ public:
   virtual ScenarioType get_scenario_type() {return ANTI_SEALS;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
 
@@ -351,7 +351,7 @@ protected:
 #endif
   virtual Boolean (*get_team())(LocatorP,PhysicalP,PhysicalP);
 
-  virtual void set_level_strings(int level,ostrstream &lStr,ostrstream &lTitleStr);
+  virtual void set_level_strings(int level,std::ostrstream &lStr,ostrstream &lTitleStr);
 
 
 private:
@@ -369,13 +369,13 @@ public:
   virtual SoundName get_midisoundtrack(){return SoundNames::FIRE_SOUNDTRACK;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual Boolean award_bonus();
@@ -391,13 +391,13 @@ public:
   virtual ScenarioType get_scenario_type() {return KILL_THE_DRAGON;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual SoundName get_midisoundtrack(){return SoundNames::FIRE_SOUNDTRACK;}
@@ -419,13 +419,13 @@ public:
   virtual Pos human_initial_pos(WorldP,LocatorP,const Size &s);
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual void refill_enemies(Boolean enemiesRefill,WorldP,LocatorP,IPhysicalManagerP);
@@ -447,13 +447,13 @@ public:
   virtual ScenarioType get_scenario_type() {return THE_POUND;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 };
 
@@ -466,13 +466,13 @@ public:
   virtual ScenarioType get_scenario_type() {return JAPAN_TOWN;}
 
   virtual int new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                               IPhysicalManagerP);
 
   virtual void setup_world(WorldP,LocatorP,const DifficultyLevel &);
   virtual void new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &dLevel,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int humansNum);
 
   virtual void filter_weapons_and_other_items(LocatorP,int &weaponsNum,
@@ -581,7 +581,7 @@ Boolean GameStyle::need_difficulty(int) {
 
 
 int GameStyle::new_level_check(int,WorldP,LocatorP,
-                                  int,Boolean &,ostrstream &,Timer &timer,
+                                  int,Boolean &,std::ostrstream &,Timer &timer,
                                   IPhysicalManagerP) {  
   // A timer-based level.
   if (timer.ready()) {
@@ -791,7 +791,7 @@ GameStyleP Normal::clone() {
 
 
 
-void Normal::describe(ostrstream &str) {
+void Normal::describe(std::ostrstream &str) {
   str << "Complete each level/scenario to proceed to the next one." << std::ends;
 }
 
@@ -852,7 +852,7 @@ void Normal::reset(WorldP w,LocatorP l,const DifficultyLevel &dLevel,int enemies
 
 
 int Normal::new_level_check(int enemiesPlaying,WorldP w,LocatorP l,
-                             int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &timer,
+                             int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &timer,
                              IPhysicalManagerP manager) {
   GameStyleP delegate = get_delegate();
   return delegate->new_level_check(enemiesPlaying,w,l,level,lStrChanged,levelStr,timer,manager);
@@ -876,7 +876,7 @@ Boolean Normal::award_bonus() {
 
 void Normal::new_level(int level,WorldP world,LocatorP locator,
                        const DifficultyLevel &dLevel,
-                       ostrstream &lStr,ostrstream &lTitleStr,
+                       std::ostrstream &lStr,ostrstream &lTitleStr,
                        IPhysicalManagerP manager,int humansNum) {
   // Choose which delegate to use.
   if (level % NORMAL_SCENARIOS_FREQUENCY == 0) {
@@ -934,7 +934,7 @@ GameStyleP Levels::clone() {
 
 
 
-void Levels::describe(ostrstream &str) {
+void Levels::describe(std::ostrstream &str) {
   str << "Human player(s) fights through increasing levels of "
 	    << "difficulty." << "\n" 
 	    << "To complete a level you must kill all enemy players." 
@@ -969,7 +969,7 @@ void  Levels::reset(WorldP,LocatorP,const DifficultyLevel &dLevel,int) {
 
 
 int Levels::new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                              int,Boolean &,ostrstream &,Timer &,
+                              int,Boolean &,std::ostrstream &,Timer &,
                               IPhysicalManagerP) {
   if (enemiesPlaying == 0) {
     return 1;
@@ -983,7 +983,7 @@ int Levels::new_level_check(int enemiesPlaying,WorldP,LocatorP,
 
 void Levels::new_level(int level,WorldP world,LocatorP locator,
                        const DifficultyLevel &dLevel,
-                       ostrstream &lStr,ostrstream &lTitleStr,
+                       std::ostrstream &lStr,ostrstream &lTitleStr,
                        IPhysicalManagerP manager,int) {
   world->reset();  
 
@@ -1037,7 +1037,7 @@ GameStyleP KillKillKill::clone() {
 
 
 
-void KillKillKill::describe(ostrstream &str) {
+void KillKillKill::describe(std::ostrstream &str) {
   str << "Every human and machine for him/her/itself." << std::ends;
 }
 
@@ -1095,7 +1095,7 @@ Boolean KillKillKill::game_over_check(int humansPlaying,int enemiesPlaying) {
 
 void KillKillKill::new_level(int level,WorldP world,LocatorP locator,
                              const DifficultyLevel &,
-                             ostrstream &lStr,ostrstream &lTitleStr,
+                             std::ostrstream &lStr,ostrstream &lTitleStr,
                              IPhysicalManagerP manager,int) {
   world->reset();
 
@@ -1152,7 +1152,7 @@ GameStyleP Duel::clone() {
 
 
 
-void Duel::describe(ostrstream &str) {
+void Duel::describe(std::ostrstream &str) {
   str << "Human vs. human battle to the death." 
 	    << "\n" << "Each human has 3 lives." << std::ends;
 }
@@ -1207,7 +1207,7 @@ Boolean Duel::game_over_check(int humansPlaying,int) {
 
 void Duel::new_level(int level,WorldP world,LocatorP locator,
                      const DifficultyLevel &,
-                     ostrstream &lStr,ostrstream &lTitleStr,
+                     std::ostrstream &lStr,ostrstream &lTitleStr,
                      IPhysicalManagerP manager,int) {
   world->reset();
   clean_physicals(False,world,locator,manager);
@@ -1256,7 +1256,7 @@ GameStyleP ExtendedDuel::clone() {
 
 
 
-void ExtendedDuel::describe(ostrstream &str) {
+void ExtendedDuel::describe(std::ostrstream &str) {
   str << "Human vs. human battle to the death." 
 	    << "\n" << "Unlimited lives." << std::ends;
 }
@@ -1318,7 +1318,7 @@ Boolean ExtendedDuel::game_over_check(int humansPlaying,int) {
 
 void ExtendedDuel::new_level(int level,WorldP world,LocatorP locator,
                              const DifficultyLevel &,
-                             ostrstream &lStr,ostrstream &lTitleStr,
+                             std::ostrstream &lStr,ostrstream &lTitleStr,
                              IPhysicalManagerP manager,int) {
   world->reset();
   clean_physicals(False,world,locator,manager);
@@ -1367,7 +1367,7 @@ GameStyleP Training::clone() {
 
 
 
-void Training::describe(ostrstream &str) {
+void Training::describe(std::ostrstream &str) {
   str << "No enemies.  Useful for learning the controls." << std::ends;
 }
 
@@ -1392,7 +1392,7 @@ void Training::reset(WorldP,LocatorP,const DifficultyLevel &,int)
 
 void Training::new_level(int level,WorldP world,LocatorP locator,
                         const DifficultyLevel &,
-                        ostrstream &lStr,ostrstream &lTitleStr,
+                        std::ostrstream &lStr,ostrstream &lTitleStr,
                         IPhysicalManagerP manager,int) {
   world->reset();
   clean_physicals(False,world,locator,manager);
@@ -1428,7 +1428,7 @@ GameStyleP Scenarios::clone() {
 
 
 
-void Scenarios::describe(ostrstream &str) {
+void Scenarios::describe(std::ostrstream &str) {
   str << "A number of different scenarios." << "\n"
 	    << "You must complete each scenario to continue on to the "
 	    << "next one." << std::ends;
@@ -1499,7 +1499,7 @@ void Scenarios::reset(WorldP,LocatorP,const DifficultyLevel &,int) {
 
 int Scenarios::new_level_check(int enemiesPlaying,WorldP w,LocatorP l,
                              int level,Boolean &lStrChanged,
-                               ostrstream &levelStr,Timer &timer,
+                               std::ostrstream &levelStr,Timer &timer,
                              IPhysicalManagerP manager) {
   assert(scenario);
   return scenario->new_level_check(enemiesPlaying,w,l,level,
@@ -1534,7 +1534,7 @@ Boolean Scenarios::award_bonus() {
 
 void Scenarios::new_level(int level,WorldP world,LocatorP locator,
                        const DifficultyLevel &dLevel,
-                       ostrstream &lStr,ostrstream &lTitleStr,
+                       std::ostrstream &lStr,ostrstream &lTitleStr,
                        IPhysicalManagerP manager,int humansNum) {
   // Works even if scenario is NULL.
   if (!scenario || scenario->advance_level()) {
@@ -1804,7 +1804,7 @@ Exterminate::Exterminate()
 
 
 int Exterminate::new_level_check(int enemiesPlaying,WorldP,LocatorP,
-                                 int,Boolean &,ostrstream &,Timer &,
+                                 int,Boolean &,std::ostrstream &,Timer &,
                                  IPhysicalManagerP) {
   if (enemiesPlaying == 0) {
     return 1;
@@ -1822,7 +1822,7 @@ void Exterminate::setup_world(WorldP,LocatorP,const DifficultyLevel &) {
 
 void Exterminate::new_level(int level,WorldP,LocatorP,
                             const DifficultyLevel &dLevel,
-                            ostrstream &lStr,ostrstream &lTitleStr,
+                            std::ostrstream &lStr,ostrstream &lTitleStr,
                             IPhysicalManagerP manager,int) {
   lTitleStr << "[" << level << "] EXTERMINATE" << std::ends;
   lStr << "[" << level << "] EXTERMINATE\nKill all machines." << std::ends;
@@ -1852,7 +1852,7 @@ Boolean Bonus::can_refill_game_objects() {
 
 int Bonus::new_level_check(int,WorldP,LocatorP locator,
                            int level,Boolean &lStrChanged,
-                           ostrstream &levelStr,Timer &timer,
+                           std::ostrstream &levelStr,Timer &timer,
                            IPhysicalManagerP) {
   // Ran out of time.
   if (timer.ready()) {
@@ -1876,7 +1876,7 @@ int Bonus::new_level_check(int,WorldP,LocatorP locator,
 	      << remaining << std::ends;
     lStrChanged = True;
     if (remaining > 0) {
-	    ostrstream arenaStr;
+	    std::ostrstream arenaStr;
 	    arenaStr << remaining << " Frog" << 
 	      (remaining > 1 ? "s" : "") << " Remaining" << std::ends;
 	    locator->arena_message_enq(arenaStr.str());
@@ -1884,7 +1884,7 @@ int Bonus::new_level_check(int,WorldP,LocatorP locator,
 
     // Will only be called once per level.
     if (frogsRemaining == 0) {
-//      ostrstream ostr;
+//      std::ostrstream ostr;
 //      ostr << "**** You must feel proud of yourself for killing all "
 //      << "those defenseless frogs. ****" << std::ends;
 //      locator->message_enq(ostr.str());
@@ -1907,7 +1907,7 @@ void Bonus::setup_world(WorldP world,LocatorP,const DifficultyLevel &) {
 
 void Bonus::new_level(int level,WorldP world,LocatorP locator,
                       const DifficultyLevel &,
-                      ostrstream &lStr,ostrstream &lTitleStr,
+                      std::ostrstream &lStr,ostrstream &lTitleStr,
                       IPhysicalManagerP manager,int) {
   // Create frogs
   for (int n = 0; n < SCENARIO_BONUS_FROGS; n++) {
@@ -1960,7 +1960,7 @@ Hive::Hive() {
 
 
 int Hive::new_level_check(int,WorldP,LocatorP locator,
-                          int,Boolean &,ostrstream &,Timer &,
+                          int,Boolean &,std::ostrstream &,Timer &,
                           IPhysicalManagerP) {
   PhysicalP xit = locator->lookup(xitId);
   assert(xit); // The Xit should never be destroyed.
@@ -1987,7 +1987,7 @@ void Hive::setup_world(WorldP world,LocatorP,const DifficultyLevel &) {
 
 void Hive::new_level(int level,WorldP world,LocatorP locator,
                      const DifficultyLevel &,
-                     ostrstream &lStr,ostrstream &lTitleStr,
+                     std::ostrstream &lStr,ostrstream &lTitleStr,
                      IPhysicalManagerP manager,int) {
 	// Aliens are created in Game::clock.
 
@@ -2073,7 +2073,7 @@ CaptureTheFlag::CaptureTheFlag()
 
 
 int CaptureTheFlag::new_level_check(int,WorldP,LocatorP locator,
-                                    int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &,
+                                    int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &,
                                     IPhysicalManagerP manager) {
   int fRemaining = 0;
   for (int n = 0; n < SCENARIO_FLAG_FLAGS; n++) {
@@ -2094,7 +2094,7 @@ int CaptureTheFlag::new_level_check(int,WorldP,LocatorP locator,
 	     << " FLAGS\nremaining: "<<  flagsRemaining <<   std::ends;
     lStrChanged = True;
 
-    ostrstream arenaStr;
+    std::ostrstream arenaStr;
     if (fRemaining != 0) {
       arenaStr << flagsRemaining << " Flag" <<
 	      (flagsRemaining > 1 ? "s" : "") << " Remaining" << std::ends;
@@ -2124,7 +2124,7 @@ void CaptureTheFlag::setup_world(WorldP world,LocatorP,const DifficultyLevel &) 
 
 void CaptureTheFlag::new_level(int level,WorldP world,LocatorP locator,
                                const DifficultyLevel &,
-                               ostrstream &lStr,ostrstream &lTitleStr,
+                               std::ostrstream &lStr,ostrstream &lTitleStr,
                                IPhysicalManagerP,int) {
   for (int n = 0; n < SCENARIO_FLAG_FLAGS; n++) {
 	  Pos pos = world->empty_accessible_rect(Flag::get_size_max());
@@ -2169,7 +2169,7 @@ void GenericSeals::setup_world(WorldP world,LocatorP,const DifficultyLevel &) {
 
 void GenericSeals::new_level(int level,WorldP world,LocatorP locator,
                          const DifficultyLevel &,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP,int) {
   // Add a team for each human in the game.
   // Don't use locator->humans_registered() because they may not have been
@@ -2298,7 +2298,7 @@ Seals::Seals() {
 
 
 int Seals::new_level_check(int,WorldP,LocatorP locator,
-                              int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &,
+                              int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &,
                               IPhysicalManagerP) {  
   int lemOut,lemSafe,lemActive,lemDead;
   compute_out_safe_active_dead(locator,lemOut,lemSafe,lemActive,lemDead);
@@ -2312,7 +2312,7 @@ int Seals::new_level_check(int,WorldP,LocatorP locator,
 
     // Only update arena string if sealsSafe has changed.
     if (lemSafe != sealsSafe && lemSafe != SCENARIO_SEALS_NEED) {
-      ostrstream arenaStr;
+      std::ostrstream arenaStr;
       arenaStr << "Save " << (SCENARIO_SEALS_NEED - lemSafe)
                << " More Baby Seals" << std::ends;
       locator->arena_message_enq(arenaStr.str());
@@ -2332,7 +2332,7 @@ int Seals::new_level_check(int,WorldP,LocatorP locator,
     if (lemDead > (SCENARIO_SEALS_SEALS - SCENARIO_SEALS_NEED)
 	      || lemSafe >= SCENARIO_SEALS_NEED) {
       if (lemSafe < SCENARIO_SEALS_NEED) {
-	      ostrstream msg;
+	      std::ostrstream msg;
 	      msg << "YOU FAILED TO SAVE " << (int)SCENARIO_SEALS_NEED
 	          << " BABY SEALS. TRY THIS LEVEL AGAIN." << std::ends;
 	      locator->arena_message_enq(msg.str());
@@ -2365,7 +2365,7 @@ Boolean (* Seals::get_team())(LocatorP,PhysicalP,PhysicalP) {
 
 
   
-void Seals::set_level_strings(int level,ostrstream &lStr,ostrstream &lTitleStr) {
+void Seals::set_level_strings(int level,std::ostrstream &lStr,ostrstream &lTitleStr) {
   lTitleStr << "[" << level << "] SAVE THE BABY SEALS" << std::ends;
   lStr << "[" << level << "] SAVE "<< 
 	  (int)SCENARIO_SEALS_NEED << " BABY SEALS\n" 
@@ -2430,7 +2430,7 @@ AntiSeals::AntiSeals() {
 
 
 int AntiSeals::new_level_check(int,WorldP,LocatorP locator,
-                                  int level,Boolean &lStrChanged,ostrstream &levelStr,Timer &,
+                                  int level,Boolean &lStrChanged,std::ostrstream &levelStr,Timer &,
                                   IPhysicalManagerP) {  
   // level not over by default.
   int ret = -1;
@@ -2441,7 +2441,7 @@ int AntiSeals::new_level_check(int,WorldP,LocatorP locator,
 
   // Failure
   if (lemSafe > SCENARIO_ANTI_SEALS_MAX_SLIPPAGE) {
-	  ostrstream msg;
+	  std::ostrstream msg;
 #if 0
     // Not enough space on screen, need two lines.
 	  msg << "YOU LET TOO MANY OF THE FAT BASTARDS GET AWAY\n"
@@ -2473,7 +2473,7 @@ int AntiSeals::new_level_check(int,WorldP,LocatorP locator,
       }
       // Update UI
       else if (lemSafe == sealsSafe) {  // o.w. the "one got away" message takes priority
-        ostrstream arenaStr;
+        std::ostrstream arenaStr;
         arenaStr << "Kill "
           << lemToKill << " More Baby Seals" << std::ends;
         locator->arena_message_enq(arenaStr.str());
@@ -2502,7 +2502,7 @@ Boolean (*AntiSeals::get_team())(LocatorP,PhysicalP,PhysicalP) {
 
 
   
-void AntiSeals::set_level_strings(int level,ostrstream &lStr,ostrstream &lTitleStr) {
+void AntiSeals::set_level_strings(int level,std::ostrstream &lStr,ostrstream &lTitleStr) {
   lTitleStr << "[" << level << "] KILL THE BABY SEALS" << std::ends;
   lStr << "[" << level << "] KILL "<< 
 	  (int)SCENARIO_SEALS_SEALS << " BABY SEALS" << std::ends;
@@ -2552,7 +2552,7 @@ KillTheFireDemon::KillTheFireDemon() {
 
 
 int KillTheFireDemon::new_level_check(int enemiesPlaying,WorldP,LocatorP locator,
-                                   int,Boolean &,ostrstream &,Timer &,
+                                   int,Boolean &,std::ostrstream &,Timer &,
                                    IPhysicalManagerP) {
   if (enemiesPlaying == 0) {
     locator->arena_message_enq(Utils::strdup("Take That, You Mother-Fucking Spawn From Hell"));
@@ -2572,7 +2572,7 @@ void KillTheFireDemon::setup_world(WorldP world,LocatorP,const DifficultyLevel &
 
 void KillTheFireDemon::new_level(int level,WorldP,LocatorP,
                                  const DifficultyLevel &,
-                                 ostrstream &lStr,ostrstream &lTitleStr,
+                                 std::ostrstream &lStr,ostrstream &lTitleStr,
                                  IPhysicalManagerP manager,int) {
   manager->create_enemy(manager->enemy_physical(A_FireDemon));
 
@@ -2594,7 +2594,7 @@ KillTheDragon::KillTheDragon(){
 
 
 int KillTheDragon::new_level_check(int enemiesPlaying,WorldP,LocatorP locator,
-                                   int,Boolean &,ostrstream &,Timer &,
+                                   int,Boolean &,std::ostrstream &,Timer &,
                                    IPhysicalManagerP) {
   if (enemiesPlaying == 0) {
     locator->arena_message_enq(Utils::strdup("The Infernal Worm has been vanquished"));
@@ -2614,7 +2614,7 @@ void KillTheDragon::setup_world(WorldP world,LocatorP,const DifficultyLevel &) {
 
 void KillTheDragon::new_level(int level,WorldP w,LocatorP l,
                                  const DifficultyLevel &,
-                                 ostrstream &lStr,ostrstream &lTitleStr,
+                                 std::ostrstream &lStr,ostrstream &lTitleStr,
                                  IPhysicalManagerP manager,int) {
   const PhysicalContext *cx = &Dragon::creatureContext.movingContext.physicalContext;
   Pos pos = w->empty_rect(cx->sizeMax);
@@ -2667,7 +2667,7 @@ Pos ZigZag::human_initial_pos(WorldP world,LocatorP,const Size &size) {
 
 
 int ZigZag::new_level_check(int,WorldP world,LocatorP locator,
-                            int,Boolean &,ostrstream &,Timer &,
+                            int,Boolean &,std::ostrstream &,Timer &,
                             IPhysicalManagerP) {
   PhysicalP xit = locator->lookup(xitId);
   assert(xit); // The Xit should never be destroyed.
@@ -2697,7 +2697,7 @@ int ZigZag::new_level_check(int,WorldP world,LocatorP locator,
 	        human->set_data((void *)depth);
 
           // Use 1-based counting for the User.
-	        ostrstream str;
+	        std::ostrstream str;
 	        str << "Depth " << (depth + 1) << std::ends;
 	        locator->arena_message_enq(str.str(),p);
         }
@@ -2718,7 +2718,7 @@ void ZigZag::setup_world(WorldP world,LocatorP ,const DifficultyLevel &) {
 
 void ZigZag::new_level(int level,WorldP world,LocatorP locator,
                        const DifficultyLevel &,
-                       ostrstream &lStr,ostrstream &lTitleStr,
+                       std::ostrstream &lStr,ostrstream &lTitleStr,
                        IPhysicalManagerP,int) {
   Rooms worldRooms = world->get_rooms();
   RoomIndex upperRight(0,worldRooms.acrossMax - 1);
@@ -2761,7 +2761,7 @@ ThePound::ThePound(){
 
 
 int ThePound::new_level_check(int enemiesPlaying,WorldP,LocatorP locator,
-                              int,Boolean &,ostrstream &,Timer &,
+                              int,Boolean &,std::ostrstream &,Timer &,
                               IPhysicalManagerP) {
   if (enemiesPlaying == 0) {
     locator->arena_message_enq(Utils::strdup("Killed the Mutts"));
@@ -2781,7 +2781,7 @@ void ThePound::setup_world(WorldP world,LocatorP,const DifficultyLevel &) {
 
 void ThePound::new_level(int level,WorldP,LocatorP locator,
                          const DifficultyLevel &,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int) {
   locator->add_team(Scenarios::dog_team,NULL);
 
@@ -2801,7 +2801,7 @@ JapanTown::JapanTown()
 
 
 int JapanTown::new_level_check(int enemiesPlaying,WorldP,LocatorP locator,
-                              int,Boolean &,ostrstream &,Timer &,
+                              int,Boolean &,std::ostrstream &,Timer &,
                               IPhysicalManagerP) {
   if (enemiesPlaying == 0) {
     locator->arena_message_enq(Utils::strdup("Damn Ninjas.  Worse than roaches."));
@@ -2821,7 +2821,7 @@ void JapanTown::setup_world(WorldP world,LocatorP,const DifficultyLevel &) {
 
 void JapanTown::new_level(int level,WorldP,LocatorP locator,
                          const DifficultyLevel &,
-                         ostrstream &lStr,ostrstream &lTitleStr,
+                         std::ostrstream &lStr,ostrstream &lTitleStr,
                          IPhysicalManagerP manager,int) {
   locator->add_team(JapanTown::ninja_team,NULL);
 
