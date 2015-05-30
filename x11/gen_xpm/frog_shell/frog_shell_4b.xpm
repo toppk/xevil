@@ -1,5 +1,5 @@
 /* XPM */
-static char *frog_shell_4b[] = {
+static const char *frog_shell_4b[] = {
   /* width height ncolors chars_per_pixel */
   "10 10 3 1 0 0",
   /* colors */

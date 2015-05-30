@@ -1,5 +1,5 @@
 /* XPM */
-static char *alien_0d[] = {
+static const char *alien_0d[] = {
   /* width height ncolors chars_per_pixel */
   "48 58 15 1 0 0",
   /* colors */

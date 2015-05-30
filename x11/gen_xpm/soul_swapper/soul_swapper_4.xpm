@@ -1,5 +1,5 @@
 /* XPM */
-static char *soul_swapper_4[] = {
+static const char *soul_swapper_4[] = {
   /* width height ncolors chars_per_pixel */
   "30 14 8 1 0 0",
   /* colors */

@@ -1,5 +1,5 @@
 /* XPM */
-static char *hero_28[] = {
+static const char *hero_28[] = {
   /* width height ncolors chars_per_pixel */
   "62 14 12 1 0 0",
   /* colors */

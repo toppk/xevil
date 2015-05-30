@@ -59,13 +59,12 @@ $(OBJ_DIR)/xevil::
 	cd $(DEPTH)/cmn; $(MAKE)
 	cd $(DEPTH)/x11; $(MAKE)
 	$(CC) $(LINK_FLAGS) $(LINK_OPT) $(LIBS_DIRS) -o $(OBJ_DIR)/xevil $(ALL_OBJS) $(LIBS)
-	$(STRIP) $(OBJ_DIR)/xevil
 
 # Could also include serverping in the distribution
 $(OBJ_DIR)/xevil$(VERSION).$(PCKG_NAME).tar.Z::
 	cp readme.txt $(OBJ_DIR)
 	cp gpl.txt $(OBJ_DIR)
-#	cp -r instructions $(OBJ_DIR)
+	cp -r instructions $(OBJ_DIR)
 	(cd $(OBJ_DIR); tar cf xevil$(VERSION).$(PCKG_NAME).tar xevil readme.txt gpl.txt instructions)
 	(cd $(OBJ_DIR); $(COMPRESS) -f xevil$(VERSION).$(PCKG_NAME).tar)
 
@@ -96,6 +95,8 @@ workdir:
 
 ## Remove executables and all junk.
 clean:
+	/bin/rm -f $(OBJ_DIR)/instructions/*
+	rmdir $(OBJ_DIR)/instructions
 	/bin/rm -f $(OBJ_DIR)/* core */core
 	rmdir $(OBJ_DIR)
 #	/bin/rm -f $(TARGETS) $(OBJS) core test test.o xshow.o xshow

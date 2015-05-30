@@ -1,5 +1,5 @@
 /* XPM */
-static char *trapdoor_4[] = {
+static const char *trapdoor_4[] = {
   /* width height ncolors chars_per_pixel */
   "60 30 6 1 0 0",
   /* colors */

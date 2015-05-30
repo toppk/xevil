@@ -1,5 +1,5 @@
 /* XPM */
-static char *PCP_4[] = {
+static const char *PCP_4[] = {
   /* width height ncolors chars_per_pixel */
   "24 12 4 1 0 0",
   /* colors */

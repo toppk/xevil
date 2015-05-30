@@ -1,5 +1,5 @@
 /* XPM */
-static char *launcher_4[] = {
+static const char *launcher_4[] = {
   /* width height ncolors chars_per_pixel */
   "42 24 10 1 0 0",
   /* colors */

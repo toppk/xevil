@@ -1,5 +1,5 @@
 /* XPM */
-static char *swap_shell_4[] = {
+static const char *swap_shell_4[] = {
   /* width height ncolors chars_per_pixel */
   "10 10 3 1 0 0",
   /* colors */

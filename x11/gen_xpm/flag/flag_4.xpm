@@ -1,5 +1,5 @@
 /* XPM */
-static char *flag_4[] = {
+static const char *flag_4[] = {
   /* width height ncolors chars_per_pixel */
   "22 26 6 1 0 0",
   /* colors */

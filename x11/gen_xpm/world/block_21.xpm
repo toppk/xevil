@@ -1,5 +1,5 @@
 /* XPM */
-static char *block_21[] = {
+static const char *block_21[] = {
   /* width height ncolors chars_per_pixel */
   "32 32 12 1 0 0",
   /* colors */

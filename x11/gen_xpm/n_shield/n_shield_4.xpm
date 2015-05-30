@@ -1,5 +1,5 @@
 /* XPM */
-static char *n_shield_4[] = {
+static const char *n_shield_4[] = {
   /* width height ncolors chars_per_pixel */
   "14 18 13 1 0 0",
   /* colors */

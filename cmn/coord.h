@@ -619,7 +619,7 @@ struct DifficultyLevel {
   int enemiesInitial; // enemies on first level
   int enemiesIncr; // this many more enemies each level
   int enemiesMax; // maximum number of enemies (for levels)
-  char *name; // of this difficulty level
+  char const*name; // of this difficulty level
 };
 enum {DIFF_TRIVIAL,DIFF_NORMAL,DIFF_HARD,DIFF_BEND_OVER,
       DIFFICULTY_LEVELS_NUM, DIFF_NONE=DIFFICULTY_LEVELS_NUM};

@@ -74,7 +74,6 @@ win32/*.rc \
 win32/*.dsp \
 win32/*.dsw
 
-STRIP		=	strip
 COMPRESS	=	gzip
 
 #### Other macros are defined in the Specific Architectures section below.

@@ -1,5 +1,5 @@
 /* XPM */
-static char *dog_0[] = {
+static const char *dog_0[] = {
   /* width height ncolors chars_per_pixel */
   "24 20 10 1 0 0",
   /* colors */

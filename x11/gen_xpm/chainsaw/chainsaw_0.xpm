@@ -1,5 +1,5 @@
 /* XPM */
-static char *chainsaw_0[] = {
+static const char *chainsaw_0[] = {
   /* width height ncolors chars_per_pixel */
   "38 18 10 1 0 0",
   /* colors */

@@ -1,5 +1,5 @@
 /* XPM */
-static char *dog_whistle_4[] = {
+static const char *dog_whistle_4[] = {
   /* width height ncolors chars_per_pixel */
   "8 26 5 1 0 0",
   /* colors */

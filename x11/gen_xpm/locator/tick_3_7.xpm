@@ -1,5 +1,5 @@
 /* XPM */
-static char *tick_3_7[] = {
+static const char *tick_3_7[] = {
   /* width height ncolors chars_per_pixel */
   "16 16 4 1 0 0",
   /* colors */

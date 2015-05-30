@@ -1,5 +1,5 @@
 /* XPM */
-static char *walker_2[] = {
+static const char *walker_2[] = {
   /* width height ncolors chars_per_pixel */
   "74 30 11 1 0 0",
   /* colors */

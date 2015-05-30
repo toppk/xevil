@@ -1,5 +1,5 @@
 /* XPM */
-static char *dragon_26[] = {
+static const char *dragon_26[] = {
   /* width height ncolors chars_per_pixel */
   "56 58 9 1 0 0",
   /* colors */

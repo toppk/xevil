@@ -1,5 +1,5 @@
 /* XPM */
-static char *home_4[] = {
+static const char *home_4[] = {
   /* width height ncolors chars_per_pixel */
   "48 52 11 1 0 0",
   /* colors */

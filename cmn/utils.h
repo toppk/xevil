@@ -237,22 +237,22 @@ class Utils {
   /* EFFECTS: Wrapper for C library strcmp().  Return 0 if strings are the
      same. */
 
-  static char* strchr(const char* cs,int c)
+  static char const* strchr(const char* cs,int c)
     {return ::strchr(cs,c);}
 
-  static char* strrchr(const char* cs,int c)
+  static char const* strrchr(const char* cs,int c)
     {return ::strrchr(cs,c);}
 
-  static char* strstr(const char* cs,const char* ct)
+  static char const* strstr(const char* cs,const char* ct)
     {return ::strstr(cs,ct);}
 
-  static void strcpy(char* s,const char* ct)
+  static void strcpy(char const* s,const char* ct)
     {::strcpy(s,ct);}
 
-  static void strncpy(char* s,const char* ct,int n)
+  static void strncpy(char const* s,const char* ct,int n)
     {::strncpy(s,ct,(size_t)n);}
 
-  static void strcat(char* s,const char* ct)
+  static void strcat(char const* s,const char* ct)
     {::strcat(s,ct);}
 
   static int atoi(const char*);

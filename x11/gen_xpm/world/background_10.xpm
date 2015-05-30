@@ -1,5 +1,5 @@
 /* XPM */
-static char *background_10[] = {
+static const char *background_10[] = {
   /* width height ncolors chars_per_pixel */
   "128 128 12 1 0 0",
   /* colors */

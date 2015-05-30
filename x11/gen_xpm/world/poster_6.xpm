@@ -1,5 +1,5 @@
 /* XPM */
-static char *poster_6[] = {
+static const char *poster_6[] = {
   /* width height ncolors chars_per_pixel */
   "64 64 4 1 0 0",
   /* colors */

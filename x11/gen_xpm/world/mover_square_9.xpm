@@ -1,5 +1,5 @@
 /* XPM */
-static char *mover_square_9[] = {
+static const char *mover_square_9[] = {
   /* width height ncolors chars_per_pixel */
   "32 32 6 1 0 0",
   /* colors */

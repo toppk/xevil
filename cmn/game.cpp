@@ -123,7 +123,7 @@ extern "C" {
 #define SOUNDONOFF_DEFAULT       True 
 
 
-char *Game::wittySayings[Game::WITTY_SAYINGS_NUM] = {
+char const*Game::wittySayings[Game::WITTY_SAYINGS_NUM] = {
     "If it moves it's a threat.  If it doesn't move it's a potential threat.",
     "Happy, happy.  Joy, joy.",
     "For the mother country!!!",
@@ -275,7 +275,7 @@ char *Game::wittySayings[Game::WITTY_SAYINGS_NUM] = {
 
 
 
-char *Game::intelNames[Game::INTEL_NAMES_NUM] = {
+char const*Game::intelNames[Game::INTEL_NAMES_NUM] = {
   "Dr. Pain",
   "Steve",
   "hardts",

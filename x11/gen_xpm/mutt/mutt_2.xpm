@@ -1,5 +1,5 @@
 /* XPM */
-static char *mutt_2[] = {
+static const char *mutt_2[] = {
   /* width height ncolors chars_per_pixel */
   "24 18 11 1 0 0",
   /* colors */

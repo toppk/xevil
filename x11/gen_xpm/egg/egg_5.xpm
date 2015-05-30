@@ -1,5 +1,5 @@
 /* XPM */
-static char *egg_5[] = {
+static const char *egg_5[] = {
   /* width height ncolors chars_per_pixel */
   "20 30 5 1 0 0",
   /* colors */

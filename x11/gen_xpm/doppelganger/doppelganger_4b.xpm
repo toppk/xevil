@@ -1,5 +1,5 @@
 /* XPM */
-static char *doppelganger_4b[] = {
+static const char *doppelganger_4b[] = {
   /* width height ncolors chars_per_pixel */
   "22 24 5 1 0 0",
   /* colors */

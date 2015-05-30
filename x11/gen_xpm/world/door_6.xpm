@@ -1,5 +1,5 @@
 /* XPM */
-static char *door_6[] = {
+static const char *door_6[] = {
   /* width height ncolors chars_per_pixel */
   "32 32 16 1 0 0",
   /* colors */

@@ -1,5 +1,5 @@
 /* XPM */
-static char *fire_demon_5[] = {
+static const char *fire_demon_5[] = {
   /* width height ncolors chars_per_pixel */
   "94 96 4 1 0 0",
   /* colors */

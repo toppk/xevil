@@ -1,5 +1,5 @@
 /* XPM */
-static char *cloak_4[] = {
+static const char *cloak_4[] = {
   /* width height ncolors chars_per_pixel */
   "30 30 5 1 0 0",
   /* colors */

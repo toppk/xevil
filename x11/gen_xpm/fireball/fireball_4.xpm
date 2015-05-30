@@ -1,5 +1,5 @@
 /* XPM */
-static char *fireball_4[] = {
+static const char *fireball_4[] = {
   /* width height ncolors chars_per_pixel */
   "48 48 7 1 0 0",
   /* colors */

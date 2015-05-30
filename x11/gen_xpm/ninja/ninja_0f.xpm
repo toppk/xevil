@@ -1,5 +1,5 @@
 /* XPM */
-static char *ninja_0f[] = {
+static const char *ninja_0f[] = {
   /* width height ncolors chars_per_pixel */
   "32 56 9 1 0 0",
   /* colors */

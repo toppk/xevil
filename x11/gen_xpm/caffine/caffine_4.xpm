@@ -1,5 +1,5 @@
 /* XPM */
-static char *caffine_4[] = {
+static const char *caffine_4[] = {
   /* width height ncolors chars_per_pixel */
   "12 22 11 1 0 0",
   /* colors */

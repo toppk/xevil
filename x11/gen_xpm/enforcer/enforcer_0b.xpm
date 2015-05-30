@@ -1,5 +1,5 @@
 /* XPM */
-static char *enforcer_0b[] = {
+static const char *enforcer_0b[] = {
   /* width height ncolors chars_per_pixel */
   "32 60 41 1 0 0",
   /* colors */

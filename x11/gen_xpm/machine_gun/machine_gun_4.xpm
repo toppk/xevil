@@ -1,5 +1,5 @@
 /* XPM */
-static char *machine_gun_4[] = {
+static const char *machine_gun_4[] = {
   /* width height ncolors chars_per_pixel */
   "34 18 9 1 0 0",
   /* colors */

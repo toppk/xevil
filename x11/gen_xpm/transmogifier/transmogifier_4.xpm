@@ -1,5 +1,5 @@
 /* XPM */
-static char *transmogifier_4[] = {
+static const char *transmogifier_4[] = {
   /* width height ncolors chars_per_pixel */
   "52 30 5 1 0 0",
   /* colors */

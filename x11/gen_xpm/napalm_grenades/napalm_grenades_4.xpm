@@ -1,5 +1,5 @@
 /* XPM */
-static char *napalm_grenades_4[] = {
+static const char *napalm_grenades_4[] = {
   /* width height ncolors chars_per_pixel */
   "28 12 6 1 0 0",
   /* colors */

@@ -412,8 +412,8 @@ private:
   SoundName currentSoundName;
   //keeps track of current sound track being played: can be 0
 
-  static char *wittySayings[WITTY_SAYINGS_NUM];
-  static char *intelNames[INTEL_NAMES_NUM];
+  static char const*wittySayings[WITTY_SAYINGS_NUM];
+  static char const*intelNames[INTEL_NAMES_NUM];
   static DifficultyLevel difficultyLevels[DIFFICULTY_LEVELS_NUM];
   static RankingSet rankingSets[RANKING_SETS_NUM];
 

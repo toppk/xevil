@@ -1,5 +1,5 @@
 /* XPM */
-static char *baby_seal_4[] = {
+static const char *baby_seal_4[] = {
   /* width height ncolors chars_per_pixel */
   "22 22 5 1 0 0",
   /* colors */

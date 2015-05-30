@@ -1,5 +1,5 @@
 /* XPM */
-static char *chopper_boy_2[] = {
+static const char *chopper_boy_2[] = {
   /* width height ncolors chars_per_pixel */
   "24 40 41 1 0 0",
   /* colors */

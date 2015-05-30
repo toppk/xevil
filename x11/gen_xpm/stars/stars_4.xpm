@@ -1,5 +1,5 @@
 /* XPM */
-static char *stars_4[] = {
+static const char *stars_4[] = {
   /* width height ncolors chars_per_pixel */
   "36 24 4 1 0 0",
   /* colors */

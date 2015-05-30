@@ -1,5 +1,5 @@
 /* XPM */
-static char *mover_3[] = {
+static const char *mover_3[] = {
   /* width height ncolors chars_per_pixel */
   "64 32 25 1 0 0",
   /* colors */

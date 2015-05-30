@@ -1,5 +1,5 @@
 /* XPM */
-static char *red_hugger_25[] = {
+static const char *red_hugger_25[] = {
   /* width height ncolors chars_per_pixel */
   "32 14 6 1 0 0",
   /* colors */

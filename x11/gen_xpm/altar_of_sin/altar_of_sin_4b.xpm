@@ -1,5 +1,5 @@
 /* XPM */
-static char *altar_of_sin_4b[] = {
+static const char *altar_of_sin_4b[] = {
   /* width height ncolors chars_per_pixel */
   "48 64 68 1 0 0",
   /* colors */

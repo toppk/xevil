@@ -1,5 +1,5 @@
 /* XPM */
-static char *green_blood_9[] = {
+static const char *green_blood_9[] = {
   /* width height ncolors chars_per_pixel */
   "14 2 2 1 0 0",
   /* colors */

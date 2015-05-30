@@ -1,5 +1,5 @@
 /* XPM */
-static char *mover_2[] = {
+static const char *mover_2[] = {
   /* width height ncolors chars_per_pixel */
   "64 32 16 1 0 0",
   /* colors */

@@ -1,5 +1,5 @@
 /* XPM */
-static char *lance_25[] = {
+static const char *lance_25[] = {
   /* width height ncolors chars_per_pixel */
   "80 2 3 1 0 0",
   /* colors */

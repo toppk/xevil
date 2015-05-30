@@ -1,5 +1,5 @@
 /* XPM */
-static char *yeti_0d[] = {
+static const char *yeti_0d[] = {
   /* width height ncolors chars_per_pixel */
   "48 50 13 1 0 0",
   /* colors */

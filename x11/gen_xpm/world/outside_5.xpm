@@ -1,5 +1,5 @@
 /* XPM */
-static char *outside_5[] = {
+static const char *outside_5[] = {
   /* width height ncolors chars_per_pixel */
   "96 96 7 1 0 0",
   /* colors */

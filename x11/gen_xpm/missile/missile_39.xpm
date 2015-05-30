@@ -1,5 +1,5 @@
 /* XPM */
-static char *missile_39[] = {
+static const char *missile_39[] = {
   /* width height ncolors chars_per_pixel */
   "14 14 11 1 0 0",
   /* colors */

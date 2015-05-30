@@ -1,5 +1,5 @@
 /* XPM */
-static char *bomb_25b[] = {
+static const char *bomb_25b[] = {
   /* width height ncolors chars_per_pixel */
   "28 26 7 1 0 0",
   /* colors */
