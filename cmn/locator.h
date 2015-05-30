@@ -47,7 +47,7 @@ the world. */
 
 
 // Include Files
-#include <iostream.h>
+#include <iostream>
 
 #include "utils.h"
 #include "coord.h"

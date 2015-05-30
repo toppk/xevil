@@ -33,7 +33,7 @@
 // Include Files
 #include "xdata.h"
 #include "physical.h"
-#include <iostream.h>
+#include <iostream>
 
 #if X11
 #include <strstream.h>

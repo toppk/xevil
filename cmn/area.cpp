@@ -34,7 +34,7 @@
 extern "C" {
 #include <limits.h> // For INT_MAX
 }
-#include <iostream.h>
+#include <iostream>
 #include "utils.h"
 #include "coord.h"
 #include "area.h"

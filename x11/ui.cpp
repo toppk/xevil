@@ -40,7 +40,7 @@ extern "C" {
 #include <X11/Xatom.h>
 }
 
-#include <iostream.h>
+#include <iostream>
 #include <strstream.h>
 
 #include "coord.h"

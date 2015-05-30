@@ -30,7 +30,7 @@
 
 // Include Files
 #include "stdafx.h"
-#include <iostream.h>
+#include <iostream>
 #include <limits.h>
 #include <string.h>
 #include <ctype.h>

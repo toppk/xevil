@@ -229,7 +229,7 @@ LIBS_DIRS=-L/usr/local/X11R5/sun4/lib $(TARGETS)
 
 # Versions of Linux with gcc 3.2.
 # Added no-deprecated option so wouldn't complain about using old-style c++
-# header names, eg <iostream.h> instead of <iostream>
+# header names, eg <iostream> instead of <iostream>
 i686:
 	@$(MAKE) CC="g++" \
 CFLAGS="-Wno-deprecated -DUSE_RANDOM -DXEVIL_KEYSET=UIlinux -DUSE_UINT_NET_LENGTH" \

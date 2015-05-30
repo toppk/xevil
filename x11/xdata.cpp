@@ -30,7 +30,7 @@
 #include "xdata.h"
 #include "area.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <X11/Xutil.h>
 #include <X11/xpm.h>
 #include <X11/Xatom.h>

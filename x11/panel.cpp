@@ -31,7 +31,7 @@ extern "C" {
 #include <X11/Xutil.h>
 #include <X11/keysym.h>
 }
-#include <iostream.h>
+#include <iostream>
 #include <strstream.h>
 
 #include "utils.h"

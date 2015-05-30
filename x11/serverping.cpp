@@ -25,7 +25,7 @@
 // code and should be reasonably easy to compile on Windows.
 
 
-#include <iostream.h>
+#include <iostream>
 #include <strstream.h>
 #include "utils.h"
 #include "streams.h"

@@ -33,7 +33,7 @@ extern "C" {
 #include <X11/Xos.h>
 }
 
-#include <iostream.h>
+#include <iostream>
 
 #include "utils.h"
 #include "neth.h"
