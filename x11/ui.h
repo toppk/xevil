@@ -338,7 +338,7 @@ class Ui: public IDifficultyCallback,
 
 
   // Variables.
-  static char *keysNames[UI_KEYS_MAX];
+  static char const*keysNames[UI_KEYS_MAX];
 
   char **argv;  // Warning: Exposing the rep.
   int argc;

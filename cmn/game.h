@@ -136,7 +136,7 @@ private:
 struct RankingSet {
   enum {RANKING_SET_MAX = 8}; // Max number of rankings in a set.
   int killsMin; // Min number of kills to get this rank.
-  char *rankings[RANKING_SET_MAX + 1]; // Extra for NULL.
+  char const*rankings[RANKING_SET_MAX + 1]; // Extra for NULL.
 };
 
 

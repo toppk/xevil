@@ -1693,7 +1693,7 @@ IViewportInfo* Ui::get_viewport_info() {
 
 
 
-char *Ui::keysNames[UI_KEYS_MAX] = {
+char const*Ui::keysNames[UI_KEYS_MAX] = {
   "center",
   "right",
   "down_right",

@@ -96,9 +96,9 @@ workdir:
 ## Remove executables and all junk.
 clean:
 	/bin/rm -f $(OBJ_DIR)/instructions/*
-	rmdir $(OBJ_DIR)/instructions
+	rmdir $(OBJ_DIR)/instructions || :
 	/bin/rm -f $(OBJ_DIR)/* core */core
-	rmdir $(OBJ_DIR)
+	rmdir $(OBJ_DIR) || :
 #	/bin/rm -f $(TARGETS) $(OBJS) core test test.o xshow.o xshow
 
 tildaclean:
