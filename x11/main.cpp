@@ -105,7 +105,7 @@ int main(int argc, char **argv) {
     
     game->post_clock();
     if (game->show_stats() && !(total % Game::REPORT_TIME))
-      cout << "total:" << total << " events:" << events << 
+      std::cout << "total:" << total << " events:" << events << 
 	  " percent:" << ((float)events / (float) total) << std::endl; 
     
     // This should be the only place exit() is called.

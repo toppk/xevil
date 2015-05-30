@@ -362,7 +362,7 @@ private:
 #endif
 
   void intro();
-  /* EFFECTS: Put info messages on cout and on the Locator message
+  /* EFFECTS: Put info messages on std::cout and on the Locator message
      queue. */ 
 
   static Boolean stats_creations_filter(const PhysicalContext*,void*);
@@ -371,7 +371,7 @@ private:
   /* NOTE: Helpers for print_stats(). */
 
   void print_stats();
-  /* EFFECTS: Print out current statistics for the Game to cout. */
+  /* EFFECTS: Print out current statistics for the Game to std::cout. */
 
   void demo_setup();
   /* EFFECTS: Create enemy players for the demo. */

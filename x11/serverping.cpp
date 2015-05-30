@@ -141,7 +141,7 @@ ServerPing::ServerPing(int argc,char** argv) {
   }
   
   ostrstream str;
-  str << "Looking up IP address for server " << serverName << ends;
+  str << "Looking up IP address for server " << serverName << std::ends;
   message(str.str());
   delete str.str();
 
@@ -159,7 +159,7 @@ ServerPing::ServerPing(int argc,char** argv) {
 #if 0
   ostrstream str2;
   str2 << serverName << " has address " 
-       << hex << serverAddr.sin_addr.s_addr << ends;
+       << hex << serverAddr.sin_addr.s_addr << std::ends;
   message(str2.str());
   delete str2.str();
 #endif
@@ -172,7 +172,7 @@ ServerPing::ServerPing(int argc,char** argv) {
   client.sin_port = htons((u_short)clientPort);
   if (bind(udpSock,(CMN_SOCKADDR *)&client,sizeof(client)) < 0) {
     ostrstream str;
-    str << "Could not bind local UDP port " << clientPort << ends;
+    str << "Could not bind local UDP port " << clientPort << std::ends;
     error(str.str());
     delete str.str();
     return;
@@ -199,7 +199,7 @@ void ServerPing::go() {
     // Send the ping.
     ostrstream msg;
     msg << "Sending XETP::SERVER_PING to " 
-        << serverName << ':' << serverPort << ends;
+        << serverName << ':' << serverPort << std::ends;
     message(msg.str());
     delete msg.str();
     XETPBasic::send_server_ping(udpOut);
@@ -250,7 +250,7 @@ void ServerPing::go() {
   // If we get here, we failed to reach the server.
   ostrstream msg;
   msg << "No return from " << serverName << ':' << serverPort << " after " 
-      << count << " tries." << ends;
+      << count << " tries." << std::ends;
   error(msg.str());
   delete msg.str();
 }
@@ -258,7 +258,7 @@ void ServerPing::go() {
 
 
 void ServerPing::message(const char* msg) {
-  cout << msg << std::endl;
+  std::cout << msg << std::endl;
 }
 
 
@@ -272,7 +272,7 @@ void ServerPing::error(const char* msg) {
 
 void ServerPing::error(const char* msg1,const char* msg2) {
   ostrstream str;
-  str << msg1 << msg2 << ends;
+  str << msg1 << msg2 << std::ends;
   error(str.str());
 
   // Will never get here, but WTF.
@@ -282,22 +282,22 @@ void ServerPing::error(const char* msg1,const char* msg2) {
 
 
 void ServerPing::print_usage_and_exit() {
-  cout
+  std::cout
     << "Serverping allows you to remotely check the status of an XEvil server." 
     << std::endl
     << std::endl;
-  cout
+  std::cout
     << "usage: serverping {-count num_tries} {-timeout timeout_ms} "
     << "server_name{:port}" << std::endl;
-  cout 
+  std::cout 
     << "  num_tries is the number of pings to send before giving up," 
     << " default=" << COUNT_DEFAULT << "." << std::endl;
-  cout 
+  std::cout 
     << "  timeout_ms is the time in milliseconds to wait for a response before"
     << std::endl
     << "  giving up on each ping, default=" << TIMEOUT_DEFAULT << "." 
     << std::endl;
-  cout
+  std::cout
     << std::endl
     << "The output has the following form:" << std::endl
     << "SUCCESS: XEvil Server <server_name>:<server_port>" << std::endl
@@ -315,25 +315,25 @@ void ServerPing::print_usage_and_exit() {
 
 
 void ServerPing::print_results_and_exit() {
-  cout 
+  std::cout 
     << std::endl
     << "SUCCESS: XEvil Server " << serverName << ":" 
     << serverPort << std::endl;
   
   GameStyleType gsType = (GameStyleType)udpIn->read_char();
-  cout << "GameStyle " << Utils::game_style_to_string(gsType) << std::endl;
+  std::cout << "GameStyle " << Utils::game_style_to_string(gsType) << std::endl;
 
   int enemiesNum = udpIn->read_int();
-  cout << "MachinesPlaying " << enemiesNum << std::endl;
+  std::cout << "MachinesPlaying " << enemiesNum << std::endl;
 
   int humansNum = udpIn->read_short();
-  cout << "HumansPlaying " << humansNum << std::endl;
+  std::cout << "HumansPlaying " << humansNum << std::endl;
 
   char* version = Utils::string_read(udpIn);
-  cout << version << std::endl;
+  std::cout << version << std::endl;
   delete version;
 
-  cout << "Name@Hostname HumanKills MachineKills" << std::endl;
+  std::cout << "Name@Hostname HumanKills MachineKills" << std::endl;
 
   // Read in data specific to each Human.
   const int NAME_LENGTH = 40;
@@ -346,7 +346,7 @@ void ServerPing::print_results_and_exit() {
     int enemyKills = udpIn->read_int();
     Id id;
     id.read(udpIn);
-    cout << '\"' << name << "\"@" << clientName << ' ' << humanKills 
+    std::cout << '\"' << name << "\"@" << clientName << ' ' << humanKills 
          << ' ' << enemyKills << std::endl;
   }
 

@@ -1057,7 +1057,7 @@ void Viewport::set_menu_learn_controls(Boolean val) {
 void Viewport::set_menu_humans_num(int val) {
   assert(menusNum > menuHumansNum);
   ostrstream str;
-  str << val << ends;
+  str << val << std::ends;
   ((WritePanel *)menus[menuHumansNum])->set_value(str.str());
   delete str.str();
 }
@@ -1067,7 +1067,7 @@ void Viewport::set_menu_humans_num(int val) {
 void Viewport::set_menu_enemies_num(int val) {
   assert(menusNum > menuEnemiesNum);
   ostrstream str;
-  str << val << ends;
+  str << val << std::ends;
   ((WritePanel *)menus[menuEnemiesNum])->set_value(str.str());
   delete str.str();
 }
@@ -1129,7 +1129,7 @@ void Viewport::set_style_and_role_type(GameStyleType style,RoleType roleType) {
 void Viewport::set_quanta(Quanta quanta) {
   assert(menusNum > menuQuanta);
   ostrstream str;
-  str << quanta << ends;
+  str << quanta << std::ends;
   ((WritePanel *)menus[menuQuanta])->set_value(str.str());
   delete str.str();  
 } 
@@ -1146,10 +1146,10 @@ void Viewport::set_cooperative(Boolean val) {
 void Viewport::set_humans_playing(int val) {  
   ostrstream msg;
   if (val == 1) {
-    msg << "1 Human" << ends;
+    msg << "1 Human" << std::ends;
   }
   else {
-    msg << val << " Humans" << ends;
+    msg << val << " Humans" << std::ends;
   }
   char *msg_str = msg.str();
   
@@ -1162,10 +1162,10 @@ void Viewport::set_humans_playing(int val) {
 void Viewport::set_enemies_playing(int val) {  
   ostrstream msg;
   if (val == 1) {
-    msg << "1 Enemy" << ends; 
+    msg << "1 Enemy" << std::ends; 
   }
   else {
-    msg << val << " Enemies" << ends; 
+    msg << val << " Enemies" << std::ends; 
   }
   char *msg_str = msg.str();
   
@@ -1709,7 +1709,7 @@ void Viewport::draw() {
         else {
           str << "]        ";
         }
-        str << difficultyLevels[n].name << ends;
+        str << difficultyLevels[n].name << std::ends;
         pos.y += xvars.fontSize[dpyNum].height;
         draw_string(pos,str.str());
         delete str.str();
@@ -2196,27 +2196,27 @@ void Viewport::update_statuses() {
   const IntelStatus *status = intel->get_intel_status();
   
   ostrstream name;
-  name << status->name << ends;
+  name << status->name << std::ends;
   statuses[statusName]->set_message(name.str());
   delete name.str();
 
   ostrstream className;
-  className << status->className << ends;
+  className << status->className << std::ends;
   statuses[statusClassName]->set_message(className.str());
   delete className.str();
   
   ostrstreamealth;
   if (status->health == -1) {
-    health << "Dead" << ends;
+    health << "Dead" << std::ends;
   }
   else {
-    health << status->health << " Health" << ends; 
+    health << status->health << " Health" << std::ends; 
   }
   statuses[statusHealth]->set_message(health.str());
   delete health.str();
   
   ostrstream mass;
-  mass << status->mass << " Mass" << ends;
+  mass << status->mass << " Mass" << std::ends;
   statuses[statusMass]->set_message(mass.str());
   delete mass.str();
   
@@ -2230,7 +2230,7 @@ void Viewport::update_statuses() {
   if (status->ammo != PH_AMMO_UNLIMITED) {
     weapon << " (" << status->ammo << ")";
   }
-  weapon << ends;
+  weapon << std::ends;
   statuses[statusWeapon]->
     set_foreground(status->weaponReady ? 
                    xvars.green[dpyNum] : xvars.red[dpyNum],False);
@@ -2244,7 +2244,7 @@ void Viewport::update_statuses() {
   else {
     item << status->item << " (" << status->itemCount << ")";
   }
-  item << ends;
+  item << std::ends;
   statuses[statusItem]->set_message(item.str());
   delete item.str();
   
@@ -2252,19 +2252,19 @@ void Viewport::update_statuses() {
   if (styleInfo->get_game_style_type() == EXTENDED) {
     // Takes soups into account.
     livesHKills << (status->humanKills - status->soups) 
-                << " Human Kills" << ends;
+                << " Human Kills" << std::ends;
   }
   else {
     if (status->lives == IT_INFINITE_LIVES) {
       // Does this case ever happen?  I don't think so.
-      livesHKills << "Unlimited Lives" << ends;
+      livesHKills << "Unlimited Lives" << std::ends;
     }
     else {
       if (status->lives == 1) {
-        livesHKills << "1 Life" << ends;
+        livesHKills << "1 Life" << std::ends;
       }
       else {
-        livesHKills << status->lives << " Lives" << ends;
+        livesHKills << status->lives << " Lives" << std::ends;
       }
     }
   }
@@ -2273,15 +2273,15 @@ void Viewport::update_statuses() {
   
   ostrstream killsMKills;
   if (styleInfo->get_game_style_type() == EXTENDED) {
-    killsMKills << status->enemyKills << " Machine Kills" << ends;
+    killsMKills << status->enemyKills << " Machine Kills" << std::ends;
   }
   else {
     int kills = status->humanKills + status->enemyKills;
     if (kills == 1) {
-      killsMKills << "1 Kill" << ends;
+      killsMKills << "1 Kill" << std::ends;
     }
     else {
-      killsMKills << kills << " Kills" << ends;
+      killsMKills << kills << " Kills" << std::ends;
     }
   }
   statuses[statusKillsMKills]->set_message(killsMKills.str());

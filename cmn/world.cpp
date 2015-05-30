@@ -112,7 +112,7 @@ class Blueprints {
 
 
   void print();
-  /* EFFECTS: Print the room boundaries to cout. */
+  /* EFFECTS: Print the room boundaries to std::cout. */
 
   Boolean blocked_right(const RoomIndex &ri);
   Boolean blocked_bottom(const RoomIndex &ri);
@@ -403,17 +403,17 @@ void Blueprints::print() {
   for (ri.down = 0; ri.down <= worldRooms.downMax; ri.down++) {
     // Horizontal boundaries.
     for (ri.across = 0; ri.across < worldRooms.acrossMax; ri.across++) {
-      cout << ((horiz[ri.down][ri.across]) ? "**" : "*-");
-      cout << "*" << std::endl;
+      std::cout << ((horiz[ri.down][ri.across]) ? "**" : "*-");
+      std::cout << "*" << std::endl;
 
       // Vertical boundaries.
       if (ri.down < worldRooms.downMax) {
         for (ri.across = 0; ri.across <= worldRooms.acrossMax; ri.across++) {
-          cout << ((vert[ri.down][ri.across]) ? "* " : "| ");
+          std::cout << ((vert[ri.down][ri.across]) ? "* " : "| ");
         }
       }
 
-      cout << std::endl;
+      std::cout << std::endl;
     }
   }
 }

@@ -792,7 +792,7 @@ GameStyleP Normal::clone() {
 
 
 void Normal::describe(ostrstream &str) {
-  str << "Complete each level/scenario to proceed to the next one." << ends;
+  str << "Complete each level/scenario to proceed to the next one." << std::ends;
 }
 
 
@@ -938,7 +938,7 @@ void Levels::describe(ostrstream &str) {
   str << "Human player(s) fights through increasing levels of "
 	    << "difficulty." << "\n" 
 	    << "To complete a level you must kill all enemy players." 
-	    << ends;
+	    << std::ends;
 }
 
 
@@ -991,8 +991,8 @@ void Levels::new_level(int level,WorldP world,LocatorP locator,
   clean_physicals(False,world,locator,manager);
 
 
-  lTitleStr << "[" << level << "] Kill All Machines" << ends;
-  lStr << "Level: " << level << ends;
+  lTitleStr << "[" << level << "] Kill All Machines" << std::ends;
+  lStr << "Level: " << level << std::ends;
 
   enemiesNum += dLevel.enemiesIncr;
   enemiesNum = Utils::minimum(enemiesNum,dLevel.enemiesMax);
@@ -1038,7 +1038,7 @@ GameStyleP KillKillKill::clone() {
 
 
 void KillKillKill::describe(ostrstream &str) {
-  str << "Every human and machine for him/her/itself." << ends;
+  str << "Every human and machine for him/her/itself." << std::ends;
 }
 
 
@@ -1102,8 +1102,8 @@ void KillKillKill::new_level(int level,WorldP world,LocatorP locator,
   // Don't wipe out the Enemies.
   clean_physicals(True,world,locator,manager);
 
-  lTitleStr << "Level: " << level << ends;
-  lStr << "Level: " << level << ends;
+  lTitleStr << "Level: " << level << std::ends;
+  lStr << "Level: " << level << std::ends;
 
   // Only create enemies first time or if enemiesRefill is set.
   if (justReset) {
@@ -1154,7 +1154,7 @@ GameStyleP Duel::clone() {
 
 void Duel::describe(ostrstream &str) {
   str << "Human vs. human battle to the death." 
-	    << "\n" << "Each human has 3 lives." << ends;
+	    << "\n" << "Each human has 3 lives." << std::ends;
 }
 
 
@@ -1212,8 +1212,8 @@ void Duel::new_level(int level,WorldP world,LocatorP locator,
   world->reset();
   clean_physicals(False,world,locator,manager);
 
-  lTitleStr << "Level: " << level << ends;
-  lStr << "Level: " << level << ends;
+  lTitleStr << "Level: " << level << std::ends;
+  lStr << "Level: " << level << std::ends;
 
   // Only create enemies first time.
   if (justReset) {
@@ -1258,7 +1258,7 @@ GameStyleP ExtendedDuel::clone() {
 
 void ExtendedDuel::describe(ostrstream &str) {
   str << "Human vs. human battle to the death." 
-	    << "\n" << "Unlimited lives." << ends;
+	    << "\n" << "Unlimited lives." << std::ends;
 }
 
 
@@ -1323,8 +1323,8 @@ void ExtendedDuel::new_level(int level,WorldP world,LocatorP locator,
   world->reset();
   clean_physicals(False,world,locator,manager);
 
-  lTitleStr << "Level: " << level << ends;
-  lStr << "Level: " << level << ends;
+  lTitleStr << "Level: " << level << std::ends;
+  lStr << "Level: " << level << std::ends;
 
   // Only create enemies first time.
   if (justReset) {
@@ -1368,7 +1368,7 @@ GameStyleP Training::clone() {
 
 
 void Training::describe(ostrstream &str) {
-  str << "No enemies.  Useful for learning the controls." << ends;
+  str << "No enemies.  Useful for learning the controls." << std::ends;
 }
 
 
@@ -1397,8 +1397,8 @@ void Training::new_level(int level,WorldP world,LocatorP locator,
   world->reset();
   clean_physicals(False,world,locator,manager);
 
-  lTitleStr << "Level: " << level << ends;
-  lStr << "Level: " << level << ends;
+  lTitleStr << "Level: " << level << std::ends;
+  lStr << "Level: " << level << std::ends;
 }
 
 
@@ -1431,7 +1431,7 @@ GameStyleP Scenarios::clone() {
 void Scenarios::describe(ostrstream &str) {
   str << "A number of different scenarios." << "\n"
 	    << "You must complete each scenario to continue on to the "
-	    << "next one." << ends;
+	    << "next one." << std::ends;
 }
 
 
@@ -1824,8 +1824,8 @@ void Exterminate::new_level(int level,WorldP,LocatorP,
                             const DifficultyLevel &dLevel,
                             ostrstream &lStr,ostrstream &lTitleStr,
                             IPhysicalManagerP manager,int) {
-  lTitleStr << "[" << level << "] EXTERMINATE" << ends;
-  lStr << "[" << level << "] EXTERMINATE\nKill all machines." << ends;
+  lTitleStr << "[" << level << "] EXTERMINATE" << std::ends;
+  lStr << "[" << level << "] EXTERMINATE\nKill all machines." << std::ends;
 
   // Doesn't increment like LEVELS game style
   enemiesNum = dLevel.enemiesIncr;
@@ -1873,12 +1873,12 @@ int Bonus::new_level_check(int,WorldP,LocatorP locator,
   if (remaining != frogsRemaining) {
     frogsRemaining = remaining;
     levelStr << "[" << level << "] BONUS LEVEL\nfrogs remaining: " 
-	      << remaining << ends;
+	      << remaining << std::ends;
     lStrChanged = True;
     if (remaining > 0) {
 	    ostrstream arenaStr;
 	    arenaStr << remaining << " Frog" << 
-	      (remaining > 1 ? "s" : "") << " Remaining" << ends;
+	      (remaining > 1 ? "s" : "") << " Remaining" << std::ends;
 	    locator->arena_message_enq(arenaStr.str());
     }
 
@@ -1886,7 +1886,7 @@ int Bonus::new_level_check(int,WorldP,LocatorP locator,
     if (frogsRemaining == 0) {
 //      ostrstream ostr;
 //      ostr << "**** You must feel proud of yourself for killing all "
-//      << "those defenseless frogs. ****" << ends;
+//      << "those defenseless frogs. ****" << std::ends;
 //      locator->message_enq(ostr.str());
       locator->arena_message_enq(Utils::strdup("Got em all"));
       return 1;
@@ -1940,9 +1940,9 @@ void Bonus::new_level(int level,WorldP world,LocatorP locator,
   frogsRemaining = SCENARIO_BONUS_FROGS;
 
   lTitleStr << "[" << level << "] Bonus Level: Kill " 
-		  << (int)SCENARIO_BONUS_FROGS << " Frogs"  << ends;
+		  << (int)SCENARIO_BONUS_FROGS << " Frogs"  << std::ends;
   lStr << "[" << level << "] BONUS LEVEL\nfrogs remaining: " 
-	     << (int)SCENARIO_BONUS_FROGS << ends;
+	     << (int)SCENARIO_BONUS_FROGS << std::ends;
 }
 
 
@@ -2012,8 +2012,8 @@ void Hive::new_level(int level,WorldP world,LocatorP locator,
     locator->add(egg);
   }
   
-  lTitleStr << "[" << level << "] HIVE" << ends;
-  lStr << "[" << level << "] HIVE.\nFind the exit." << ends;
+  lTitleStr << "[" << level << "] HIVE" << std::ends;
+  lStr << "[" << level << "] HIVE.\nFind the exit." << std::ends;
 }
 
 
@@ -2091,16 +2091,16 @@ int CaptureTheFlag::new_level_check(int,WorldP,LocatorP locator,
     flagsRemaining = fRemaining;
     levelStr <<  "[" <<  level <<  "] COLLECT " 
 	     <<  (int)SCENARIO_FLAG_FLAGS 
-	     << " FLAGS\nremaining: "<<  flagsRemaining <<   ends;
+	     << " FLAGS\nremaining: "<<  flagsRemaining <<   std::ends;
     lStrChanged = True;
 
     ostrstream arenaStr;
     if (fRemaining != 0) {
       arenaStr << flagsRemaining << " Flag" <<
-	      (flagsRemaining > 1 ? "s" : "") << " Remaining" << ends;
+	      (flagsRemaining > 1 ? "s" : "") << " Remaining" << std::ends;
     }
     else {
-      arenaStr << "All Flags Collected" << ends;
+      arenaStr << "All Flags Collected" << std::ends;
     }
       
     locator->arena_message_enq(arenaStr.str());
@@ -2136,9 +2136,9 @@ void CaptureTheFlag::new_level(int level,WorldP world,LocatorP locator,
   flagsRemaining = SCENARIO_FLAG_FLAGS;
 
   lTitleStr << "[" << level << "] Capture The Flag: " 
-		  << (int)SCENARIO_FLAG_FLAGS << " Flags" << ends;
+		  << (int)SCENARIO_FLAG_FLAGS << " Flags" << std::ends;
   lStr << "[" << level << "] COLLECT " << (int)SCENARIO_FLAG_FLAGS 
-	     << " FLAGS.\nremaining: " << (int)SCENARIO_FLAG_FLAGS << ends;
+	     << " FLAGS.\nremaining: " << (int)SCENARIO_FLAG_FLAGS << std::ends;
 }
 
 
@@ -2314,7 +2314,7 @@ int Seals::new_level_check(int,WorldP,LocatorP locator,
     if (lemSafe != sealsSafe && lemSafe != SCENARIO_SEALS_NEED) {
       ostrstream arenaStr;
       arenaStr << "Save " << (SCENARIO_SEALS_NEED - lemSafe)
-               << " More Baby Seals" << ends;
+               << " More Baby Seals" << std::ends;
       locator->arena_message_enq(arenaStr.str());
     }
 
@@ -2325,7 +2325,7 @@ int Seals::new_level_check(int,WorldP,LocatorP locator,
             << (int)SCENARIO_SEALS_NEED << " BABY SEALS\n" 
             << "out: " << sealsOut << " safe: " << sealsSafe
             << " dead: " << lemDead
-            << ends;
+            << std::ends;
     lStrChanged = True;
 
     // New level if enough seals are safe or too many are dead.
@@ -2334,7 +2334,7 @@ int Seals::new_level_check(int,WorldP,LocatorP locator,
       if (lemSafe < SCENARIO_SEALS_NEED) {
 	      ostrstream msg;
 	      msg << "YOU FAILED TO SAVE " << (int)SCENARIO_SEALS_NEED
-	          << " BABY SEALS. TRY THIS LEVEL AGAIN." << ends;
+	          << " BABY SEALS. TRY THIS LEVEL AGAIN." << std::ends;
 	      locator->arena_message_enq(msg.str());
       }
       else {
@@ -2366,10 +2366,10 @@ Boolean (* Seals::get_team())(LocatorP,PhysicalP,PhysicalP) {
 
   
 void Seals::set_level_strings(int level,ostrstream &lStr,ostrstream &lTitleStr) {
-  lTitleStr << "[" << level << "] SAVE THE BABY SEALS" << ends;
+  lTitleStr << "[" << level << "] SAVE THE BABY SEALS" << std::ends;
   lStr << "[" << level << "] SAVE "<< 
 	  (int)SCENARIO_SEALS_NEED << " BABY SEALS\n" 
-	     << "out: 0 safe: 0 dead: 0" << ends;
+	     << "out: 0 safe: 0 dead: 0" << std::ends;
 }
 
 
@@ -2445,9 +2445,9 @@ int AntiSeals::new_level_check(int,WorldP,LocatorP locator,
 #if 0
     // Not enough space on screen, need two lines.
 	  msg << "YOU LET TOO MANY OF THE FAT BASTARDS GET AWAY\n"
-	      << "Try this level again" << ends;
+	      << "Try this level again" << std::ends;
 #else
-	  msg << "YOU LET TOO MANY OF THE FAT BASTARDS GET AWAY" << ends;
+	  msg << "YOU LET TOO MANY OF THE FAT BASTARDS GET AWAY" << std::ends;
 #endif
 	  locator->arena_message_enq(msg.str());
 
@@ -2475,11 +2475,11 @@ int AntiSeals::new_level_check(int,WorldP,LocatorP locator,
       else if (lemSafe == sealsSafe) {  // o.w. the "one got away" message takes priority
         ostrstream arenaStr;
         arenaStr << "Kill "
-          << lemToKill << " More Baby Seals" << ends;
+          << lemToKill << " More Baby Seals" << std::ends;
         locator->arena_message_enq(arenaStr.str());
 
         levelStr << "[" << level << "] KILL " 
-                << lemToKill << " BABY SEALS" << ends;
+                << lemToKill << " BABY SEALS" << std::ends;
         lStrChanged = True;
       }
     }  // lemDead != sealsDead
@@ -2503,9 +2503,9 @@ Boolean (*AntiSeals::get_team())(LocatorP,PhysicalP,PhysicalP) {
 
   
 void AntiSeals::set_level_strings(int level,ostrstream &lStr,ostrstream &lTitleStr) {
-  lTitleStr << "[" << level << "] KILL THE BABY SEALS" << ends;
+  lTitleStr << "[" << level << "] KILL THE BABY SEALS" << std::ends;
   lStr << "[" << level << "] KILL "<< 
-	  (int)SCENARIO_SEALS_SEALS << " BABY SEALS" << ends;
+	  (int)SCENARIO_SEALS_SEALS << " BABY SEALS" << std::ends;
 }
 
 
@@ -2576,8 +2576,8 @@ void KillTheFireDemon::new_level(int level,WorldP,LocatorP,
                                  IPhysicalManagerP manager,int) {
   manager->create_enemy(manager->enemy_physical(A_FireDemon));
 
-  lTitleStr << "[" << level << "] FIRE DEMON" << ends;
-  lStr << "[" << level << "] Kill the Fire Demon." << ends;
+  lTitleStr << "[" << level << "] FIRE DEMON" << std::ends;
+  lStr << "[" << level << "] Kill the Fire Demon." << std::ends;
 }
 
 
@@ -2628,8 +2628,8 @@ void KillTheDragon::new_level(int level,WorldP w,LocatorP l,
     manager->create_enemy(p,False);
   }
 
-  lTitleStr << "[" << level << "] Dragon" << ends;
-  lStr << "[" << level << "] Kill the Dragon." << ends;
+  lTitleStr << "[" << level << "] Dragon" << std::ends;
+  lStr << "[" << level << "] Kill the Dragon." << std::ends;
 }
 
 
@@ -2698,7 +2698,7 @@ int ZigZag::new_level_check(int,WorldP world,LocatorP locator,
 
           // Use 1-based counting for the User.
 	        ostrstream str;
-	        str << "Depth " << (depth + 1) << ends;
+	        str << "Depth " << (depth + 1) << std::ends;
 	        locator->arena_message_enq(str.str(),p);
         }
       }
@@ -2732,8 +2732,8 @@ void ZigZag::new_level(int level,WorldP world,LocatorP locator,
 
   // 1-based counting of depth for the user.
   lTitleStr << "[" << level << "] ZIG-ZAG: Depth " 
-		  << worldRooms.downMax << ends;
-  lStr << "[" << level << "] ZIG-ZAG.\nFind the exit." << ends;
+		  << worldRooms.downMax << std::ends;
+  lStr << "[" << level << "] ZIG-ZAG.\nFind the exit." << std::ends;
 }
 
 
@@ -2789,8 +2789,8 @@ void ThePound::new_level(int level,WorldP,LocatorP locator,
     manager->create_enemy(manager->enemy_physical(A_Dog));
   }
 
-  lTitleStr << "[" << level << "] The Pound" << ends;
-  lStr << "[" << level << "] The Pound" << ends;
+  lTitleStr << "[" << level << "] The Pound" << std::ends;
+  lStr << "[" << level << "] The Pound" << std::ends;
 }
 
 
@@ -2829,8 +2829,8 @@ void JapanTown::new_level(int level,WorldP,LocatorP locator,
     manager->create_enemy(manager->enemy_physical(A_Ninja));
   }
 
-  lTitleStr << "[" << level << "] Japan-Town" << ends;
-  lStr << "[" << level << "] Japan-Town" << ends;
+  lTitleStr << "[" << level << "] Japan-Town" << std::ends;
+  lStr << "[" << level << "] Japan-Town" << std::ends;
 }
 
 

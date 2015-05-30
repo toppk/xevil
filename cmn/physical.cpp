@@ -524,7 +524,7 @@ void Physical::heat_attack(PhysicalP,int h,Boolean secondary) {
     if (heat == 0 && heatNext > 0) {
       LocatorP l = get_locator();
       ostrstream str;
-      str << get_class_name() << " is on fire." << ends;
+      str << get_class_name() << " is on fire." << std::ends;
       locator->message_enq(str.str());
     }
   }
@@ -2561,11 +2561,11 @@ void Item::die() {
   case NONE:
     break;
   case USED:
-    msg << get_class_name() << " has been used." << ends;
+    msg << get_class_name() << " has been used." << std::ends;
     locator->message_enq(msg.str());
     break;
   case DESTROYED:
-    msg << get_class_name() << " is destroyed." << ends;
+    msg << get_class_name() << " is destroyed." << std::ends;
     locator->message_enq(msg.str());
     break;
   };
@@ -2651,7 +2651,7 @@ void Drugs::taken(PhysicalP p) {
 
   if (p->is_creature() && !((CreatureP)p)->biological()) {
     ostrstream msg;
-    msg << "Non-Biological Creatures Cannot Use Drugs" << ends;
+    msg << "Non-Biological Creatures Cannot Use Drugs" << std::ends;
     LocatorP locator = get_locator();
     locator->arena_message_enq(msg.str(),p);
     kill_self();
@@ -2674,11 +2674,11 @@ void Drugs::use(PhysicalP p)
     if (context->odChance && Utils::choose(context->odChance) == 0) {
       p->kill_self();
       ostrstream msg;
-      msg << p->get_class_name() << " dies from crack overdose." << ends;
+      msg << p->get_class_name() << " dies from crack overdose." << std::ends;
       locator->message_enq(msg.str());
       
       ostrstream arenaMsg;
-      arenaMsg << "You Died From Drug Overdose" << ends;
+      arenaMsg << "You Died From Drug Overdose" << std::ends;
       locator->arena_message_enq(arenaMsg.str(),p);
 
       set_quiet_death(); // so doesn't report "has been used" message.
@@ -2694,7 +2694,7 @@ void Drugs::use(PhysicalP p)
   else {
     // Shouldn't get here, should kill self when picking it up.
     ostrstream msg;
-    msg << "Non-Biological Creatures Cannot Use Drugs" << ends;
+    msg << "Non-Biological Creatures Cannot Use Drugs" << std::ends;
     locator->arena_message_enq(msg.str(),p);
   }
   
@@ -4336,11 +4336,11 @@ void Creature::update() {
     LocatorP locator = get_locator();
     ostrstream msg;
     if (corpseTimer.ready()) {
-	    msg << get_class_name() << " corpse has decomposed." << ends;
+	    msg << get_class_name() << " corpse has decomposed." << std::ends;
 	    locator->message_enq(msg.str());
     }
     else {
-      msg << get_class_name() << " corpse has been destroyed." << ends;
+      msg << get_class_name() << " corpse has been destroyed." << std::ends;
       locator->message_enq(msg.str());
     }
     set_delete_me();
@@ -4400,7 +4400,7 @@ void Creature::die() {
     set_stance_next(CO_air);
     
     ostrstream msg;
-    msg << get_class_name() << " has died." << ends;
+    msg << get_class_name() << " has died." << std::ends;
     locator->message_enq(msg.str());
     
     set_no_death_delete();
@@ -6073,7 +6073,7 @@ Boolean User::collide(PhysicalP other) {
     // If User is already holding the max number of weapons.
     else if (weaponsNum >= PH_WEAPONS_MAX) {
       ostrstream msg;
-      msg << "Can only hold " << PH_WEAPONS_MAX << " weapons" << ends;          
+      msg << "Can only hold " << PH_WEAPONS_MAX << " weapons" << std::ends;          
       LocatorP locator = cre->get_locator();
       locator->arena_message_enq(msg.str(),cre);
       destroyOther = True;
@@ -6125,13 +6125,13 @@ Boolean User::collide(PhysicalP other) {
     LocatorP locator = cre->get_locator();
     if (itemsNum == PH_ITEMS_MAX) {
       ostrstream msg;
-      msg << "Can only hold " << PH_ITEMS_MAX << " items" << ends;          
+      msg << "Can only hold " << PH_ITEMS_MAX << " items" << std::ends;          
       locator->arena_message_enq(msg.str(),cre);
     }
     else if (itemClassCount >= ITEM_CLASS_MAX) {
       ostrstream msg;
       msg << "Can only hold " << ITEM_CLASS_MAX 
-        << " of any one item" << ends;
+        << " of any one item" << std::ends;
       locator->arena_message_enq(msg.str(),cre);
     }
 
@@ -6662,7 +6662,7 @@ void Carrier::act() {
       }
       else {
         ostrstream str;
-        str << "Cannot use " << p->get_class_name() << ends;
+        str << "Cannot use " << p->get_class_name() << std::ends;
         locator->arena_message_enq(str.str(),cre);
       }
     }

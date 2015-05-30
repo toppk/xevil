@@ -483,7 +483,7 @@ void UDPOutStream::flush() {
 
   // Only send if some data has been written to the stream.
   if (bufPtr > UDP_STREAM_HEADER_LEN) {
-//    cout << "Flushing " << bufPtr << " bytes." << std::endl;
+//    std::cout << "Flushing " << bufPtr << " bytes." << std::endl;
 
     // Wait until we are about to send before creating the header, so we 
     // can compute the checksum.

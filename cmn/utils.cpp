@@ -465,12 +465,12 @@ char* Utils::get_OS_info() {
           Utils::strcmp(osInfo.szCSDVersion," ")) {
         ret << '(' << osInfo.szCSDVersion << ')';
       }
-      ret << ends;
+      ret << std::ends;
     }
   }
 
   if (!set) {
-    ret << "Unknown Win32" << ends;
+    ret << "Unknown Win32" << std::ends;
   }
 #endif
 
@@ -494,7 +494,7 @@ char* Utils::get_OS_info() {
         if (buffer[strLen - 1] == '\n') {
           buffer[strLen - 1] = '\0';
         }
-        ret << buffer << ends;
+        ret << buffer << std::ends;
         set = True;
       }
     }
@@ -502,7 +502,7 @@ char* Utils::get_OS_info() {
   }
 
   if (!set) {
-    ret << "Unknown UNIX" << ends;
+    ret << "Unknown UNIX" << std::ends;
   }
 #endif
 
@@ -1024,7 +1024,7 @@ void DebugInfo::print(const char *str) {
 #endif
 
 #if X11
-  cout << str << std::endl;
+  std::cout << str << std::endl;
 #endif
 }
 

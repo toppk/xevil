@@ -459,7 +459,7 @@ RankingSet Game::rankingSets[RANKING_SETS_NUM] = {
 void GameStats::report()
 {
   if (numTurns % Game::REPORT_TIME == 0)
-    cout << "Turn " << numTurns << ":  Average time of turn:  " << 
+    std::cout << "Turn " << numTurns << ":  Average time of turn:  " << 
       aveTime << std::endl;
 }
 
@@ -739,7 +739,7 @@ void GameObjects::compute_actuals(const PhysicalContext *weapons[],
     int which = weapons[weaponsRank[n]]->classId;
     actuals[which] = 
 	    maximums[which] ? (Utils::choose(maximums[which]) + 1) : 0;
-    //      cout << "actuals[" << weapons[weaponsRank[n]]->className << "] = " 
+    //      std::cout << "actuals[" << weapons[weaponsRank[n]]->className << "] = " 
     //	   << actuals[which] << " of " << maximums[which] << std::endl;
   }
 
@@ -749,11 +749,11 @@ void GameObjects::compute_actuals(const PhysicalContext *weapons[],
     int which = oItems[oItemsRank[n]]->classId;
     actuals[which] = 
 	    maximums[which] ? (Utils::choose(maximums[which]) + 1) : 0;
-    //      cout << "actuals[" << oItems[oItemsRank[n]]->className << "] = " 
+    //      std::cout << "actuals[" << oItems[oItemsRank[n]]->className << "] = " 
     //	   << actuals[which] << " of " << maximums[which] << std::endl;
   }
 
-  //  cout << std::endl;
+  //  std::cout << std::endl;
 
   delete [] weaponsRank;
   delete [] oItemsRank;
@@ -1501,7 +1501,7 @@ void Game::ui_settings_check(RestartEnd &restartEnd) {
     if (mask & UIconnectServer) {
       delete role;
       ostrstream portName;
-      portName << settings.connectPort << ends;
+      portName << settings.connectPort << std::ends;
       IViewportInfo* vInfo = Ui::get_viewport_info();
       ClientP client = new Client(settings.connectHostname,portName.str(),
                                   0,settings.humanName,vInfo,
@@ -1545,7 +1545,7 @@ void Game::ui_settings_check(RestartEnd &restartEnd) {
 
       delete role;
       ostrstream portName;
-      portName << settings.serverPort << ends;
+      portName << settings.serverPort << std::ends;
       role = new Server(settings.localHuman,portName.str(),&locator);
       delete portName.str();
       assert(role);
@@ -1590,7 +1590,7 @@ void Game::reincarnations_check() {
     obj->set_intel(human);
       
     ostrstream msg;
-    msg << human->get_name() << " is back from the dead." << ends;
+    msg << human->get_name() << " is back from the dead." << std::ends;
     locator.message_enq(msg.str());
   }
 }
@@ -1896,7 +1896,7 @@ void Game::end_game(Boolean showMessages) {
 
       char *ranking = choose_ranking(totalKills);
       msg << totalKills << (totalKills == 1 ? "Kill" : " Kills") 
-        << ", Rank: " << ranking << ends;
+        << ", Rank: " << ranking << std::ends;
       IntelId humanIntelId = human->get_intel_id();
       locator.arena_message_enq(msg.str(),&humanIntelId,10000);
     }
@@ -2185,7 +2185,7 @@ void Game::reset() {
   // Moved resetting world rooms to new_level(); 
 
   ostrstream msg;
-  msg << wittySayings[Utils::choose(WITTY_SAYINGS_NUM)] << ends;
+  msg << wittySayings[Utils::choose(WITTY_SAYINGS_NUM)] << std::ends;
   locator.message_enq(msg.str());
 
   /* Don't need to call Ui::set_* because the new values originally came 
@@ -2244,9 +2244,9 @@ void Game::process_x_resources(int *,char **)
             
             ostrstream strm;
             if (which == 0)
-              strm << "right_" << keysNames[n] << ends;
+              strm << "right_" << keysNames[n] << std::ends;
             else
-              strm << "right_" << keysNames[n] << "_2" << ends;
+              strm << "right_" << keysNames[n] << "_2" << std::ends;
             char *option = strm.str();
             
             // Should we free value??
@@ -2264,9 +2264,9 @@ void Game::process_x_resources(int *,char **)
             
             ostrstream strm;
             if (which == 0)
-              strm << "left_" << keysNames[n] << ends;
+              strm << "left_" << keysNames[n] << std::ends;
             else
-              strm << "left_" << keysNames[n] << "_2" << ends;
+              strm << "left_" << keysNames[n] << "_2" << std::ends;
             char *option = strm.str();
             
             // Should we free value??
@@ -2294,7 +2294,7 @@ void Game::parse_args(int *argc,char **argv) {
   ostrstream dashName[Locator::HUMANS_MAX];
   int n;
   for (n = 0; n < Locator::HUMANS_MAX; n++) {
-    dashName[n] << "-name" << n << ends;
+    dashName[n] << "-name" << n << std::ends;
   }
 
   // Defaults
@@ -2453,7 +2453,7 @@ void Game::parse_args(int *argc,char **argv) {
 #endif
     else if (!Utils::strcmp("-h",argv[n])
              || !Utils::strcmp("-help",argv[n])) {
-      cout 
+      std::cout 
         << std::endl
         << "See http://www.xevil.com/docs/instructions.html for full description." << std::endl 
         << "usage: " << argv[0] << " <argument list>" << std::endl
@@ -2509,7 +2509,7 @@ void Game::parse_args(int *argc,char **argv) {
       n++;
       int val = Utils::atoi(argv[n]);
       Client::set_human_reflexes(val);
-      cout << "Human reflexes set to " << val << " milliseconds." << std::endl;
+      std::cout << "Human reflexes set to " << val << " milliseconds." << std::endl;
     }
     else if ((! strcmp("-humans",argv[n])) && (n + 1 < *argc)) {
       humansNumNext = Utils::atoi(argv[n+1]);
@@ -2525,7 +2525,7 @@ void Game::parse_args(int *argc,char **argv) {
       const PtrList& lines = thePage.get_lines();
       for (int nn = 0; nn < lines.length(); nn++) {
         char* txt = ((Line*)lines.get(nn))->alloc_text();
-        cout << txt << std::endl;
+        std::cout << txt << std::endl;
         delete [] txt;
       }      
       exit(0);
@@ -2748,8 +2748,8 @@ char **Game::display_names(int *argc,char **argv) {
   for (n = 0; n < UI_VIEWPORTS_MAX; n++) {
     displayNames[n] = new char [Xvars::DISPLAY_NAME_LENGTH];
     strcpy(displayNames[n],"");
-    dashDisplay[n][0] << "-display" << n << ends;
-    dashDisplay[n][1] << "-d" << n << ends;
+    dashDisplay[n][0] << "-display" << n << std::ends;
+    dashDisplay[n][1] << "-d" << n << std::ends;
   }
 
   // Loop through all command line arguments.
@@ -2959,21 +2959,21 @@ void Game::intro() {
     << "XEvil(TM) " << VERSION 
     << "  http://www.xevil.com  satan@xevil.com  " << XETP::versionStr << "\n"
     << "Copyright(C) 1994,2000 Steve Hardt and Michael Judge"
-    << ends;
+    << std::ends;
   locator.message_enq(msg.str());
 
 
   // Print message to standard out.  Doesn't really do anything on Windows.
-  // Use std::endl for cout.
-  cout 
+  // Use std::endl for std::cout.
+  std::cout 
     << "XEvil(TM) version " << VERSION << "  http://www.xevil.com  satan@xevil.com  " 
     << XETP::versionStr << std::endl
     << "Copyright(C) 1994,2000 Steve Hardt and Michael Judge" << std::endl
     << std::endl;  
-  cout 
+  std::cout 
     << "XEvil is free software under the Gnu General Public License." << std::endl
     << "XEvil comes with absolutely no warranty." << std::endl;  
-  cout 
+  std::cout 
     << "Type 'xevil -info' for license information and information on no warranty." << std::endl
     << "     'xevil -help' for usage and network-play instructions." << std::endl;
 }
@@ -3004,9 +3004,9 @@ void Game::print_stats()
 {
   // Fucking HP compiler crashes.
 #ifndef NO_SETPRECISION
-  cout << setprecision(3);
+  std::cout << setprecision(3);
 #endif
-  cout << std::endl
+  std::cout << std::endl
   << "-----------------------STATISTICS-----------------------" << std::endl;
 
 
@@ -3020,10 +3020,10 @@ void Game::print_stats()
 
   for (n = 0; n < contextsNum; n++) {
     const Stats &stats = contexts[n]->get_stats(contexts[n]->arg);
-    cout << contexts[n]->className << ":  created:  " 
+    std::cout << contexts[n]->className << ":  created:  " 
     << stats.get_creations() << std::endl;
   }
-  cout << std::endl;
+  std::cout << std::endl;
 
 
   // Uses.
@@ -3032,10 +3032,10 @@ void Game::print_stats()
 
   for (n = 0; n < contextsNum; n++) {
     const Stats &stats = contexts[n]->get_stats(contexts[n]->arg);
-    cout << contexts[n]->className << ":  used: " 
+    std::cout << contexts[n]->className << ":  used: " 
     << stats.get_uses() << std::endl;
   }
-  cout << std::endl;
+  std::cout << std::endl;
 
 
   // Deaths.
@@ -3044,7 +3044,7 @@ void Game::print_stats()
 
   for (n = 0; n < contextsNum; n++) {
     const Stats &stats = contexts[n]->get_stats(contexts[n]->arg);
-    cout << contexts[n]->className << ":  number killed: "
+    std::cout << contexts[n]->className << ":  number killed: "
     << stats.get_deaths() 
     << "  average lifespan: " << stats.get_ave_lifespan() << " seconds" 
     << std::endl;
@@ -3053,7 +3053,7 @@ void Game::print_stats()
 
   // Total for all Creatures.
   const Stats &creature = Creature::get_stats();
-  cout 
+  std::cout 
   << "Total creatures killed: " 
   << creature.get_deaths() 
   << "  average lifespan: " << creature.get_ave_lifespan() << " seconds" 
@@ -3061,7 +3061,7 @@ void Game::print_stats()
 
 
   // Figure this one out yourself.
-  cout 
+  std::cout 
   << "Highest level: " << levelHighest << std::endl;
 }
 
@@ -3076,7 +3076,7 @@ PhysicalP Game::create_enemy(PhysicalP obj,Boolean addToLocator) {
   ITmask opMask = intel_options_for(ops,obj->get_class_id());
 
   ostrstream name;
-  name << "Machine-" << (enemyNameCount++) << ends;
+  name << "Machine-" << (enemyNameCount++) << std::ends;
   EnemyP enemy = new Enemy(&world,&locator,name.str(),&ops,opMask);
   assert(enemy);
   delete name.str();
@@ -3236,7 +3236,7 @@ void Game::demo_setup()
     case 0: { // A bunch of Heros and an Alien.
     	for (int n = 0; n < 10; n++) {
         ostrstream name;
-        name << "Enemy-" << n << ends;
+        name << "Enemy-" << n << std::ends;
         IntelOptions ops;
         ops.harmless = True;
         EnemyP enemy = new Enemy(&world,&locator,name.str(),
@@ -3269,7 +3269,7 @@ void Game::demo_setup()
     case 1: { // Hero, FThrower, and a bunch of Frogs (does not mean Frenchmen).
 	    for (int n = 0; n < 15; n++) {
 	      ostrstream name;
-	      name << "Enemy-" << n << ends;
+	      name << "Enemy-" << n << std::ends;
 	      IntelOptions ops;
 	      ops.psychotic = Utils::coin_flip();
 	      EnemyP enemy = new Enemy(&world,&locator,name.str(),
@@ -3305,7 +3305,7 @@ void Game::demo_setup()
       for (int n = 0; n < 10; n++)
 	      {
 	        ostrstream name;
-	        name << "Enemy-" << n << ends;
+	        name << "Enemy-" << n << std::ends;
 	        IntelOptions ops;
 	        ops.classFriends = False;
 	        ops.psychotic = True;
@@ -3328,7 +3328,7 @@ void Game::demo_setup()
     case 3: { // A bunch of Ninjas and a chainsaw.
       for (int n = 0; n < 10; n++) {
 	      ostrstream name;
-	      name << "Enemy-" << n << ends;
+	      name << "Enemy-" << n << std::ends;
 	      IntelOptions ops;
 	      ops.classFriends = False;
 	      EnemyP enemy = new Enemy(&world,&locator,name.str(),
@@ -3374,7 +3374,7 @@ void Game::demo_setup()
 
       for (int m = 0; m < 10; m++) {
         ostrstream name;
-        name << "Enemy-" << m << ends;
+        name << "Enemy-" << m << std::ends;
         EnemyP enemy = new Enemy(&world,&locator,name.str(),
                                  NULL,ITnone);
         assert(enemy);
@@ -3415,7 +3415,7 @@ void Game::demo_setup()
       int n;
       for (n = 0; n < 10; n++) {
 	      ostrstream name;
-	      name << "Enemy-" << n << ends;
+	      name << "Enemy-" << n << std::ends;
 	      IntelOptions ops;
 	      ops.classFriends = False;
 	      EnemyP enemy = new Enemy(&world,&locator,name.str(),
@@ -3459,7 +3459,7 @@ void Game::demo_setup()
 
       for (n = 0; n < 9; n++) {
         ostrstream name;
-        name << "Dog-" << n << ends;
+        name << "Dog-" << n << std::ends;
         EnemyP intel = new Enemy(&world,&locator,name.str(),NULL,ITnone);
         assert(intel);
         delete name.str();
@@ -3474,7 +3474,7 @@ void Game::demo_setup()
 
       for (n = 0; n < 3; n++) {
         ostrstream name;
-        name << "Enemy-" << n << ends;
+        name << "Enemy-" << n << std::ends;
         IntelOptions ops;
         ops.harmless = True;
         EnemyP enemy = new Enemy(&world,&locator,name.str(),&ops,ITharmless);
@@ -3511,7 +3511,7 @@ void Game::demo_setup()
                                             Dragon::create,NULL);
         for (int m = 0; m < ret.length(); m++) {
           ostrstream name;
-          name << "Enemy-" << n << ends;
+          name << "Enemy-" << n << std::ends;
           IntelOptions ops;
           ops.harmless = True;
           EnemyP enemy = new Enemy(&world,&locator,name.str(),&ops,ITharmless);

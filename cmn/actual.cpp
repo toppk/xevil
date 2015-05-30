@@ -455,7 +455,7 @@ void Explosion::act() {
 	}
 
 	ostrstream msg;
-	msg << "Explosion hits " << hit << " objects." << ends;
+	msg << "Explosion hits " << hit << " objects." << std::ends;
 	locator->message_enq(msg.str());
 
 	kill_self();
@@ -1014,7 +1014,7 @@ Boolean AltarOfSin::corporeal_attack(PhysicalP other,int) {
       
       str << intel->get_name() << " attacks the Altar of Sin and is "
           << "turned into a " << (doFrog ? "frog" : "baby-seal")
-          << "." << ends;
+          << "." << std::ends;
       locator->message_enq(str.str());
   
       other->set_intel(NULL);
@@ -1047,7 +1047,7 @@ Boolean AltarOfSin::corporeal_attack(PhysicalP other,int) {
     // Lose all health.
     else {
       str << "BLASPHMER!  " << intel->get_name() << 
-          " loses health for daring to attack the Altar of Sin." << ends;
+          " loses health for daring to attack the Altar of Sin." << std::ends;
       locator->message_enq(str.str());
       
       int damage = other->get_health();
@@ -1104,16 +1104,16 @@ void AltarOfSin::collide(PhysicalP other) {
           }
 
           msg << intel->get_name() << " sells soul for " 
-              << ALTAR_OF_SIN_KILLS << " kills." << ends;
-          arenaMsg << "You Gain " << ALTAR_OF_SIN_KILLS << " Kills" << ends;
+              << ALTAR_OF_SIN_KILLS << " kills." << std::ends;
+          arenaMsg << "You Gain " << ALTAR_OF_SIN_KILLS << " Kills" << std::ends;
 #endif
           // Everybody hates the "You Gain 5 Kills" thing.  So, I removed it.
           ok = False;
         }
         else {
           intel->set_lives(lives + 1);
-          msg << intel->get_name() << " sells soul for an extra life." << ends;
-          arenaMsg << "You Sold Your Soul For an Extra Life" << ends;
+          msg << intel->get_name() << " sells soul for an extra life." << std::ends;
+          arenaMsg << "You Sold Your Soul For an Extra Life" << std::ends;
         }
         break;
     
@@ -1123,8 +1123,8 @@ void AltarOfSin::collide(PhysicalP other) {
         mod = new DoubleSpeed();
         assert(mod);          
         modList->append_unique(mod);
-        msg << intel->get_name() << " sells soul for Double Speed." << ends;
-        arenaMsg << "Double Speed" << ends;
+        msg << intel->get_name() << " sells soul for Double Speed." << std::ends;
+        arenaMsg << "Double Speed" << std::ends;
         break;
 
         
@@ -1139,8 +1139,8 @@ void AltarOfSin::collide(PhysicalP other) {
         assert(mod);          
         modList->append_unique(mod);
         msg << intel->get_name() << " sells soul for extra jumping powers." 
-            << ends;
-        arenaMsg << "Extra Jumping Powers" << ends;
+            << std::ends;
+        arenaMsg << "Extra Jumping Powers" << std::ends;
         break;
         
 
@@ -1157,8 +1157,8 @@ void AltarOfSin::collide(PhysicalP other) {
         // So max health takes effect immediately.
         other->heal();
         
-        msg << intel->get_name() << " sells soul for Double Health." << ends;
-        arenaMsg << "Double Health" << ends;
+        msg << intel->get_name() << " sells soul for Double Health." << std::ends;
+        arenaMsg << "Double Health" << std::ends;
         break;
 
 
@@ -1176,8 +1176,8 @@ void AltarOfSin::collide(PhysicalP other) {
           // Might as well make sure they can take advantage of it now.  
           other->heal();
 
-          msg << intel->get_name() << " sells soul for Healing Powers." << ends;
-          arenaMsg << "Healing Powers" << ends;
+          msg << intel->get_name() << " sells soul for Healing Powers." << std::ends;
+          arenaMsg << "Healing Powers" << std::ends;
         }
         break;
 
@@ -1193,8 +1193,8 @@ void AltarOfSin::collide(PhysicalP other) {
           // Already checked that other is a Creature().
           ((CreatureP)other)->add_ability(a);
 
-          msg << intel->get_name() << " sells soul for HellFire Powers." << ends;
-          arenaMsg << "HellFire Powers" << ends;    
+          msg << intel->get_name() << " sells soul for HellFire Powers." << std::ends;
+          arenaMsg << "HellFire Powers" << std::ends;    
         }
         break;
 
@@ -1217,8 +1217,8 @@ void AltarOfSin::collide(PhysicalP other) {
           // Already checked that other is a Creature().
           ((CreatureP)other)->add_ability(a);
 
-          msg << intel->get_name() << " sells soul for Fireballs." << ends;
-          arenaMsg << "Fireballs" << ends;    
+          msg << intel->get_name() << " sells soul for Fireballs." << std::ends;
+          arenaMsg << "Fireballs" << std::ends;    
         }
         break;
         
@@ -1241,8 +1241,8 @@ void AltarOfSin::collide(PhysicalP other) {
           // Already checked that other is a Creature().
           ((CreatureP)other)->add_ability(a);
 
-          msg << intel->get_name() << " sells soul for Flying Powers." << ends;
-          arenaMsg << "Flying Powers" << ends;
+          msg << intel->get_name() << " sells soul for Flying Powers." << std::ends;
+          arenaMsg << "Flying Powers" << std::ends;
         }
         break;
 
@@ -1274,8 +1274,8 @@ void AltarOfSin::collide(PhysicalP other) {
           // Already checked that other is a Creature().
           ((CreatureP)other)->add_ability(a);
 
-          msg << intel->get_name() << " sells soul for Sticky Powers." << ends;
-          arenaMsg << "Sticky Powers" << ends;          
+          msg << intel->get_name() << " sells soul for Sticky Powers." << std::ends;
+          arenaMsg << "Sticky Powers" << std::ends;          
         }
         break;
 
@@ -1947,7 +1947,7 @@ void Bomb::use(PhysicalP bomberP) {
 #if 0
     // Don't send the 4,3,2,etc to to message bar anymore.
     ostrstream msg;
-    msg << frame << ends;
+    msg << frame << std::ends;
     locator->message_enq(msg.str());
 #endif    
 
@@ -1973,7 +1973,7 @@ void Bomb::act() {
 #if 0
 	    LocatorP locator = get_locator();
 	    ostrstream msg;
-	    msg << frame << ends;
+	    msg << frame << std::ends;
 	    locator->message_enq(msg.str());
 #endif
    	}
@@ -2089,7 +2089,7 @@ void Trapdoor::act()
 
 		char sealStr[20];
 		ostrstream str(sealStr,20);
-		str << "seal-" << sealsNum << ends;
+		str << "seal-" << sealsNum << std::ends;
 		NeutralP sealIntel = new SealIntel(w,l,sealStr,homeId);
 		seal->set_intel(sealIntel);
 		l->register_neutral(sealIntel);

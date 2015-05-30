@@ -67,7 +67,7 @@ typedef Modifier *ModifierP;
 
 struct IntelOptions {
   // Do not attack members of same class.
-  Boolean classFriends; 
+  Boolean classFristd::ends; 
   // Will not attack even if it has the ability to do so.
   Boolean harmless; 
   // Will never run away.  harmless overrides psychotic.

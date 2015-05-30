@@ -979,7 +979,7 @@ void Ui::menu_learn_controls_CB(void* value,
         << " player enter the " 
         << (ui->lControls[dpyNum].which ? "second" : "first") 
         << " key for <" << ui->keysNames[ui->lControls[dpyNum].key] 
-        << ">." << ends;
+        << ">." << std::ends;
     
     ui->learnControls[dpyNum]->set_message(str.str());
     delete str.str();
@@ -1222,7 +1222,7 @@ void Ui::learn_controls_CB(Panel* panel,void* value,void* closure) {
       << " player enter the " 
       << (ui->lControls[dpyNum].which ? "second" : "first") 
       << " key for <" << keysNames[ui->lControls[dpyNum].key] 
-	<< ">." << ends;
+	<< ">." << std::ends;
 
   // Add message in front of str.str().
   ostrstream fullStr;
@@ -1231,7 +1231,7 @@ void Ui::learn_controls_CB(Panel* panel,void* value,void* closure) {
            << "set the controls for one player." 
             << "\n" << "\n";
   }
-  fullStr << str.str() << ends;
+  fullStr << str.str() << std::ends;
   delete str.str();
  
 
@@ -1545,7 +1545,7 @@ void Ui::create_help() {
     message << text << '\n';
     delete [] text;
   }
-  message << ends;
+  message << std::ends;
 
 
   for (int dpyNum = 0; dpyNum < xvars.dpyMax; dpyNum++) {
@@ -1631,7 +1631,7 @@ void Ui::controls_redraw(int dpyNum) {
 	      && strlen(XKeysymToString(keymaps[0][n][1][1])))
 	    str0 << ", " << XKeysymToString(keymaps[0][n][1][1]);
 	}
-    str0 << ends;
+    str0 << std::ends;
     
     // String for left side.
     strstream str1;
@@ -1645,7 +1645,7 @@ void Ui::controls_redraw(int dpyNum) {
 	      && strlen(XKeysymToString(keymaps[1][n][1][1])))
 	    str1 << ", " << XKeysymToString(keymaps[1][n][1][1]);
 	}
-    str1 << ends;
+    str1 << std::ends;
     
     // Draw key on left side.
     if (n != IT_CHAT) {  // Chat meaningless for left player.

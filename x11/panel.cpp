@@ -313,10 +313,10 @@ Boolean WritePanel::process_event(int dpy_num,XEvent *event) {
 void WritePanel::update_message() {
   ostrstream tmp;
   if (active) {
-    tmp << prompt << value << "_" << ends;
+    tmp << prompt << value << "_" << std::ends;
   }
   else {
-    tmp << prompt << value << ends;
+    tmp << prompt << value << std::ends;
   }
   set_message(tmp.str());
   delete tmp.str(); 
@@ -525,7 +525,7 @@ void ChatPanel::update_message() {
   }
 
   ostrstream tmp;
-  tmp << "CHAT <<" << value << "\nEnter to send, Esc to cancel." << ends;
+  tmp << "CHAT <<" << value << "\nEnter to send, Esc to cancel." << std::ends;
   TextPanel::set_message(tmp.str());
   delete tmp.str(); 
 }

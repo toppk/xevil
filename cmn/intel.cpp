@@ -224,7 +224,7 @@ Intel::Intel(WorldP w,LocatorP l,char *name,
     intelOptions.harmless = ops->harmless;
   }
   if (opMask & ITclassFriends) {
-    intelOptions.classFriends = ops->classFriends;
+    intelOptions.classFriends = ops->classFristd::ends;
   }
   if (opMask & ITpsychotic) {
     intelOptions.psychotic = ops->psychotic;
@@ -2095,7 +2095,7 @@ void mode_helper(int prev,int curr) {
 	char buffer[80];
 	ostrstream str(buffer,80);
 	str << "mode changing from:" << Pet::mode_string(prev) <<
-		" to: " << Pet::mode_string(curr) << std::endl << ends;
+		" to: " << Pet::mode_string(curr) << std::endl << std::ends;
 #if WIN32
 	TRACE(buffer);
 #endif

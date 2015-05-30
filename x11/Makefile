@@ -29,7 +29,7 @@ OBJS = $(OBJ_DIR)/xdata.o $(OBJ_DIR)/panel.o $(OBJ_DIR)/l_agreement_dlg.o \
        $(OBJ_DIR)/ui.o \
        $(OBJ_DIR)/draw.o $(OBJ_DIR)/main.o
 ALL_INCL_DIRS = -I$(DEPTH)/cmn -I$(DEPTH)/x11 -I$(DEPTH)/x11/bitmaps $(INCL_DIRS)
-ALL_CFLAGS = -DX11=1 $(CFLAGS) 
+ALL_CFLAGS = -DX11=1 -Wwrite-strings -fpermissive $(CFLAGS) 
 
 xevil: $(OBJS) $(OBJ_DIR)/serverping 
 	@echo "Directory x11 finished."

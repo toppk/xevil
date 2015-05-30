@@ -997,7 +997,7 @@ void Locator::message_enq(char *msg) {
     }
   else {
     delete msg;
-//  cout << "Warning: Message queue overflow.  Discarding message." << std::endl;
+//  std::cout << "Warning: Message queue overflow.  Discarding message." << std::endl;
   }
 }
 
@@ -1046,7 +1046,7 @@ void Locator::arena_message_enq(char *msg,IntelId *intelId,
   }
   else {
     delete msg;
-//  cout << "Warning: Message queue overflow.  Discarding message." << std::endl;
+//  std::cout << "Warning: Message queue overflow.  Discarding message." << std::endl;
   }
 }
 
@@ -1854,12 +1854,12 @@ Boolean Locator::possible_overlap(const Area &area,const GLoc &gloc) {
   Area virtGLoc(AR_RECT,pos,size);
   if (virtGLoc.overlap(area)) {
     //tr++;
-    //cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << std::endl;
+    //std::cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << std::endl;
     return True;
   }
   else {
     //fa++;
-    //cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << std::endl;
+    //std::cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << std::endl;
     return False;
   }
 }
@@ -2106,7 +2106,7 @@ void Locator::register_contexts() {
 
 
   if (contextCount < A_CLASSES_NUM) {
-    cout << "ERROR: Locator::register_contexts(): Not all classes have been "
+    std::cout << "ERROR: Locator::register_contexts(): Not all classes have been "
       << "registered" << std::endl;
   }
 }

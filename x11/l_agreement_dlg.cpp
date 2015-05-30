@@ -375,7 +375,7 @@ void LAgreementDlg::check_viewed_before() {
   if (home[strlen(home)-1] != '/') {
     str << "/";
   }
-  str << ".xevilrc" << ends;
+  str << ".xevilrc" << std::ends;
 
   // Keep rcFilename around even if the file doesn't exist yet.
   rcFilename = str.str();
