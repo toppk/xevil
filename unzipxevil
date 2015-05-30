@@ -1,0 +1,8 @@
+#!/bin/csh
+
+# Convert text
+echo "---------------- Text and Binary Files -----------------"
+unzip -a xevilsrc.zip -x win32/res/\*.bmp -x win32/\*.dsp
+# Don't convert CRLF
+echo "---------------- Binary Files -----------------"
+unzip -b xevilsrc.zip win32/res/\*.bmp win32/\*.dsp
