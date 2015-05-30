@@ -224,7 +224,7 @@ Intel::Intel(WorldP w,LocatorP l,char *name,
     intelOptions.harmless = ops->harmless;
   }
   if (opMask & ITclassFriends) {
-    intelOptions.classFriends = ops->classFristd::ends;
+    intelOptions.classFriends = ops->classFriends;
   }
   if (opMask & ITpsychotic) {
     intelOptions.psychotic = ops->psychotic;

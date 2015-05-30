@@ -96,6 +96,11 @@ class SoundRequest;
 #define OL_RECENT_SOUNDS_MAX 30
 
 
+class OLgridEntry;
+#if X11
+class OLshadowEntry;
+#endif
+
 
 // An entry for one object in the list of all objects currently in the game.
 class OLentry {

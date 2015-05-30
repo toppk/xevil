@@ -34,7 +34,7 @@
 #include <limits.h>
 #include <string.h>
 #include <ctype.h>
-#include <fstream.h>
+#include <fstream>
 #if WIN32
 #include <strstrea.h>
 #endif

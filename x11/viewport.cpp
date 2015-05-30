@@ -2205,7 +2205,7 @@ void Viewport::update_statuses() {
   statuses[statusClassName]->set_message(className.str());
   delete className.str();
   
-  std::ostrstreamealth;
+  std::ostrstream health;
   if (status->health == -1) {
     health << "Dead" << std::ends;
   }

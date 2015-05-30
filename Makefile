@@ -65,7 +65,7 @@ $(OBJ_DIR)/xevil::
 $(OBJ_DIR)/xevil$(VERSION).$(PCKG_NAME).tar.Z::
 	cp readme.txt $(OBJ_DIR)
 	cp gpl.txt $(OBJ_DIR)
-	cp -r instructions $(OBJ_DIR)
+#	cp -r instructions $(OBJ_DIR)
 	(cd $(OBJ_DIR); tar cf xevil$(VERSION).$(PCKG_NAME).tar xevil readme.txt gpl.txt instructions)
 	(cd $(OBJ_DIR); $(COMPRESS) -f xevil$(VERSION).$(PCKG_NAME).tar)
 

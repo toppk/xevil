@@ -40,7 +40,7 @@ extern "C" {
 #include <strstrea.h>
 #endif
 
-#include <iomanip.h>
+#include <iomanip>
 
 #include "utils.h"
 #include "coord.h"
@@ -3004,7 +3004,7 @@ void Game::print_stats()
 {
   // Fucking HP compiler crashes.
 #ifndef NO_SETPRECISION
-  std::cout << setprecision(3);
+  std::cout << std::setprecision(3);
 #endif
   std::cout << std::endl
   << "-----------------------STATISTICS-----------------------" << std::endl;
@@ -3057,7 +3057,7 @@ void Game::print_stats()
   << "Total creatures killed: " 
   << creature.get_deaths() 
   << "  average lifespan: " << creature.get_ave_lifespan() << " seconds" 
-  << std::endl << endl;
+  << std::endl << std::endl;
 
 
   // Figure this one out yourself.
