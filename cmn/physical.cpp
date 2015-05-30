@@ -36,7 +36,7 @@
 #include <iostream>
 
 #if X11
-#include <strstream.h>
+#include <strstream>
 #endif
 #if WIN32
 #include <strstrea.h>
@@ -613,14 +613,14 @@ void Physical::update() {
 
 void Physical::die() {
   if (dieCalled) {
-    cerr << "Physical::die called twice" << endl;
+    std::cerr << "Physical::die called twice" << std::endl;
   }
   if (healthNext >= 0) {
-    cerr << "Physical::die, healthNext >= 0, value is " << healthNext << endl;
+    std::cerr << "Physical::die, healthNext >= 0, value is " << healthNext << std::endl;
     healthNext = -1;
   }
   if (health < 0) {
-    cerr << "Physical::die, health already less than 0, value is " << health << endl;
+    std::cerr << "Physical::die, health already less than 0, value is " << health << std::endl;
   }
   dieCalled = True;
 
@@ -740,9 +740,9 @@ void Physical::_update_area_next(Boolean currentAndNext) {
     // sanity check
     const Area &area = get_area();
     if (!(area == areaNext)) {
-      cerr << "Physical::_update_area_next() area does not equal "
+      std::cerr << "Physical::_update_area_next() area does not equal "
            << "areaNext when expected." 
-           << endl;
+           << std::endl;
     }
   }
   Dir dirNext = get_dir_next();
@@ -825,7 +825,7 @@ void Protection::write(OutStreamP out) {
   Physical::write(out);
 
   if (!(area == areaNext)) {
-    cerr << "Protection::write(), area != areaNext." << endl;
+    std::cerr << "Protection::write(), area != areaNext." << std::endl;
   }
   out->write_signed_char(delta);
   area.write(out);
@@ -1108,21 +1108,21 @@ void Moving::write(OutStreamP out) {
 
   //  assert(rawPos == rawPosNext);
   if (!(rawPos == rawPosNext)) {
-    cerr << "ERROR: rawPos and rawPosNext don't match for some " 
-         << get_class_name() << endl;
+    std::cerr << "ERROR: rawPos and rawPosNext don't match for some " 
+         << get_class_name() << std::endl;
   }
   rawPos.write(out);
 
   //  assert(area == areaNext);
   if (!(area == areaNext)) {
-    cerr << "ERROR: area and areaNext don't match for some " 
-         << get_class_name() << endl;
+    std::cerr << "ERROR: area and areaNext don't match for some " 
+         << get_class_name() << std::endl;
   }
   area.write(out);
 
   if (dir != dirNext) {
-    cerr << "ERROR: dir and dirNext don't match for some " 
-         << get_class_name() << endl;
+    std::cerr << "ERROR: dir and dirNext don't match for some " 
+         << get_class_name() << std::endl;
   }
   // assert(dir == dirNext);
   out->write_char((char)dir);
@@ -1130,7 +1130,7 @@ void Moving::write(OutStreamP out) {
   protection.write(out);
 
   if (!(vel == velNext)) {
-    cerr << get_class_name() << " vel does not equal velNext" << endl;
+    std::cerr << get_class_name() << " vel does not equal velNext" << std::endl;
   }
   vel.write(out);
 }
@@ -1802,10 +1802,10 @@ void Moving::check_generate_offsets(const MovingContext &mc,MovingXdata *xdata) 
     sizeMax.height = Utils::maximum(mc.sizes[dir].height,sizeMax.height);
   }
   if (!(sizeMax == mc.physicalContext.sizeMax)) {
-    cerr << mc.physicalContext.className 
+    std::cerr << mc.physicalContext.className 
          << ": computed sizeMax (" << sizeMax.width << "," << sizeMax.height 
          << "), doesn't equal that in context (" << mc.physicalContext.sizeMax.width 
-         << "," << mc.physicalContext.sizeMax.height << ")" << endl;
+         << "," << mc.physicalContext.sizeMax.height << ")" << std::endl;
     assert(0);
   }
 
@@ -2814,7 +2814,7 @@ void Weapon::enter_scope_next(PhysicalP)
 {
 /*  #ifdef PRINT_ERRORS
   if (enteredScope)
-    cerr << "Warning:: " << get_class_name() << " already entered scope." << endl;
+    std::cerr << "Warning:: " << get_class_name() << " already entered scope." << std::endl;
     #endif */
   enteredScope = True;
 }
@@ -2825,7 +2825,7 @@ void Weapon::leave_scope_next(PhysicalP)
 {
 /* #ifdef PRINT_ERRORS
   if (!enteredScope)
-    cerr << "Warning:: " << get_class_name() << " not in scope." << endl;
+    std::cerr << "Warning:: " << get_class_name() << " not in scope." << std::endl;
     #endif */
   enteredScope = False;
 }
@@ -2904,7 +2904,7 @@ void Cutter::write(OutStreamP out) {
 // Don't know why this happens.  Still need to check out this warning.
 #if 0
   if (inScope != inScopeNext) {
-    cerr << "WARNING: Cutter::write() inScope != inScopeNext" << endl;
+    std::cerr << "WARNING: Cutter::write() inScope != inScopeNext" << std::endl;
   }
 #endif
   out->write_char((u_char)inScope);
@@ -2982,7 +2982,7 @@ void Cutter::enter_scope_next(PhysicalP user) {
   }
 #ifdef PRINT_ERRORS
   else {
-    cerr << "Warning:: " << get_class_name() << " entered scope twice." << endl;
+    std::cerr << "Warning:: " << get_class_name() << " entered scope twice." << std::endl;
   }
 #endif
 }
@@ -3005,7 +3005,7 @@ void Cutter::leave_scope_next(PhysicalP user) {
   }
 #ifdef PRINT_ERRORS
   else
-    cerr << "Warning:: " << get_class_name() << " left scope twice." << endl;
+    std::cerr << "Warning:: " << get_class_name() << " left scope twice." << std::endl;
 #endif
 }
 
@@ -4285,8 +4285,8 @@ void Creature::act() {
   
   if (! alive()) {
     if (get_intel()) {
-	    cerr << "Warning: Creature::act(): Corpse with non-NULL intelligence."
-	         << endl;
+	    std::cerr << "Warning: Creature::act(): Corpse with non-NULL intelligence."
+	         << std::endl;
     }
     corpseTimer.clock();
   }
@@ -5694,8 +5694,8 @@ void User::update_from_stream(InStreamP in) {
       return;
     }
     
-    cerr << "ERROR: User::update_from_stream(), "
-         << "should have received a weapon." << endl;
+    std::cerr << "ERROR: User::update_from_stream(), "
+         << "should have received a weapon." << std::endl;
     // Drop through and clear weapons.
   }
 
@@ -7408,7 +7408,7 @@ void Walking::act() {
       Vel velNext(0,vel.dy);
       cre->set_vel_next(velNext);
 #ifdef PRINT_ERRORS
-      cerr << "Walking::_act()  trying to get unstuck." << endl;
+      std::cerr << "Walking::_act()  trying to get unstuck." << std::endl;
 #endif
       return;
     }

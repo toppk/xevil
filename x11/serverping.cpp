@@ -26,7 +26,7 @@
 
 
 #include <iostream>
-#include <strstream.h>
+#include <strstream>
 #include "utils.h"
 #include "streams.h"
 #include "xetp_basic.h"
@@ -258,13 +258,13 @@ void ServerPing::go() {
 
 
 void ServerPing::message(const char* msg) {
-  cout << msg << endl;
+  cout << msg << std::endl;
 }
 
 
 
 void ServerPing::error(const char* msg) {
-  cerr << "ERROR: " << msg << endl;
+  std::cerr << "ERROR: " << msg << std::endl;
   exit(1);
 }
 
@@ -284,31 +284,31 @@ void ServerPing::error(const char* msg1,const char* msg2) {
 void ServerPing::print_usage_and_exit() {
   cout
     << "Serverping allows you to remotely check the status of an XEvil server." 
-    << endl
-    << endl;
+    << std::endl
+    << std::endl;
   cout
     << "usage: serverping {-count num_tries} {-timeout timeout_ms} "
-    << "server_name{:port}" << endl;
+    << "server_name{:port}" << std::endl;
   cout 
     << "  num_tries is the number of pings to send before giving up," 
-    << " default=" << COUNT_DEFAULT << "." << endl;
+    << " default=" << COUNT_DEFAULT << "." << std::endl;
   cout 
     << "  timeout_ms is the time in milliseconds to wait for a response before"
-    << endl
+    << std::endl
     << "  giving up on each ping, default=" << TIMEOUT_DEFAULT << "." 
-    << endl;
+    << std::endl;
   cout
-    << endl
-    << "The output has the following form:" << endl
-    << "SUCCESS: XEvil Server <server_name>:<server_port>" << endl
-    << "GameStyle <game_style>" << endl
-    << "MachinesPlaying <machines_num>" << endl
-    << "HumansPlaying <humans_num>" << endl
-    << "<server_OS_info>" << endl
-    << "Name@Hostname HumanKills MachineKills" << endl
-    << "<name>@<hostname> <human_kills> <machine_kills>" << endl
-    << "<name>@<hostname> <human_kills> <machine_kills>" << endl
-    << "... {line repeats for each human player}" << endl;
+    << std::endl
+    << "The output has the following form:" << std::endl
+    << "SUCCESS: XEvil Server <server_name>:<server_port>" << std::endl
+    << "GameStyle <game_style>" << std::endl
+    << "MachinesPlaying <machines_num>" << std::endl
+    << "HumansPlaying <humans_num>" << std::endl
+    << "<server_OS_info>" << std::endl
+    << "Name@Hostname HumanKills MachineKills" << std::endl
+    << "<name>@<hostname> <human_kills> <machine_kills>" << std::endl
+    << "<name>@<hostname> <human_kills> <machine_kills>" << std::endl
+    << "... {line repeats for each human player}" << std::endl;
   exit(1);
 }
 
@@ -316,24 +316,24 @@ void ServerPing::print_usage_and_exit() {
 
 void ServerPing::print_results_and_exit() {
   cout 
-    << endl
+    << std::endl
     << "SUCCESS: XEvil Server " << serverName << ":" 
-    << serverPort << endl;
+    << serverPort << std::endl;
   
   GameStyleType gsType = (GameStyleType)udpIn->read_char();
-  cout << "GameStyle " << Utils::game_style_to_string(gsType) << endl;
+  cout << "GameStyle " << Utils::game_style_to_string(gsType) << std::endl;
 
   int enemiesNum = udpIn->read_int();
-  cout << "MachinesPlaying " << enemiesNum << endl;
+  cout << "MachinesPlaying " << enemiesNum << std::endl;
 
   int humansNum = udpIn->read_short();
-  cout << "HumansPlaying " << humansNum << endl;
+  cout << "HumansPlaying " << humansNum << std::endl;
 
   char* version = Utils::string_read(udpIn);
-  cout << version << endl;
+  cout << version << std::endl;
   delete version;
 
-  cout << "Name@Hostname HumanKills MachineKills" << endl;
+  cout << "Name@Hostname HumanKills MachineKills" << std::endl;
 
   // Read in data specific to each Human.
   const int NAME_LENGTH = 40;
@@ -347,7 +347,7 @@ void ServerPing::print_results_and_exit() {
     Id id;
     id.read(udpIn);
     cout << '\"' << name << "\"@" << clientName << ' ' << humanKills 
-         << ' ' << enemyKills << endl;
+         << ' ' << enemyKills << std::endl;
   }
 
   exit(0);

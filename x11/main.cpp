@@ -51,7 +51,7 @@ public:
   
   virtual void start_turn() {
     if (gettimeofday(m_timer,NULL) != 0) {
-      cerr << "Error with gettimeofday()." << endl;
+      std::cerr << "Error with gettimeofday()." << std::endl;
     }
   }
 
@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
     game->post_clock();
     if (game->show_stats() && !(total % Game::REPORT_TIME))
       cout << "total:" << total << " events:" << events << 
-	  " percent:" << ((float)events / (float) total) << endl; 
+	  " percent:" << ((float)events / (float) total) << std::endl; 
     
     // This should be the only place exit() is called.
     // (But it isn't, ui.cpp calls if license agreement is rejected 

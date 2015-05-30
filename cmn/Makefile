@@ -40,7 +40,7 @@ OBJS =	\
 
 
 ALL_INCL_DIRS = -I$(DEPTH)/cmn -I$(DEPTH)/x11 -I$(DEPTH)/x11/bitmaps $(INCL_DIRS)
-ALL_CFLAGS = -DX11=1 $(CFLAGS)
+ALL_CFLAGS = -DX11=1 -fpermissive $(CFLAGS)
 
 xevil: $(OBJS)
 	@echo "Directory cmn finished."

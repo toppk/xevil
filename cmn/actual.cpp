@@ -32,7 +32,7 @@
 
 // Include Files
 #if X11
-#include <strstream.h>
+#include <strstream>
 #endif
 #if WIN32
 #include <strstrea.h>
@@ -226,15 +226,15 @@ void PhysMover::write(OutStreamP out) {
 
   // Not always true.  Is true after a few turns?
   //  if (state != AfterUpdate) {
-  //  cerr << "PhysMover: state should be AfterUpdate when write() is called."
-  //       << endl;
+  //  std::cerr << "PhysMover: state should be AfterUpdate when write() is called."
+  //       << std::endl;
   //}
 
   Area area = get_area();
   Area areaNext = get_area_next();
   if (!(area == areaNext)) {
-    cerr << "PhysMover: area should equal areaNext when write() is called." 
-         << endl;
+    std::cerr << "PhysMover: area should equal areaNext when write() is called." 
+         << std::endl;
   }
 
   moverId.write(out);
@@ -1019,8 +1019,8 @@ Boolean AltarOfSin::corporeal_attack(PhysicalP other,int) {
   
       other->set_intel(NULL);
       if (!other->get_mapped()) {
-        cerr << "Warning:AltarOfSin::corporeal_attack: object "
-         << "should be mapped." << endl;
+        std::cerr << "Warning:AltarOfSin::corporeal_attack: object "
+         << "should be mapped." << std::endl;
       }
       other->set_mapped_next(False);
     

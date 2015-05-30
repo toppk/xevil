@@ -41,7 +41,7 @@ extern "C" {
 }
 
 #include <iostream>
-#include <strstream.h>
+#include <strstream>
 
 #include "coord.h"
 #include "area.h"
@@ -181,7 +181,7 @@ static int UI_error_handler(Display *dpy,XErrorEvent *evt) {
   char msg[80];
 
   XGetErrorText(dpy,evt->error_code,msg,80);
-  cerr << "X Error: " << msg << endl;
+  std::cerr << "X Error: " << msg << std::endl;
 
   // Whatever.
   return 0;
@@ -1278,21 +1278,21 @@ void Ui::init_x() {
     // Open new display.
     if (!found) {
       if (xvars.dpyMax >= Xvars::DISPLAYS_MAX) {
-        cerr << "Can only open " << Xvars::DISPLAYS_MAX <<
-          " different displays." << endl;
-        cerr << "If more displays are desired, recompile with "
-             << "a higher value for Xvars::DISPLAYS_MAX." << endl;
+        std::cerr << "Can only open " << Xvars::DISPLAYS_MAX <<
+          " different displays." << std::endl;
+        std::cerr << "If more displays are desired, recompile with "
+             << "a higher value for Xvars::DISPLAYS_MAX." << std::endl;
         exit(1);
       }
       if (!(xvars.dpy[xvars.dpyMax] = 
             XOpenDisplay(strlen(displayNames[vNum]) ?
                          displayNames[vNum] :(char *) NULL))) {
-        cerr << "Could not open X display " << displayNames[xvars.dpyMax] 
-             << endl;
+        std::cerr << "Could not open X display " << displayNames[xvars.dpyMax] 
+             << std::endl;
         if (strlen(displayNames[xvars.dpyMax])) {
-          cerr << "Make sure you have used xhost on " 
+          std::cerr << "Make sure you have used xhost on " 
                << displayNames[xvars.dpyMax] 
-               << " to allow this machine to connect to it." << endl;
+               << " to allow this machine to connect to it." << std::endl;
         }
         exit(1);
       }
@@ -1326,18 +1326,18 @@ void Ui::init_x() {
       xvars.font[xvars.dpyMax] = 
         XLoadQueryFont(xvars.dpy[xvars.dpyMax],theFont);
       if (!xvars.font[xvars.dpyMax]) {
-        cerr << "Could not load font " << theFont << " trying backup font "
-             << BACKUP_FONT_NAME << endl;
+        std::cerr << "Could not load font " << theFont << " trying backup font "
+             << BACKUP_FONT_NAME << std::endl;
         // Try backup font, should always be there.
         xvars.font[xvars.dpyMax] = 
           XLoadQueryFont(xvars.dpy[xvars.dpyMax],BACKUP_FONT_NAME);
       }
       if (!xvars.font[xvars.dpyMax]) {
         // Really failed.
-        cerr << "Could not load " << BACKUP_FONT_NAME;
+        std::cerr << "Could not load " << BACKUP_FONT_NAME;
         if (strlen(displayNames[vNum]))
-          cerr << " on " << displayNames[vNum];
-        cerr << endl;
+          std::cerr << " on " << displayNames[vNum];
+        std::cerr << std::endl;
         exit (1);
       }
       
@@ -1346,18 +1346,18 @@ void Ui::init_x() {
       xvars.bigFont[xvars.dpyMax] = 
         XLoadQueryFont(xvars.dpy[xvars.dpyMax],theFont);
       if (!xvars.bigFont[xvars.dpyMax]) {
-        cerr << "Could not load font " << theFont << " trying backup font "
-         << BACKUP_FONT_NAME << endl;
+        std::cerr << "Could not load font " << theFont << " trying backup font "
+         << BACKUP_FONT_NAME << std::endl;
         // Try backup font, should always be there.
         xvars.bigFont[xvars.dpyMax] = 
           XLoadQueryFont(xvars.dpy[xvars.dpyMax],BACKUP_FONT_NAME);
       }
       if (!xvars.bigFont[xvars.dpyMax]) {
         // Really failed.
-        cerr << "Could not load " << BACKUP_FONT_NAME;
+        std::cerr << "Could not load " << BACKUP_FONT_NAME;
         if (strlen(displayNames[vNum]))
-          cerr << " on " << displayNames[vNum];
-        cerr << endl;
+          std::cerr << " on " << displayNames[vNum];
+        std::cerr << std::endl;
         exit (1);
       }
       

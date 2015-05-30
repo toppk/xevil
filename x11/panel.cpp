@@ -32,7 +32,7 @@ extern "C" {
 #include <X11/keysym.h>
 }
 #include <iostream>
-#include <strstream.h>
+#include <strstream>
 
 #include "utils.h"
 #include "xdata.h"

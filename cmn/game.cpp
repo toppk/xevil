@@ -34,7 +34,7 @@ extern "C" {
 }
 
 #if X11
-#include <strstream.h>
+#include <strstream>
 #endif
 #if WIN32
 #include <strstrea.h>
@@ -460,7 +460,7 @@ void GameStats::report()
 {
   if (numTurns % Game::REPORT_TIME == 0)
     cout << "Turn " << numTurns << ":  Average time of turn:  " << 
-      aveTime << endl;
+      aveTime << std::endl;
 }
 
 
@@ -740,7 +740,7 @@ void GameObjects::compute_actuals(const PhysicalContext *weapons[],
     actuals[which] = 
 	    maximums[which] ? (Utils::choose(maximums[which]) + 1) : 0;
     //      cout << "actuals[" << weapons[weaponsRank[n]]->className << "] = " 
-    //	   << actuals[which] << " of " << maximums[which] << endl;
+    //	   << actuals[which] << " of " << maximums[which] << std::endl;
   }
 
   // Set actuals to be non-zero for oItemsLevel number of classes.  Choose
@@ -750,10 +750,10 @@ void GameObjects::compute_actuals(const PhysicalContext *weapons[],
     actuals[which] = 
 	    maximums[which] ? (Utils::choose(maximums[which]) + 1) : 0;
     //      cout << "actuals[" << oItems[oItemsRank[n]]->className << "] = " 
-    //	   << actuals[which] << " of " << maximums[which] << endl;
+    //	   << actuals[which] << " of " << maximums[which] << std::endl;
   }
 
-  //  cout << endl;
+  //  cout << std::endl;
 
   delete [] weaponsRank;
   delete [] oItemsRank;
@@ -902,7 +902,7 @@ Game::Game(int *arg_c,char **arg_v)
 
   // Before check that role is ok().
   if (noUi && role->get_type() != R_SERVER) {
-    cerr << "Can only set -no_ui if running as a server." << endl;
+    std::cerr << "Can only set -no_ui if running as a server." << std::endl;
     noUi = False;
   }
 
@@ -1730,9 +1730,9 @@ PhysicalP Game::human_physical(int humanNum) {
           a = new Sticky(Ninja::stickyContext,Sticky::defaultXdata);
         }
         else {
-          cerr << obj->get_class_name() 
+          std::cerr << obj->get_class_name() 
                << " does not have all the animation frames to be a Sticky." 
-               << endl;
+               << std::endl;
         }
       break;
 
@@ -1749,7 +1749,7 @@ PhysicalP Game::human_physical(int humanNum) {
       break;
 
       default:
-        cerr << "unknown ability" << endl;
+        std::cerr << "unknown ability" << std::endl;
     }
 
     if (a) {
@@ -2454,41 +2454,41 @@ void Game::parse_args(int *argc,char **argv) {
     else if (!Utils::strcmp("-h",argv[n])
              || !Utils::strcmp("-help",argv[n])) {
       cout 
-        << endl
-        << "See http://www.xevil.com/docs/instructions.html for full description." << endl 
-        << "usage: " << argv[0] << " <argument list>" << endl
-        << endl
-        << "Common arguments:" << endl
-        << "-font <fontname> or -fn <fontname>" << endl
-        << "    set the font" << endl
-        << "-display <displayname> or -d <displayname>" << endl
-        << "    set the X display for all players in the game" << endl
-        << "-display<N> <displayname> or -d<N> <displayname>" << endl
-        << "    set the X display for a specific player, player number N, starts with '0'" << endl 
-        << "-info" << endl
-        << "    print license agreement" << endl
-        << "-h or -help" << endl
-        << "    print help message" << endl
-        << "-world <worldfile>" << endl
-        << "    use the worldfile to specify the map" << endl
-        << endl
-        << "-connect <servername> {serverport}" << endl
-        << "    connect as a client to an XEvil server, serverport is optional" << endl
-        << "-name <playername>" << endl
-        << "    only with -connnect, specify your player name" << endl
-        << "-no_dead_reckoning" << endl
-        << "    only with connect, disable dead reckoning" << endl
-        << endl
-        << "-server {port}" << endl
-        << "    run an XEvil server, port is optional" << endl
-        << "-no_ui" << endl
-        << "    only with -server, run as a command-line server, implies -observer" << endl
-        << "-observer" << endl
-        << "    only with -server, run server with no human player on the server machine" << endl
-        << "-disconnect_time" << endl
-        << "    only with -server, specify time (ms) before disconnecting clients that do not respond" << endl
-        << "-no_disconnect" << endl
-        << "    only with -server, don't disconnect clients that do not respond" << endl;
+        << std::endl
+        << "See http://www.xevil.com/docs/instructions.html for full description." << std::endl 
+        << "usage: " << argv[0] << " <argument list>" << std::endl
+        << std::endl
+        << "Common arguments:" << std::endl
+        << "-font <fontname> or -fn <fontname>" << std::endl
+        << "    set the font" << std::endl
+        << "-display <displayname> or -d <displayname>" << std::endl
+        << "    set the X display for all players in the game" << std::endl
+        << "-display<N> <displayname> or -d<N> <displayname>" << std::endl
+        << "    set the X display for a specific player, player number N, starts with '0'" << std::endl 
+        << "-info" << std::endl
+        << "    print license agreement" << std::endl
+        << "-h or -help" << std::endl
+        << "    print help message" << std::endl
+        << "-world <worldfile>" << std::endl
+        << "    use the worldfile to specify the map" << std::endl
+        << std::endl
+        << "-connect <servername> {serverport}" << std::endl
+        << "    connect as a client to an XEvil server, serverport is optional" << std::endl
+        << "-name <playername>" << std::endl
+        << "    only with -connnect, specify your player name" << std::endl
+        << "-no_dead_reckoning" << std::endl
+        << "    only with connect, disable dead reckoning" << std::endl
+        << std::endl
+        << "-server {port}" << std::endl
+        << "    run an XEvil server, port is optional" << std::endl
+        << "-no_ui" << std::endl
+        << "    only with -server, run as a command-line server, implies -observer" << std::endl
+        << "-observer" << std::endl
+        << "    only with -server, run server with no human player on the server machine" << std::endl
+        << "-disconnect_time" << std::endl
+        << "    only with -server, specify time (ms) before disconnecting clients that do not respond" << std::endl
+        << "-no_disconnect" << std::endl
+        << "    only with -server, don't disconnect clients that do not respond" << std::endl;
 
       // Just exit, don't want to deal with Ui being created, etc, if we
       // use Game::quit().
@@ -2509,7 +2509,7 @@ void Game::parse_args(int *argc,char **argv) {
       n++;
       int val = Utils::atoi(argv[n]);
       Client::set_human_reflexes(val);
-      cout << "Human reflexes set to " << val << " milliseconds." << endl;
+      cout << "Human reflexes set to " << val << " milliseconds." << std::endl;
     }
     else if ((! strcmp("-humans",argv[n])) && (n + 1 < *argc)) {
       humansNumNext = Utils::atoi(argv[n+1]);
@@ -2525,7 +2525,7 @@ void Game::parse_args(int *argc,char **argv) {
       const PtrList& lines = thePage.get_lines();
       for (int nn = 0; nn < lines.length(); nn++) {
         char* txt = ((Line*)lines.get(nn))->alloc_text();
-        cout << txt << endl;
+        cout << txt << std::endl;
         delete [] txt;
       }      
       exit(0);
@@ -2883,7 +2883,7 @@ void Game::humans_reset() {
 
 void Game::create_human_and_physical(int h) {
   if (h >= Locator::HUMANS_MAX) {
-    cerr << "Maximum number of humans already reached." << endl;
+    std::cerr << "Maximum number of humans already reached." << std::endl;
     return;
   }
 
@@ -2964,18 +2964,18 @@ void Game::intro() {
 
 
   // Print message to standard out.  Doesn't really do anything on Windows.
-  // Use endl for cout.
+  // Use std::endl for cout.
   cout 
     << "XEvil(TM) version " << VERSION << "  http://www.xevil.com  satan@xevil.com  " 
-    << XETP::versionStr << endl
-    << "Copyright(C) 1994,2000 Steve Hardt and Michael Judge" << endl
-    << endl;  
+    << XETP::versionStr << std::endl
+    << "Copyright(C) 1994,2000 Steve Hardt and Michael Judge" << std::endl
+    << std::endl;  
   cout 
-    << "XEvil is free software under the Gnu General Public License." << endl
-    << "XEvil comes with absolutely no warranty." << endl;  
+    << "XEvil is free software under the Gnu General Public License." << std::endl
+    << "XEvil comes with absolutely no warranty." << std::endl;  
   cout 
-    << "Type 'xevil -info' for license information and information on no warranty." << endl
-    << "     'xevil -help' for usage and network-play instructions." << endl;
+    << "Type 'xevil -info' for license information and information on no warranty." << std::endl
+    << "     'xevil -help' for usage and network-play instructions." << std::endl;
 }
 
 
@@ -3006,8 +3006,8 @@ void Game::print_stats()
 #ifndef NO_SETPRECISION
   cout << setprecision(3);
 #endif
-  cout << endl
-  << "-----------------------STATISTICS-----------------------" << endl;
+  cout << std::endl
+  << "-----------------------STATISTICS-----------------------" << std::endl;
 
 
   int contextsNum,n;
@@ -3021,9 +3021,9 @@ void Game::print_stats()
   for (n = 0; n < contextsNum; n++) {
     const Stats &stats = contexts[n]->get_stats(contexts[n]->arg);
     cout << contexts[n]->className << ":  created:  " 
-    << stats.get_creations() << endl;
+    << stats.get_creations() << std::endl;
   }
-  cout << endl;
+  cout << std::endl;
 
 
   // Uses.
@@ -3033,9 +3033,9 @@ void Game::print_stats()
   for (n = 0; n < contextsNum; n++) {
     const Stats &stats = contexts[n]->get_stats(contexts[n]->arg);
     cout << contexts[n]->className << ":  used: " 
-    << stats.get_uses() << endl;
+    << stats.get_uses() << std::endl;
   }
-  cout << endl;
+  cout << std::endl;
 
 
   // Deaths.
@@ -3047,7 +3047,7 @@ void Game::print_stats()
     cout << contexts[n]->className << ":  number killed: "
     << stats.get_deaths() 
     << "  average lifespan: " << stats.get_ave_lifespan() << " seconds" 
-    << endl;
+    << std::endl;
   }
 
 
@@ -3057,12 +3057,12 @@ void Game::print_stats()
   << "Total creatures killed: " 
   << creature.get_deaths() 
   << "  average lifespan: " << creature.get_ave_lifespan() << " seconds" 
-  << endl << endl;
+  << std::endl << endl;
 
 
   // Figure this one out yourself.
   cout 
-  << "Highest level: " << levelHighest << endl;
+  << "Highest level: " << levelHighest << std::endl;
 }
 
 
@@ -3567,9 +3567,9 @@ void Game::off_clock_kill(LocatorP /*locator*/,PhysicalP p) {
       // Surpress warning message.  Really should look into why this 
       // happens.  Does happen for Chainsaw.
 #if 0
-      cerr << "off_clock_kill(1), area does not equal area next for a " 
+      std::cerr << "off_clock_kill(1), area does not equal area next for a " 
            << p->get_class_name()
-           << endl;
+           << std::endl;
 #endif
     }
   }
@@ -3583,9 +3583,9 @@ void Game::off_clock_kill(LocatorP /*locator*/,PhysicalP p) {
     const Area &area = p->get_area();
     const Area &areaNext = p->get_area_next();
     if (!(area == areaNext)) {
-      cerr << "off_clock_kill(2), area does not equal area next for a " 
+      std::cerr << "off_clock_kill(2), area does not equal area next for a " 
            << p->get_class_name()
-           << endl;
+           << std::endl;
     }
   }
 }

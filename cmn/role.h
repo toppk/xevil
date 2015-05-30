@@ -250,7 +250,7 @@ public:
          IViewportInfo*,int skip,LocatorP errorLocator);
   /* EFFECTS: Create a client that will connect to the given server and port.
      If portName is NULL, connect to XETP::DEFAULT_PORT.
-     Give error message to cerr if failure and set error flag. 
+     Give error message to std::cerr if failure and set error flag. 
      Pass in empty string for humanName to use default. 
      clientPortBase is the first local UDP port, Client will try to 
      bind to.  Pass in 0 for clientPortBase to use default. */

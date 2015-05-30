@@ -31,7 +31,7 @@
 
 #include <iostream>
 #if X11
-#include <strstream.h>
+#include <strstream>
 #include <time.h>
 #endif
 #if WIN32
@@ -198,7 +198,7 @@ static int time_since(CMN_TIME startTime) {
 #if X11
   struct timeval now;
   if (gettimeofday(&now,NULL) != 0) {
-    cerr << "Error with gettimeofday()" << endl;
+    std::cerr << "Error with gettimeofday()" << std::endl;
   }
   // diff in msec.
   assert(sizeof(int) == 4);
@@ -259,7 +259,7 @@ void Role::_error(const char *msg) {
 #endif
 #if X11
   // Use standard out for both errors and messages on UNIX.
-  cout << msg << endl;
+  cout << msg << std::endl;
 #endif
 }
 
@@ -327,17 +327,17 @@ void Role::check_show_stats(CMN_TIME startTime) {
             << " UDPout: " << UDPOutStream::get_bytes_out() 
             << " TCPin: " << NetInStream::get_bytes_in() 
             << " TCPout: " << NetOutStream::get_bytes_out() 
-            << " in " << msec << " milliseconds." << endl;
+            << " in " << msec << " milliseconds." << std::endl;
       if (sec > 0) {
         cout << "<BPS> UDPin: " << (UDPInStream::get_bytes_in() / sec)
              << " UDPout: " << (UDPOutStream::get_bytes_out() / sec)
              << " TCPin: " << (NetInStream::get_bytes_in() / sec)
              << " TCPout: " << (NetOutStream::get_bytes_out() / sec)
-             << " in " << sec << " seconds, turn " << counter << endl;
+             << " in " << sec << " seconds, turn " << counter << std::endl;
       }
       cout << "Average outgoing XETP packet length: " 
-           << UDPOutStream::get_average_length_out() << endl;
-      cout << endl;
+           << UDPOutStream::get_average_length_out() << std::endl;
+      cout << std::endl;
       
       // counter = 0;
       // startTime = now;
@@ -524,9 +524,9 @@ void StandAlone::yield(CMN_TIME startTime,int quanta,IGameManagerP,
     const Area &area = p->get_area();
     const Area &areaNext = p->get_area_next();
     if (!(area == areaNext)) {
-      cerr << "test failed, area does not equal area next for a " 
+      std::cerr << "test failed, area does not equal area next for a " 
            << p->get_class_name()
-           << endl;
+           << std::endl;
     }
   }
 
@@ -671,7 +671,7 @@ void Client::connect_server() {
     delete str.str();
     return;    
   }
-  //  cout << "UDP port seems to be" << client.sin_port << endl;
+  //  cout << "UDP port seems to be" << client.sin_port << std::endl;
 
   
   // Connect TCP to server
@@ -1614,7 +1614,7 @@ Boolean Connection::allocate_turn_window(Turn /*turn*/) {
             cout << turnWindows[m] << ",";
           }
         }
-        cout << "]" << endl;
+        cout << "]" << std::endl;
       }
 
       return True;
@@ -1622,7 +1622,7 @@ Boolean Connection::allocate_turn_window(Turn /*turn*/) {
   }
   
   if (echoTurnWindows) {
-    cout << "FAILED to allocate window" << endl;
+    cout << "FAILED to allocate window" << std::endl;
   }
 
   // No free windows.
@@ -1640,7 +1640,7 @@ void Connection::free_turn_windows(Turn turn) {
     if (turnWindows[n] != FREE_TURN_WINDOW &&
         turnWindows[n] <= turn) {
       if (echoTurnWindows) {
-        cout << clientName << " freed turnWindow " << turnWindows[n] << endl;
+        cout << clientName << " freed turnWindow " << turnWindows[n] << std::endl;
       }
       turnWindows[n] = FREE_TURN_WINDOW;
     }
@@ -2256,8 +2256,8 @@ void Server::send_objects(LocatorP locator,Boolean turnWindowAllocated[]) {
       PhysicalP p = (PhysicalP)alreadySent.get(n);
       NetDataP netData = p->get_net_data();
       if (!netData->get_sent_flag()) {
-        cerr << "WARNING: Server::send_objects(): sentFlag is False for an object on the "
-             << "alreadySent list." << endl;
+        std::cerr << "WARNING: Server::send_objects(): sentFlag is False for an object on the "
+             << "alreadySent list." << std::endl;
       }
       netData->set_sent_flag(False);
     }
@@ -2707,7 +2707,7 @@ void Server::_error(const char *msg) {
       }
     }
   }
-  cout << msg << endl;
+  cout << msg << std::endl;
 #endif
 
   // Careful to set the propagate flag to False so the message doesn't get
@@ -3067,7 +3067,7 @@ void Server::process_command(InStreamP in,int n,
   ITcommand command = (ITcommand)in->read_char();
 
   if (Connection::echo_turn_windows()) {
-    cout << "Received command " << command << endl;
+    cout << "Received command " << command << std::endl;
   }
 
 

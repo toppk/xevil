@@ -329,7 +329,7 @@ void World::init_x(Xvars &xvars,IXCommand,void*) {
                           mask,dpyNum,
                           (char**)blocksBits[n]);
       if (!val) {
-        cerr << "Failed to load block " << n << endl;
+        std::cerr << "Failed to load block " << n << std::endl;
       }
     } // for n
     // For reduce draw, we won't use masks for XCopyArea, so fill background
@@ -354,7 +354,7 @@ void World::init_x(Xvars &xvars,IXCommand,void*) {
                           &xdata.posterMasks[dpyNum][n],
                           dpyNum,(char**)posters[n].id);
       if (!val) {
-        cerr << "Failed to load poster " << n << endl;
+        std::cerr << "Failed to load poster " << n << std::endl;
       }
     }
 
@@ -365,7 +365,7 @@ void World::init_x(Xvars &xvars,IXCommand,void*) {
         xvars.load_pixmap(&xdata.doorPixmaps[dpyNum][n],NULL,dpyNum,
                           (char**)doorPixmapBits[n]);
       if (!val) {
-        cerr << "Failed to load door block " << n << endl;
+        std::cerr << "Failed to load door block " << n << std::endl;
       }
     }
 
@@ -378,7 +378,7 @@ void World::init_x(Xvars &xvars,IXCommand,void*) {
                           dpyNum,
                           (char**)moverSquarePixmapBits[n]);
       if (!val) {
-        cerr << "Failed to mover square " << n << endl;
+        std::cerr << "Failed to mover square " << n << std::endl;
       }
     }
     // For reduce draw, we won't use masks for XCopyArea, so fill background
@@ -402,7 +402,7 @@ void World::init_x(Xvars &xvars,IXCommand,void*) {
                           dpyNum,
                           (char**)moverPixmapBits[n]);
       if (!val) {
-        cerr << "Failed to load mover " << n << endl;
+        std::cerr << "Failed to load mover " << n << std::endl;
       }
     }
 
@@ -413,7 +413,7 @@ void World::init_x(Xvars &xvars,IXCommand,void*) {
         xvars.load_pixmap(&xdata.backgroundPixmaps[dpyNum][n],NULL,dpyNum,
                           (char**)backgrounds[n].id);
       if (!val) {
-        cerr << "Failed to load background " << n << endl;
+        std::cerr << "Failed to load background " << n << std::endl;
       }
     }
 
@@ -424,7 +424,7 @@ void World::init_x(Xvars &xvars,IXCommand,void*) {
         xvars.load_pixmap(&xdata.outsidePixmaps[dpyNum][n],NULL,dpyNum,
                           (char**)outsides[n].id);
       if (!val) {
-        cerr << "Failed to load outside " << n << endl;
+        std::cerr << "Failed to load outside " << n << std::endl;
       }
     }
   } // for dpyNum
@@ -1022,7 +1022,7 @@ void Fire::init_x(Xvars &xvars,IXCommand command,void*) {
                                     &xdata.mask[dpyNum],
                                     dpyNum,(char**)fireBits);
     if (!val) {
-      cerr << "Failed to load fire graphics." << endl;
+      std::cerr << "Failed to load fire graphics." << std::endl;
     }
   }
 
@@ -1294,9 +1294,9 @@ void Moving::init_x(Xvars &xvars,IXCommand command,void*,
                             &movingXdata.masks[dpyNum][n][m],
                             dpyNum,(char**)mc.pixmapBits[n][m]);
         if (!val) {
-          cerr << "load_pixmap() failed for "
+          std::cerr << "load_pixmap() failed for "
                << mc.physicalContext.className 
-               << " dir=" << n << " animNum=" << m << endl;
+               << " dir=" << n << " animNum=" << m << std::endl;
         }
       } // for m
     } // for n

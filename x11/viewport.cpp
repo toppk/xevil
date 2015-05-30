@@ -44,7 +44,7 @@ extern "C" {
 #include <X11/Xos.h>
 #include <X11/keysym.h>
 }
-#include <strstream.h>
+#include <strstream>
 
 
 #define TICK_BORDER_WIDTH 5 // border width big enough for a tick mark.
@@ -1353,8 +1353,8 @@ void Viewport::process_event(XEvent* event) {
       button_press(event);
       break;
     default:
-      cerr << "Warning: Unexpected event of type " << event->type 
-           << endl;
+      std::cerr << "Warning: Unexpected event of type " << event->type 
+           << std::endl;
       break;
     }
     return;
@@ -2205,7 +2205,7 @@ void Viewport::update_statuses() {
   statuses[statusClassName]->set_message(className.str());
   delete className.str();
   
-  ostrstream health;
+  ostrstreamealth;
   if (status->health == -1) {
     health << "Dead" << ends;
   }

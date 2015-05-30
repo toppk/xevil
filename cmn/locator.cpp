@@ -316,8 +316,8 @@ Locator::~Locator()
 
 void Locator::add(PhysicalP p) {
   if (addNum >= OL_LIST_MAX) {
-    cerr << "Object locator is full.  Can only have " << OL_LIST_MAX 
-         << " objects in the game." << endl;
+    std::cerr << "Object locator is full.  Can only have " << OL_LIST_MAX 
+         << " objects in the game." << std::endl;
     assert(0);
   }
   addList[addNum] = p;
@@ -340,8 +340,8 @@ void Locator::add_as(PhysicalP p,const Id &id) {
   // Stolen from Locator::add
   if (addNum >= OL_LIST_MAX)
     {
-      cerr << "Object locator is full.  Can only have " << OL_LIST_MAX 
-	   << " objects in the game." << endl;
+      std::cerr << "Object locator is full.  Can only have " << OL_LIST_MAX 
+	   << " objects in the game." << std::endl;
       assert(0);
     }
   //  addList[addNum] = p;a
@@ -705,12 +705,12 @@ void Locator::reset()
   for (int c = 0; c < OL_GRID_HORIZ_MAX; c++) {
     for (int r = 0; r < OL_GRID_VERT_MAX; r++) {
       if (!grid[r][c]) {
-        cerr << "Error in grid integrity.  grid[" << r << "][" << c << "]"
-             << " is null" << endl;
+        std::cerr << "Error in grid integrity.  grid[" << r << "][" << c << "]"
+             << " is null" << std::endl;
       } 
       else if (grid[r][c]->get_next() != NULL) {
-        cerr << "Error in grid integrity.  grid[" << r << "][" << c << "]"
-             << " has a next entry." << endl;
+        std::cerr << "Error in grid integrity.  grid[" << r << "][" << c << "]"
+             << " has a next entry." << std::endl;
       }
     }
   }
@@ -947,9 +947,9 @@ void Locator::grid_follows_physicals() {
             // For Client, we do it here.
             del_now(list[n].physical);
             /*
-              cerr << "item knocked out of world, but die " <<
+              std::cerr << "item knocked out of world, but die " <<
               list[n].physical->die_called() << " and delete " <<
-              list[n].physical->delete_me() << " not both called " << endl;
+              list[n].physical->delete_me() << " not both called " << std::endl;
               */
           }
         } // inside
@@ -997,7 +997,7 @@ void Locator::message_enq(char *msg) {
     }
   else {
     delete msg;
-//  cout << "Warning: Message queue overflow.  Discarding message." << endl;
+//  cout << "Warning: Message queue overflow.  Discarding message." << std::endl;
   }
 }
 
@@ -1046,7 +1046,7 @@ void Locator::arena_message_enq(char *msg,IntelId *intelId,
   }
   else {
     delete msg;
-//  cout << "Warning: Message queue overflow.  Discarding message." << endl;
+//  cout << "Warning: Message queue overflow.  Discarding message." << std::endl;
   }
 }
 
@@ -1561,7 +1561,7 @@ void Locator::del_now(PhysicalP p) {
         delNum++;
       }
       else {
-        cerr << "List of recently deleted objects has overflown." << endl;
+        std::cerr << "List of recently deleted objects has overflown." << std::endl;
       }
     }
     
@@ -1583,7 +1583,7 @@ void Locator::del_now(PhysicalP p) {
   // unreserve the entry.
   else {
     if (!list[id.index].reserved) {
-      cerr << "Locator::del_now() bad ID when deleting object" << endl;
+      std::cerr << "Locator::del_now() bad ID when deleting object" << std::endl;
       return;
     }
     list[id.index].reserved = False;
@@ -1657,7 +1657,7 @@ void Locator::allign_flash_and_mapped(int n)
         delNum++;
       }
       else {
-        cerr << "List of recently deleted objects has overflown." << endl;
+        std::cerr << "List of recently deleted objects has overflown." << std::endl;
       }
     }    
   }
@@ -1681,8 +1681,8 @@ Id Locator::reserve_list_entry(PhysicalP p) {
       // If Locator list is full, we are in deep shit.  This will 
       // probably cause an assertion somewhere.
       if (n >= OL_LIST_MAX) {
-        cerr << "ERROR: Exceeded maximum number of " << OL_LIST_MAX
-        << " objects in the game." << endl;
+        std::cerr << "ERROR: Exceeded maximum number of " << OL_LIST_MAX
+        << " objects in the game." << std::endl;
         // Return an invalid Id.
         return dummy;
       }
@@ -1854,12 +1854,12 @@ Boolean Locator::possible_overlap(const Area &area,const GLoc &gloc) {
   Area virtGLoc(AR_RECT,pos,size);
   if (virtGLoc.overlap(area)) {
     //tr++;
-    //cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << endl;
+    //cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << std::endl;
     return True;
   }
   else {
     //fa++;
-    //cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << endl;
+    //cout << "true/false: " << tr << "/" << fa << " ratio: " << ((float)tr / (float)fa) << std::endl;
     return False;
   }
 }
@@ -1892,8 +1892,8 @@ void Locator::kill_excess_objects() {
 
   // If we decide to trim off the excess objects.
   if (count > OL_LIST_WARN) {
-    cerr << "Approaching critical number of objects in XEvil."
-         << "  Trim some of the excess." << endl;
+    std::cerr << "Approaching critical number of objects in XEvil."
+         << "  Trim some of the excess." << std::endl;
     
     // Kill unheld items.
     for (n = 0; n < listMax; n++) {
@@ -1913,8 +1913,8 @@ void Locator::kill_excess_objects() {
         postCount++;
       }
     } 
-    cerr << "Was " << count << " objects, there are now " 
-         << postCount << " objects." << endl;
+    std::cerr << "Was " << count << " objects, there are now " 
+         << postCount << " objects." << std::endl;
   }
 }
 
@@ -2107,7 +2107,7 @@ void Locator::register_contexts() {
 
   if (contextCount < A_CLASSES_NUM) {
     cout << "ERROR: Locator::register_contexts(): Not all classes have been "
-      << "registered" << endl;
+      << "registered" << std::endl;
   }
 }
 
@@ -2119,8 +2119,8 @@ void Locator::register_context(const PhysicalContext *context)
   //  int cCountPre = contextCount;
   contextCount++;
   //  int cCountPost = contextCount;
-  // cerr << "cCountPre is " << cCountPre << " post is " << cCountPost << 
-  //  " contextCount@ " << &contextCount << " is " << contextCount << endl;
+  // std::cerr << "cCountPre is " << cCountPre << " post is " << cCountPost << 
+  //  " contextCount@ " << &contextCount << " is " << contextCount << std::endl;
 }
 
 

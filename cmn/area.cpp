@@ -137,7 +137,7 @@ void Area::wsquares(Loc list[AR_WSQUARES_MAX],int &nitems) const {
          loc.c * WSQUARE_WIDTH < pos.x + size.width;
          loc.c++) {
       if (nitems >= AR_WSQUARES_MAX) {
-	    cerr << "Warning: Area::wsquares: Too many wsquares." << endl;
+	    std::cerr << "Warning: Area::wsquares: Too many wsquares." << std::std::endl;
 	    return;
 	  }
       list[nitems] = loc;

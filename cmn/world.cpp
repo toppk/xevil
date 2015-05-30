@@ -404,7 +404,7 @@ void Blueprints::print() {
     // Horizontal boundaries.
     for (ri.across = 0; ri.across < worldRooms.acrossMax; ri.across++) {
       cout << ((horiz[ri.down][ri.across]) ? "**" : "*-");
-      cout << "*" << endl;
+      cout << "*" << std::endl;
 
       // Vertical boundaries.
       if (ri.down < worldRooms.downMax) {
@@ -413,7 +413,7 @@ void Blueprints::print() {
         }
       }
 
-      cout << endl;
+      cout << std::endl;
     }
   }
 }
@@ -909,7 +909,7 @@ UnionSquare *UnionSquare::read(InStreamP in,WorldP world) {
   break;
     
   default:
-    cerr << "Received invalid type of UnionSquare." << endl;
+    std::cerr << "Received invalid type of UnionSquare." << std::endl;
   }
   return ret;
 }
@@ -1646,44 +1646,44 @@ void World::close_vert_movers(const Dim &dim) {
 Boolean World::read_from_file(char *filename) {
   FILE *fp = fopen(filename,"r");
   if (!fp) {
-    cerr << "Could not open " << filename << endl;
+    std::cerr << "Could not open " << filename << std::endl;
     return False;
   }
 
   if (EOF == fscanf(fp,"XEvil World 1.0\n")) {
-    cerr << "Invalid header in world file." << endl;
+    std::cerr << "Invalid header in world file." << std::endl;
     fclose(fp);
     return False;
   }
 
   Dim dim;  
   if (2 != fscanf(fp,"%dx%d\n",&dim.colMax,&dim.rowMax)) {
-    cerr << "Could not read size of world." << endl;
+    std::cerr << "Could not read size of world." << std::endl;
     fclose(fp);
     return False;
   }
 
   if (dim.colMax > W_COL_MAX_MAX) {
-    cerr << "Across size is larger than maximum. Truncating to " << W_COL_MAX_MAX << endl;
+    std::cerr << "Across size is larger than maximum. Truncating to " << W_COL_MAX_MAX << std::endl;
     dim.colMax = W_COL_MAX_MAX;
   }
 
   if (dim.rowMax > W_ROW_MAX_MAX) {
-    cerr << "Down size is larger than maximum. Truncating to " << W_ROW_MAX_MAX << endl;
+    std::cerr << "Down size is larger than maximum. Truncating to " << W_ROW_MAX_MAX << std::endl;
     dim.rowMax = W_ROW_MAX_MAX;
   }
 
   Dim halfRoom(W_ROOM_ROW_MAX / 2,W_ROOM_COL_MAX / 2);
   if (dim.rowMax % halfRoom.rowMax != 0 || 
       dim.colMax % halfRoom.colMax != 0) {
-    cerr << "Dimensions of world must be multiples of " << halfRoom.colMax << 
-      " across and " << halfRoom.rowMax << " down." << endl;
+    std::cerr << "Dimensions of world must be multiples of " << halfRoom.colMax << 
+      " across and " << halfRoom.rowMax << " down." << std::endl;
     fclose(fp);
     return False;
   }
 
   if (dim.rowMax <= 0 || dim.colMax <= 0) {
-    cerr << "Invalid dimension, negative or zero." << endl;
+    std::cerr << "Invalid dimension, negative or zero." << std::endl;
     fclose(fp);
     return False;
   }
@@ -1711,7 +1711,7 @@ Boolean World::read_from_file(char *filename) {
         badRow = True;
       }
       if (badRow) {
-        cerr << "Could not read World data." << endl;
+        std::cerr << "Could not read World data." << std::endl;
         fclose(fp);
         return False;   
       }      
@@ -1815,7 +1815,7 @@ Boolean World::read_from_file(char *filename) {
               }
               break;
             default:
-              cerr << "Error reading map, unknown character " << buffer[loc.c] << endl;
+              std::cerr << "Error reading map, unknown character " << buffer[loc.c] << std::endl;
               val = Wempty;
               close_horiz_mover(loc,inHorizMover);
           }
@@ -2173,8 +2173,8 @@ Pos World::empty_rect(const Size &s) {
   while (True) {
     // Bail out, semi-gracefully.
     if (count >= EMPTY_TRIES_MAX) {
-      cerr << "World::empty_rect failed after " 
-           << EMPTY_TRIES_MAX << " iterations" << endl;
+      std::cerr << "World::empty_rect failed after " 
+           << EMPTY_TRIES_MAX << " iterations" << std::endl;
       Pos ret; // (0,0)
       return ret;
     }
@@ -2199,8 +2199,8 @@ Pos World::empty_touching_rect(const Size &s) {
   while (True) {
     // Bail out, semi-gracefully.
     if (count >= EMPTY_TRIES_MAX) {
-      cerr << "World::empty_touching_rect failed after " 
-           << EMPTY_TRIES_MAX << " iterations" << endl;
+      std::cerr << "World::empty_touching_rect failed after " 
+           << EMPTY_TRIES_MAX << " iterations" << std::endl;
       Pos ret; // (0,0)
       return ret;
     }
@@ -2229,8 +2229,8 @@ Pos World::empty_accessible_rect(const Size &s) {
   while (True) {
     // Bail out, semi-gracefully.
     if (count >= EMPTY_TRIES_MAX) {
-      cerr << "World::empty_accessible_rect failed after " 
-           << EMPTY_TRIES_MAX << " iterations" << endl;
+      std::cerr << "World::empty_accessible_rect failed after " 
+           << EMPTY_TRIES_MAX << " iterations" << std::endl;
       Pos ret; // (0,0)
       return ret;
     }
@@ -2255,8 +2255,8 @@ Pos World::empty_accessible_rect(const Size &s,const RoomIndex &r) {
   while (True) {
     // Bail out, semi-gracefully.
     if (count >= EMPTY_TRIES_MAX) {
-      cerr << "World::empty_accessible_rect<2> failed after " 
-           << EMPTY_TRIES_MAX << " iterations" << endl;
+      std::cerr << "World::empty_accessible_rect<2> failed after " 
+           << EMPTY_TRIES_MAX << " iterations" << std::endl;
       Pos ret; // (0,0)
       return ret;
     }

@@ -320,7 +320,7 @@ int UDPInStream::prepare_packet(CMN_SOCKADDR_IN *address) {
   }
 
   if (addrSize != sizeof(CMN_SOCKADDR_IN)) {
-    cerr << "UDPInStream received invalid size socket address." << endl;
+    std::cerr << "UDPInStream received invalid size socket address." << std::endl;
   }
 
   // Keep stats.
@@ -344,9 +344,9 @@ int UDPInStream::prepare_packet(CMN_SOCKADDR_IN *address) {
     recvdVersion[XETP::VERSION_LENGTH] = '\0';
 
     // This error message should really be Role::error().
-    cerr << "Received packet with the wrong XETP version." << endl
+    std::cerr << "Received packet with the wrong XETP version." << std::endl
       << "Expected " << XETP::versionStr << " but received " << recvdVersion
-      << endl;
+      << std::endl;
     return False;
   }
 
@@ -358,8 +358,8 @@ int UDPInStream::prepare_packet(CMN_SOCKADDR_IN *address) {
   Checksum c = 
     compute_checksum(buffer + UDP_STREAM_HEADER_LEN,n - UDP_STREAM_HEADER_LEN);
   if (c != d) {
-    cerr << "UDPInStream checksum does not match, packet gave " << d 
-         << " computed value of " << c << endl;
+    std::cerr << "UDPInStream checksum does not match, packet gave " << d 
+         << " computed value of " << c << std::endl;
     return -1;
   }
 
@@ -376,8 +376,8 @@ void UDPInStream::done_packet() {
 
 #if 0
   if (bufPtr != bufLen) {
-    cerr << "Warning: discarding packet info when only " << bufPtr <<
-      " bytes of " << bufLen << " has been read." << endl;
+    std::cerr << "Warning: discarding packet info when only " << bufPtr <<
+      " bytes of " << bufLen << " has been read." << std::endl;
   }
 #endif
 
@@ -398,7 +398,7 @@ Boolean UDPInStream::read(void *buf,int size) {
     return True;
   }
 
-  cerr << "ERROR: Trying to read more data than UDP packet contains." << endl;
+  std::cerr << "ERROR: Trying to read more data than UDP packet contains." << std::endl;
   //  isAlive = False;
 
   return False;
@@ -467,9 +467,9 @@ void UDPOutStream::prepare_packet(int size)
 
 void UDPOutStream::done_packet() {
   if (bufPtr < bufLen) {
-    cerr << "Warning: UDPOutStream only writing " << bufPtr 
+    std::cerr << "Warning: UDPOutStream only writing " << bufPtr 
          << " bytes when set for "
-         << bufLen << endl;
+         << bufLen << std::endl;
   }
 }
 
@@ -483,7 +483,7 @@ void UDPOutStream::flush() {
 
   // Only send if some data has been written to the stream.
   if (bufPtr > UDP_STREAM_HEADER_LEN) {
-//    cout << "Flushing " << bufPtr << " bytes." << endl;
+//    cout << "Flushing " << bufPtr << " bytes." << std::endl;
 
     // Wait until we are about to send before creating the header, so we 
     // can compute the checksum.
@@ -497,7 +497,7 @@ void UDPOutStream::flush() {
       if (bufPtr != sendto(sock,(char *)buffer,bufPtr,0,
                            (CMN_SOCKADDR *)address,
                            sizeof(CMN_SOCKADDR_IN))) {
-        cerr << "Failed to send UDP packet." << endl;
+        std::cerr << "Failed to send UDP packet." << std::endl;
         // Don't kill it for now.
         // isAlive = False;
       }
@@ -529,7 +529,7 @@ Boolean UDPOutStream::write(void *buf,int size) {
     return True;
   }
 
-  cerr << "Writing more data to UDPOutStream than amount specified." << endl;
+  std::cerr << "Writing more data to UDPOutStream than amount specified." << std::endl;
   // isAlive = False;    
   return False;
 }
@@ -541,13 +541,13 @@ int UDPOutStream::buggy_tests() {
   if (buggy) {
     // Randomly drop a packet.
     if (Utils::choose(2) == 0) {
-      cerr << "Test: Drop a packet." << endl;
+      std::cerr << "Test: Drop a packet." << std::endl;
       count = 0;
     }
     // Duplicate packet
     else if (Utils::choose(30) == 0) {
       count = 2 + Utils::choose(5);
-      cerr << "Testing: Send " << count << " copies of a packet." << endl;
+      std::cerr << "Testing: Send " << count << " copies of a packet." << std::endl;
     }
     // Send random packet of random length
     else if (Utils::choose(100) == 0) {
@@ -555,7 +555,7 @@ int UDPOutStream::buggy_tests() {
       for (int n = 0; n < bufPtr; n++) {
         buffer[n] = (u_char)Utils::choose(256);
       }
-      cerr << "Testing: Send garbage packet of length " << bufPtr << endl;
+      std::cerr << "Testing: Send garbage packet of length " << bufPtr << std::endl;
     }
     // Send truncated packet
     else if (Utils::choose(100) == 0) {
@@ -563,8 +563,8 @@ int UDPOutStream::buggy_tests() {
       if (bufPtr > 0) {
         bufPtr = Utils::choose(bufPtr);
       }
-      cerr << "Testing: Truncate " << oldLen << " byte packet to " 
-           << bufPtr << " bytes" << endl;
+      std::cerr << "Testing: Truncate " << oldLen << " byte packet to " 
+           << bufPtr << " bytes" << std::endl;
     }
     // Send packet with extra crap at end
     else if (Utils::choose(100) == 0) {
@@ -575,9 +575,9 @@ int UDPOutStream::buggy_tests() {
           buffer[bufPtr] = (u_char)Utils::choose(256);
         }
       }
-      cerr << "Testing: Add " << extraLen 
+      std::cerr << "Testing: Add " << extraLen 
            << " bytes to a packet formerly of length "
-           << (newLen - extraLen) << endl;
+           << (newLen - extraLen) << std::endl;
     }
     // Randomly twiddle a few bytes.
     else if (Utils::choose(100) == 0) {
@@ -587,8 +587,8 @@ int UDPOutStream::buggy_tests() {
           int which = Utils::choose(bufPtr);
           buffer[which] = (u_char)Utils::choose(256);
         }
-        cerr << "Testing: Randomly change " << changes
-             << " bytes in a packet." << endl;
+        std::cerr << "Testing: Randomly change " << changes
+             << " bytes in a packet." << std::endl;
       }
     }
   }

@@ -35,7 +35,7 @@ extern "C" {
   #include <string.h>
 }
 #if X11
-#include <strstream.h>
+#include <strstream>
 #endif
 #if WIN32
 #include <strstrea.h>
@@ -1894,7 +1894,7 @@ void SealIntel::choose_strategy(PhysicalP p)
 
   PhysicalP home = l->lookup(homeId);
   if (!home) {
-    cerr << "Error in LIntel, home not found." << endl;
+    std::cerr << "Error in LIntel, home not found." << std::endl;
     return;
   }
 //  assert(home);
@@ -2095,7 +2095,7 @@ void mode_helper(int prev,int curr) {
 	char buffer[80];
 	ostrstream str(buffer,80);
 	str << "mode changing from:" << Pet::mode_string(prev) <<
-		" to: " << Pet::mode_string(curr) << endl << ends;
+		" to: " << Pet::mode_string(curr) << std::endl << ends;
 #if WIN32
 	TRACE(buffer);
 #endif

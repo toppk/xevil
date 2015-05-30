@@ -127,8 +127,8 @@ Pixel Xvars::alloc_named_color(int dpyNum,const char *name,Pixel def) const {
   }
   else {
     if (!status) {
-      cerr << "Warning:: unable to allocate color " << ((char *)name) 
-           << "." << endl;
+      std::cerr << "Warning:: unable to allocate color " << ((char *)name) 
+           << "." << std::endl;
     }
     return (def == (Pixel)-1) ? white[dpyNum] : def;
   }
@@ -339,7 +339,7 @@ void Xvars::gen_pix_from_trans(int dpyNum,Drawable dest,Drawable src,
     XGetImage(dpy[dpyNum],src,0,0,srcSize.width,srcSize.height,
               AllPlanes,ZPixmap);
   if (!srcImage) {
-    cerr << "Could not get image in Xvars::gen_pix_from_trans." << endl;
+    std::cerr << "Could not get image in Xvars::gen_pix_from_trans." << std::endl;
     return;
   }
 
@@ -453,8 +453,8 @@ void Xvars::unstretch_image(int dpyNum,
           }
           else {
             if (pix != 0) {
-              cerr << "Xvars::unstretch_image() found pixel " << pix 
-                   << " that is not in the pixel list." << endl;
+              std::cerr << "Xvars::unstretch_image() found pixel " << pix 
+                   << " that is not in the pixel list." << std::endl;
             }
           }
         } // x

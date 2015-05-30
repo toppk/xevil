@@ -39,7 +39,7 @@
 #include <strstrea.h>
 #endif
 #if X11
-#include <strstream.h>
+#include <strstream>
 #endif
 
 #ifdef WIN32
@@ -1017,14 +1017,14 @@ void DebugInfo::print(const char *str) {
 #if WIN32
   fstream outStream;
   outStream.open("c:\\out.txt",ios::app); 
-  outStream << str << endl;
+  outStream << str << std::endl;
   outStream.close();
   TRACE(str);
   TRACE("\n");
 #endif
 
 #if X11
-  cout << str << endl;
+  cout << str << std::endl;
 #endif
 }
 
