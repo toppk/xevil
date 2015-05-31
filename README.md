@@ -1,7 +1,7 @@
 ## Status == G'NUFF
 ```
 if: 
- on 64bit linux with c++/x11/xpm libraries
+ on 64bit linux with g++ or clang++ and x11/xpm libraries
 run:
  checkout + make 
 creates:
