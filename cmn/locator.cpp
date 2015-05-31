@@ -747,7 +747,7 @@ void Locator::reset()
 void Locator::clear_all_messages() {
   // Delete all messages remaining in both queues.
   char *msg;
-  while (msg = message_deq()) {
+  while ((msg = message_deq())) {
     delete msg;
   }
   

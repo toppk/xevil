@@ -1632,7 +1632,7 @@ void Viewport::panel_callback(Panel* panel,void* value,void* closure) {
   // Would be much better to put the radio-button logic in the Panel classes.
   if (pClosure->radio) {
     // SGI compiler says you can't cast void* to Boolean.
-    Boolean bValue = (Boolean)(int)value;
+    Boolean bValue = (Boolean)(int)(size_t)value;
     if (!bValue) {
       ((TogglePanel*)panel)->set_value(True);
     }
@@ -2295,7 +2295,7 @@ void Viewport::follow_intel() {
     // Only follow if playing.
     if (intel->is_playing()) {
       PhysicalP p;
-      if (p = locator->lookup(intel->get_id())) {
+      if ((p = locator->lookup(intel->get_id()))) {
         const Area &a = p->get_area();
         if (scroller->move_to_pos(viewportArea,a.get_middle(),
                                   get_inner_dim(),get_extra_dim())) {

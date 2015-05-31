@@ -139,7 +139,7 @@ public:
      !xvars.is_stretched(). */
 
   Boolean load_pixmap(Drawable* pixmap,Drawable* mask,
-                      int dpyNum,char** xpmBits,Boolean fullSize);
+                      int dpyNum,char ** xpmBits,Boolean fullSize);
   /* EFFECTS: Same as above load_pixmap() except caller explicitly 
      specifies whether pixmap is fullSize or reduced by a factor of 2. */
   /* NOTE: This method can be called before Xvars::stretch is set. */

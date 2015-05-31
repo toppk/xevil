@@ -1583,7 +1583,7 @@ void Game::set_style_next(GameStyleType styleType) {
 void Game::reincarnations_check() {
   Incarnator iter(locator);
   HumanP human;
-  while (human = iter()) {
+  while ((human = iter())) {
     PhysicalP obj = human_physical();
     // human_physical now adds to locator.
     human->reincarnate();
@@ -1841,7 +1841,7 @@ PhysicalP Game::enemy_physical(ClassId classId) {
 
 
 
-char *Game::choose_ranking(int kills) {
+char const*Game::choose_ranking(int kills) {
   // Figure out the ranking set, they are listed in order.
   int setNum = 0;
   assert(kills >= 0 && rankingSets[0].killsMin == 0);
@@ -1894,7 +1894,7 @@ void Game::end_game(Boolean showMessages) {
         totalKills = human->get_human_kills() + human->get_enemy_kills();
       }
 
-      char *ranking = choose_ranking(totalKills);
+      char const*ranking = choose_ranking(totalKills);
       msg << totalKills << (totalKills == 1 ? "Kill" : " Kills") 
         << ", Rank: " << ranking << std::ends;
       IntelId humanIntelId = human->get_intel_id();
@@ -2890,7 +2890,7 @@ void Game::create_human_and_physical(int h) {
   assert(role->get_type() != R_CLIENT);
 
   // Choose random name if -name was not specified for this player.
-  char *nameNonPc = 
+  char const*nameNonPc = 
     Utils::strlen(humanNames[h]) ? 
     humanNames[h] :
     intelNames[intelNamesIndices[h % INTEL_NAMES_NUM]];

@@ -246,13 +246,13 @@ class Utils {
   static char const* strstr(const char* cs,const char* ct)
     {return ::strstr(cs,ct);}
 
-  static void strcpy(char const* s,const char* ct)
+  static void strcpy(char * s,const char* ct)
     {::strcpy(s,ct);}
 
-  static void strncpy(char const* s,const char* ct,int n)
+  static void strncpy(char * s,const char* ct,int n)
     {::strncpy(s,ct,(size_t)n);}
 
-  static void strcat(char const* s,const char* ct)
+  static void strcat(char * s,const char* ct)
     {::strcat(s,ct);}
 
   static int atoi(const char*);

@@ -1844,7 +1844,7 @@ void* Moving::compute_key(Dir dir,int animNum,Boolean isMask,
   }
 
   // Use the pixmap resource id as the base.
-  u_int cmnBitsId = (unsigned int)mc->pixmapBits[baseDir][animNum];
+  u_int cmnBitsId = (unsigned int)(size_t)mc->pixmapBits[baseDir][animNum];
 
   // It is ok to call OneTransform::compute_key() even if there is no 
   // transformation, will just return 0x0.  
@@ -1864,7 +1864,7 @@ void* Moving::compute_key(Dir dir,int animNum,Boolean isMask,
   // Top-most byte must be empty, see comments about unique keys in s_man.h.
   assert((ret & 0xff000000) == 0x0);
 
-  return (void*)ret;
+  return (void*)(size_t)ret;
 }
 
 
@@ -3015,7 +3015,7 @@ void Cutter::collide(PhysicalP other) {
   if (inScope) {
     PhysicalP p;
     LocatorP locator = get_locator();
-    if (p = locator->lookup(killerId)) {
+    if ((p = locator->lookup(killerId))) {
 	    assert(p->is_moving());
 	    other->corporeal_attack(p,context->damage);
 	    ((MovingP)p)->attack_hook();
@@ -3182,7 +3182,7 @@ void Gun::_fire(const Id &id,Dir dir,Boolean setTimer,Boolean costsAmmo)
   // Person who fired weapon may not exist anymore. (See FThrower)
   LocatorP locator = get_locator();
   PhysicalP p;
-  if (p = locator->lookup(id)) {
+  if ((p = locator->lookup(id))) {
     if ((dir != CO_air) && ready() && 
         ((ammo == PH_AMMO_UNLIMITED) || (ammo > 0))) {
       const Area &area = p->get_area();
@@ -3254,7 +3254,7 @@ void SingleGun::fire(const Id &id,ITcommand command)
   
   LocatorP locator = get_locator();
   PhysicalP p;
-  if (p = locator->lookup(id)) {
+  if ((p = locator->lookup(id))) {
     Dir dir = compute_weapon_dir(command);
     if ((dir != CO_air) && ready()) {
       const Area &area = p->get_area();
@@ -4414,7 +4414,7 @@ void Creature::die() {
     killerIntelId = intel->get_killer_intel_id();
   }
   IntelP killerIntel;
-  if (killerIntel = locator->lookup(killerIntelId)) {
+  if ((killerIntel = locator->lookup(killerIntelId))) {
     // Compute soups.  I.e. A human killed by something other than a 
     // different human.
     if (intel && intel->is_human() && 
@@ -5749,7 +5749,7 @@ PhysicalP User::get_weapon(int n) {
   if (n < weaponsNum) {
     LocatorP locator = cre->get_locator();
     PhysicalP ret;
-    if (ret = locator->lookup(weapons[n])) {
+    if ((ret = locator->lookup(weapons[n]))) {
       return ret; 
     }
   }
@@ -5764,7 +5764,7 @@ PhysicalP User::get_item(int n) {
   if (n < itemsNum) {
     LocatorP locator = cre->get_locator();
     PhysicalP ret;
-    if (ret = locator->lookup(items[n])) {
+    if ((ret = locator->lookup(items[n]))) {
     	return ret;
     }
   }
@@ -5779,7 +5779,7 @@ PhysicalP User::get_weapon_current() {
   if (weaponCurrent != weaponsNum) {
     LocatorP locator = cre->get_locator();
     PhysicalP ret;
-    if (ret = locator->lookup(weapons[weaponCurrent])) {
+    if ((ret = locator->lookup(weapons[weaponCurrent]))) {
       return ret;
     }
   }
@@ -5806,7 +5806,7 @@ PhysicalP User::get_item_current() {
   if (itemCurrent != itemsNum) {
     PhysicalP ret;
     LocatorP locator = cre->get_locator();
-    if (ret = locator->lookup(items[itemCurrent])) {
+    if ((ret = locator->lookup(items[itemCurrent]))) {
       return ret;
     }
   }
@@ -5853,7 +5853,7 @@ Boolean User::command_repeatable(ITcommand command) {
     if (weaponCurrent != weaponsNum) {
       LocatorP locator = cre->get_locator();
       WeaponP p;
-      if (p = (WeaponP)locator->lookup(weapons[weaponCurrent])) {
+      if ((p = (WeaponP)locator->lookup(weapons[weaponCurrent]))) {
 	      int ammo = p->get_ammo();
         // Is about to become empty, PH_AMMO_UNLIMITED is not affected by this.
         if (ammo == 1 && p->ready()) {
@@ -5953,7 +5953,7 @@ void User::act() {
     assert(weaponCurrent <= weaponsNum);
     
     PhysicalP p;
-    if (p = locator->lookup(weapons[n])) {
+    if ((p = locator->lookup(weapons[n]))) {
       if (((WeaponP)p)->get_ammo() > 0 || 
 	        ((WeaponP)p)->get_ammo() == PH_AMMO_UNLIMITED ||
             ((WeaponP)p)->useful_no_ammo()) {
@@ -6005,7 +6005,7 @@ void User::act() {
     assert(itemCurrent <= itemsNum);
     
     PhysicalP p;
-    if (p = locator->lookup(items[n])) {
+    if ((p = locator->lookup(items[n]))) {
       // Increment itemCountNext.
       if (p->get_class_id() == itemCurrentClassId) {
         itemCountNext++;
@@ -6385,7 +6385,7 @@ void User::weapon_use(ITcommand command) {
   if (weaponCurrent != weaponsNum) {
     LocatorP locator = cre->get_locator();
     PhysicalP p;
-    if (p = locator->lookup(weapons[weaponCurrent])) {
+    if ((p = locator->lookup(weapons[weaponCurrent]))) {
       ((WeaponP)p)->fire(cre->get_id(),command);
 
       // Inform Creature that an attack occurred.
@@ -6435,7 +6435,7 @@ void User::weapon_drop() {
     // Clean up dead weapons elsewhere.
 
     PhysicalP weapon;
-    if (weapon = locator->lookup(weapons[weaponCurrent])) {
+    if ((weapon = locator->lookup(weapons[weaponCurrent]))) {
 	    ((WeaponP)weapon)->leave_scope_next(cre);
 	    ((ItemP)weapon)->dropped(cre);
 	    weaponsNum--;
@@ -6464,7 +6464,7 @@ void User::item_use() {
   if (itemCurrent != itemsNum) {
     LocatorP locator = cre->get_locator();
     PhysicalP p;
-    if (p = locator->lookup(items[itemCurrent])) {
+    if ((p = locator->lookup(items[itemCurrent]))) {
       ((ItemP)p)->use(cre);
     }
   }
@@ -6504,7 +6504,7 @@ void User::item_drop() {
     // Clean up dead items elsewhere.
 
     PhysicalP item;
-    if (item = locator->lookup(items[itemCurrent])) {
+    if ((item = locator->lookup(items[itemCurrent]))) {
       ((ItemP)item)->dropped(cre);
       itemsNum--;
       items[itemCurrent] = items[itemsNum];

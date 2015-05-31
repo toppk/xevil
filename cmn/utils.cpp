@@ -588,7 +588,7 @@ PtrList::PtrList(InStreamP in) {
   int desiredLen = in->read_int();
   commonConstructor(desiredLen);
   for (int n = 0; n < desiredLen; n++) {
-    add((void *)in->read_int());
+    add((void *)(size_t)in->read_int());
   }  
 }
 
@@ -605,7 +605,7 @@ void PtrList::write(OutStreamP out) const{
   // Not tested.
   out->write_int(len);
   for (int n = 0; n < len; n++) {
-    out->write_int((int)data[n]);
+    out->write_int((int)(size_t)data[n]);
   }
 }
 
@@ -761,7 +761,7 @@ public:
 
 
 private:
-  Bucket* HashTable::_get(int &index,void* key);
+  Bucket* _get(int &index,void* key);
   /* MODIFIES: index */
   /* EFFECTS: Internal helper function.  Return the Bucket containing key
      or NULL if not found.  Set index to the bucket list for key whether
@@ -944,7 +944,7 @@ Bucket* HashTable::_get(int &index,void* key) {
 // Pretty crappy hash function, I know.
 // Careful if bucketsNum is a power of 2.
 int HashTable::defaultHash(void* key,int bucketsNum) {
-  return ((unsigned int)key) % bucketsNum;
+  return ((unsigned int)(size_t)key) % bucketsNum;
 }
 
 

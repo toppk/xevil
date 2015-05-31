@@ -1510,7 +1510,7 @@ PhysicalP Transmogifier::new_physical(const Pos &middle,ClassId notThis) {
 
   // Get list of all classes that are potential transmogify targets.
   size = l->filter_contexts(list,NULL,transmogify_target_filter,
-                            (void*)notThis);
+                            (void*)(size_t)notThis);
 
   // Something is wrong if size == 0, because there are no classes to 
   // transmogify into.
@@ -1534,7 +1534,7 @@ Boolean Transmogifier::transmogify_target_filter(const PhysicalContext *pc,
                                                  void *closure) {
   // notThis is used to prevent transmogifying into the same class an object
   // already is.
-  ClassId notThis = (ClassId)closure;
+  ClassId notThis = (ClassId)(size_t)closure;
   if (pc->classId == notThis) {
     return False;
   }
@@ -2400,7 +2400,7 @@ void FrogShell::collide(PhysicalP other) {
     
     // Destroy frogGun.
     PhysicalP p;
-    if (p = locator->lookup(frogGun)) {
+    if ((p = locator->lookup(frogGun))) {
       p->kill_self();
     }
   }

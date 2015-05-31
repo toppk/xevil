@@ -306,7 +306,7 @@ private:
   static Boolean potential_enemy_filter(const PhysicalContext* pc,void*);
   /* EFFECTS: Filter those classes whose potentialEnemy flag is True. */
 
-  char *choose_ranking(int kills);
+  char const*choose_ranking(int kills);
   /* EFFECTS: Choose a rank for the player at the end of game based on the
      number of kills. */
   

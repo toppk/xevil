@@ -212,7 +212,7 @@ Boolean IntelStatus::operator == (const IntelStatus &is) {
 
 
 
-Intel::Intel(WorldP w,LocatorP l,char *name,
+Intel::Intel(WorldP w,LocatorP l,char const*name,
 	           const IntelOptions *ops,ITmask opMask) {
   intelStatusChanged = True;
   living = True;
@@ -657,7 +657,7 @@ void Intel::clock(PhysicalP p) {
     }
     // this code assumes that no Creature has both the Fighter and 
     // BuiltIn capabilities
-    else if (builtIn = (BuiltInP)cre->get_ability(AB_BuiltIn)){
+    else if ((builtIn = (BuiltInP)cre->get_ability(AB_BuiltIn))){
       if (builtIn->ready()) {
         weaponReady = True;
       }
@@ -755,7 +755,7 @@ void Intel::_set_lives(int)
 
 
 
-Human::Human(WorldP w,LocatorP l,char *name,int lves,
+Human::Human(WorldP w,LocatorP l,char const*name,int lves,
              int *sharedLves,ColorNum cNum)
 : Intel(w,l,name,NULL,ITnone) {
   lives = lves;

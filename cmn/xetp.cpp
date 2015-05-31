@@ -159,7 +159,7 @@ void XETP::send_objects(OutStreamP out,const PtrList &physicals,
   for (n = 0; n < physicals.length(); n++) {
     PhysicalP p = (PhysicalP)physicals.get(n);
     // computing object_length twice, but who cares.
-    _send_object(out,p,turn,(TickType)tickTypes.get(n),
+    _send_object(out,p,turn,(TickType)(size_t)tickTypes.get(n),
                  compute_object_length(p));
   }
   

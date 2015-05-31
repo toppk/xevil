@@ -26,7 +26,10 @@ SHELL       =   /bin/sh
 OBJ_DIR		=   $(DEPTH)/x11/release
 TARGETS	    =   xevil
 LIBS = -lX11 -lXpm
+CC = clang++
+CC = g++
 
+CFLAGS = -Wno-deprecated -DUSE_RANDOM -DXEVIL_KEYSET=UIlinux -DUSE_UINT_NET_LENGTH
 # For a debug build, DEBUG_OPT should be -g
 # For a release build, DEBUG_OPT should be -O
 # Also look at the comment about $(STRIP) in the toplevel makefile for
@@ -84,7 +87,6 @@ COMPRESS	=	gzip
 # Added no-deprecated option so wouldn't complain about using old-style c++
 # header names, eg <iostream> instead of <iostream>
 default:
-	@$(MAKE) CC="g++" \
-CFLAGS="-Wno-deprecated -DUSE_RANDOM -DXEVIL_KEYSET=UIlinux -DUSE_UINT_NET_LENGTH" \
+	@$(MAKE) \
 OBJ_DIR=$(DEPTH)/x11/release PCKG_NAME="redhatlinux" \
 $(TARGETS)

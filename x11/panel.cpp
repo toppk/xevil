@@ -371,7 +371,7 @@ Boolean ButtonPanel::process_event(int dpyNum,XEvent *event) {
     PanelCallback callback = get_callback();
     void* closure = get_closure();
     if (callback) {
-      (*callback)(this,(void*)(int)event->xbutton.button,closure);
+      (*callback)(this,(void *)(int)event->xbutton.button,closure);
     }
     return True;
   }

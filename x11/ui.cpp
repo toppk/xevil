@@ -863,7 +863,7 @@ void Ui::pre_clock() {
     // Update message bar.
     if (messageTimer.ready()) {
       char *msg;
-      if (msg = locator->message_deq()) {
+      if ((msg = locator->message_deq())) {
         set_message(msg);
         delete msg;
         messageTimer.set(MESSAGE_TIME);
@@ -930,7 +930,7 @@ void Ui::menu_enemies_refill_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
   ui->settingsChanges |= UIenemiesRefill;
   // SGI compiler says you can't cast void* to Boolean.
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   ui->settings.enemiesRefill = val;
 }
 
@@ -939,7 +939,7 @@ void Ui::menu_enemies_refill_CB(void* value,Viewport*,void* closure) {
 void Ui::menu_controls_CB(void* value,Viewport* vPort,void* closure) {
   UiP ui = (UiP)closure;
   int dpyNum = vPort->get_dpy_num();
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   if (val) {
     XMapWindow(ui->xvars.dpy[dpyNum],ui->xdata.controls[dpyNum]);
   }
@@ -955,7 +955,7 @@ void Ui::menu_learn_controls_CB(void* value,
                                 Viewport* vPort,void* closure) {
   UiP ui = (UiP)closure;
   int dpyNum = vPort->get_dpy_num();
-  Boolean active = (Boolean)(int)value;
+  Boolean active = (Boolean)(int)(size_t)value;
 
   if (active) {
     ui->lControls[dpyNum].input = ui->lControls[dpyNum].key = 
@@ -994,7 +994,7 @@ void Ui::menu_learn_controls_CB(void* value,
 
 void Ui::menu_scenarios_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   if (val) {
     ui->settingsChanges |= UIstyle;
     ui->settings.style = SCENARIOS;
@@ -1005,7 +1005,7 @@ void Ui::menu_scenarios_CB(void* value,Viewport*,void* closure) {
 
 void Ui::menu_levels_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   if (val) {
     ui->settingsChanges |= UIstyle;
     ui->settings.style = LEVELS;
@@ -1016,7 +1016,7 @@ void Ui::menu_levels_CB(void* value,Viewport*,void* closure) {
 
 void Ui::menu_kill_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   if (val) {
     ui->settingsChanges |= UIstyle;
     ui->settings.style = KILL;
@@ -1027,7 +1027,7 @@ void Ui::menu_kill_CB(void* value,Viewport*,void* closure) {
 
 void Ui::menu_duel_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   if (val) {
     ui->settingsChanges |= UIstyle;
     ui->settings.style = DUEL;
@@ -1038,7 +1038,7 @@ void Ui::menu_duel_CB(void* value,Viewport*,void* closure) {
 
 void Ui::menu_extended_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   if (val) {
     ui->settingsChanges |= UIstyle;
     ui->settings.style = EXTENDED;
@@ -1049,7 +1049,7 @@ void Ui::menu_extended_CB(void* value,Viewport*,void* closure) {
 
 void Ui::menu_training_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   if (val) {
     ui->settingsChanges |= UIstyle;
     ui->settings.style = TRAINING;
@@ -1070,7 +1070,7 @@ void Ui::menu_quanta_CB(void* value,Viewport*,void* closure) {
 void Ui::menu_cooperative_CB(void* value,Viewport*,void* closure) {
   UiP ui = (UiP)closure;
   ui->settingsChanges |= UIcooperative;
-  Boolean val = (Boolean)(int)value;
+  Boolean val = (Boolean)(int)(size_t)value;
   ui->settings.cooperative = val;
 }
 
@@ -1079,7 +1079,7 @@ void Ui::menu_cooperative_CB(void* value,Viewport*,void* closure) {
 void Ui::menu_help_CB(void* value,Viewport* vPort,void* closure) {
   UiP ui = (UiP)closure;
   int dpyNum = vPort->get_dpy_num();
-  Boolean active = (Boolean)(int)value;
+  Boolean active = (Boolean)(int)(size_t)value;
 
   if (active) {
     XMapWindow(ui->xvars.dpy[dpyNum],ui->xdata.help[dpyNum]);
@@ -1094,7 +1094,7 @@ void Ui::menu_help_CB(void* value,Viewport* vPort,void* closure) {
 void Ui::status_weapon_CB(void* value,Viewport* vPort,void*) {
   // Some mouse controls.
   //  UiP ui = (UiP)closure;
-  int button = (int)value;
+  int button = (int)(size_t)value;
 
   switch (button) {
   case Button1:
@@ -1113,7 +1113,7 @@ void Ui::status_weapon_CB(void* value,Viewport* vPort,void*) {
 
 void Ui::status_item_CB(void* value,Viewport* vPort,void*) {
   //  UiP ui = (UiP)closure;
-  int button = (int)value;
+  int button = (int)(size_t)value;
 
   switch (button) {
   case Button1:
@@ -1441,9 +1441,9 @@ void Ui::init_x() {
       //
       // A little funny, calling load_pixmap() before xvars is fully 
       // initialized.
-      xvars.load_pixmap(&xvars.iconPixmap[xvars.dpyMax],
-                        &xvars.iconMask[xvars.dpyMax],
-                        xvars.dpyMax,XPM_ICON_BITS,True);
+//      xvars.load_pixmap(&xvars.iconPixmap[xvars.dpyMax],
+ //                       &xvars.iconMask[xvars.dpyMax],
+  //                      xvars.dpyMax,XPM_ICON_BITS,True);
 #if 0
       xvars.iconPixmap[xvars.dpyMax] = 
         XCreateBitmapFromData(xvars.dpy[xvars.dpyMax],

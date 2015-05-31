@@ -92,17 +92,17 @@ ServerPing::ServerPing(int argc,char** argv) {
   int n;
   const char* value;
   for (n = 0; n < argc; n++) {
-    if (value = Utils::arg_value_check(n,argc,argv,"-count")) {
+    if ((value = Utils::arg_value_check(n,argc,argv,"-count"))) {
       count = Utils::atoi(value);
     }
-    if (value = Utils::arg_value_check(n,argc,argv,"-timeout")) {
+    if ((value = Utils::arg_value_check(n,argc,argv,"-timeout"))) {
       timeout = Utils::atoi(value);
     }
     if (Utils::arg_name_check(n,argc,argv,"-h") ||
         Utils::arg_name_check(n,argc,argv,"-help")) {
       print_usage_and_exit();
     }
-    if (value = Utils::arg_value_check(n,argc,argv,"-client_port")) {
+    if ((value = Utils::arg_value_check(n,argc,argv,"-client_port"))) {
       clientPort = Utils::atoi(value);
     }
   }
@@ -113,7 +113,7 @@ ServerPing::ServerPing(int argc,char** argv) {
 
 
   char* sString = argv[argc - 1];
-  char* port = Utils::strchr(sString,':');
+  char const* port = Utils::strchr(sString,':');
   // server:port
   if (port) {
     serverName = new char[port - sString + 1];
@@ -355,7 +355,8 @@ void ServerPing::print_results_and_exit() {
 
 
 
-main(int argc,char** argv) {
+int main(int argc,char** argv) {
   ServerPing ping(argc,argv);
   ping.go();
+  return 0;
 }

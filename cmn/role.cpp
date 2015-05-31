@@ -520,7 +520,7 @@ void StandAlone::yield(CMN_TIME startTime,int quanta,IGameManagerP,
 
   // Some debugging crap, should probably take it out for a release build.
   PhysicalP p;
-  while (p = iter()) {
+  while ((p = iter())) {
     const Area &area = p->get_area();
     const Area &areaNext = p->get_area_next();
     if (!(area == areaNext)) {
@@ -884,7 +884,7 @@ void Client::yield(CMN_TIME startTime,int quanta,IGameManagerP manager,
   PtrList dieList;
   PhysicalIter iter(*l);
   PhysicalP p;
-  while (p = iter()) {
+  while ((p = iter())) {
     NetDataP netData = p->get_net_data();
     assert(turnMax >= netData->get_last_modified());
     if (turnMax - netData->get_last_modified() >= CLIENT_OLD_OBJECT_KILL) {
@@ -2221,7 +2221,7 @@ void Server::send_objects(LocatorP locator,Boolean turnWindowAllocated[]) {
       // <<<<not true anymore>>>>
       PhysicalP p;
       PhysicalIter iter(*locator);
-      while (p = iter()) {
+      while ((p = iter())) {
         if (p->is_creature()) {
           NetDataP netData = p->get_net_data();
           assert(!netData->get_sent_flag());  // Should have cleared it last turn.
@@ -2236,7 +2236,7 @@ void Server::send_objects(LocatorP locator,Boolean turnWindowAllocated[]) {
       // Second pass, send all other objects that are not Creatures or their
       // followers.
       PhysicalIter iter2(*locator);
-      while (p = iter2()) {
+      while ((p = iter2())) {
         NetDataP netData = p->get_net_data();
         if (!netData->get_sent_flag()) {
           // Former bug, weren't checking on the second pass.
@@ -2321,11 +2321,11 @@ void Server::check_send_object_and_followers(LocatorP locator,OutStreamP out,
     for (int n = 0; n < followers.length(); n++) {
       PhysicalP follower = (PhysicalP)followers.get(n);
       TickType tt = locator->compute_tick_type(follower,relativeTo);
-      tickTypes.add((void *)tt);
+      tickTypes.add((void *)(size_t)tt);
     }
     // Reuse followers list to be the list of {p and all followers}.
     followers.add(p);
-    tickTypes.add((void *)locator->compute_tick_type(p,relativeTo));
+    tickTypes.add((void *)(size_t)locator->compute_tick_type(p,relativeTo));
     XETP::send_objects(out,followers,turn,tickTypes);
   }
   // Just send single object, don't have to allocate any data.
@@ -2631,7 +2631,7 @@ void Server::handle_messages(IGameManagerP manager,LocatorP l) {
     ArenaMessageIter iter(*l,cn->get_human());
     char *msg;
     Boolean propagate = False;
-    while (msg = iter.next(propagate)) {
+    while ((msg = iter.next(propagate))) {
       // Careful to send only messages that are marked to be propagated.
       if (propagate) {
         UDPOutStreamP out = cn->get_udp_out_stream();

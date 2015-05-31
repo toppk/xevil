@@ -639,7 +639,7 @@ void GameStyle::clean_physicals(Boolean doMinimum,WorldP world,
 
   // Make two passes, one just to get the followers.
   PtrList leaveAlone;  // Explicitly leave these Objects alone.
-  while (p = pIter()) {
+  while ((p = pIter())) {
     int action = partition(p,doMinimum,world,locator);
     if (action == RELOCATE || action == LEAVE_ALONE) {
       // Don't worry about add_unique(), as of now, no object can be a
@@ -653,7 +653,7 @@ void GameStyle::clean_physicals(Boolean doMinimum,WorldP world,
 
   // Now that we have the leaveAlone list, actually clean the objects.
   PhysicalIter pIter2(*locator);
-  while (p = pIter2()) {
+  while ((p = pIter2())) {
     int action = partition(p,doMinimum,world,locator);
     if (action == RELOCATE) {
       const Area &area = p->get_area();
@@ -2648,7 +2648,7 @@ ZigZag::ZigZag(){
 void ZigZag::set_human_data(HumanP human,WorldP world,LocatorP) {
   // Set depth for zig-zag scenario, so doesn't display it immediatly.
   Rooms worldRooms = world->get_rooms();
-  human->set_data((void *)(worldRooms.downMax - 1));
+  human->set_data((void *)(size_t)(worldRooms.downMax - 1));
 }
 
 
@@ -2680,7 +2680,7 @@ int ZigZag::new_level_check(int,WorldP world,LocatorP locator,
     HumanP human = locator->get_human(n);
     if (human) {
       // previous depth
-      int depthOld = (int)human->get_data();
+      int depthOld = (int)(size_t)human->get_data();
       Id id = human->get_id();
 
       // Get physical for intelligence
@@ -2694,7 +2694,7 @@ int ZigZag::new_level_check(int,WorldP world,LocatorP locator,
 
         if (depth != depthOld) {
 	        // so doesn't get set next turn.
-	        human->set_data((void *)depth);
+	        human->set_data((void *)(size_t)depth);
 
           // Use 1-based counting for the User.
 	        std::ostrstream str;

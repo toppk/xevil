@@ -123,7 +123,7 @@ struct IntelStatus {
 // Class Definitions.
 class Intel {
  public:
-  Intel(WorldP w,LocatorP l,char *name,
+  Intel(WorldP w,LocatorP l,char const*name,
        	const IntelOptions *ops,ITmask opMask); 
   /* EFFECTS: Create a new intel with the options specified in opMakse that are
      in ops.  ops will never be referenced if opMask is ITnone.  lives now
@@ -293,7 +293,7 @@ typedef Intel *IntelP;
 // Simply buffers input from a user interface.
 class Human: public Intel {
  public: 
-  Human(WorldP w,LocatorP l,char *name,int lives,
+  Human(WorldP w,LocatorP l,char const*name,int lives,
         int *sharedLives,ColorNum colorNum);
   /* NOTE: Uses all default options.  intelOptions should be meaningless for 
      a human. If "sharedLives" is non-null, ignore "lives" and share the lives. */

@@ -92,8 +92,8 @@ int main(int argc, char **argv) {
     if (game->has_ui()) {
       for (int dpyNum = 0; dpyNum < game->get_dpy_max(); dpyNum++) {
         int eventsNum;
-        if (eventsNum = 
-            XEventsQueued(game->get_dpy(dpyNum),QueuedAfterReading))
+        if ((eventsNum = 
+            XEventsQueued(game->get_dpy(dpyNum),QueuedAfterReading)))
           for (int m = 0; m < eventsNum; m++) {
             XEvent event;
             XNextEvent(game->get_dpy(dpyNum),&event);

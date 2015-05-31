@@ -945,6 +945,8 @@ unsigned int OneTransform::compute_key(const TransformType* transforms,int tNum)
       return 0x3;
     case TR_RF_X:
       return 0x4;
+    case TR_NONE:
+      break;
     }
   }
   if (tNum == 2) {
@@ -958,6 +960,10 @@ unsigned int OneTransform::compute_key(const TransformType* transforms,int tNum)
       return 0x6;
     case TR_RT_3:
       return 0x7;
+    case TR_NONE:
+      break;
+    case TR_RF_X:
+      break;
     }
   }
 
