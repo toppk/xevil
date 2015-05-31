@@ -1733,7 +1733,7 @@ void Viewport::draw() {
 
 
 
-void Viewport::draw_string(const Pos &pos,char *msg) {
+void Viewport::draw_string(const Pos &pos,char const*msg) {
   XDrawString(xvars.dpy[dpyNum],arena,
               xvars.gc[dpyNum],
               pos.x,pos.y + xvars.font[dpyNum]->max_bounds.ascent,

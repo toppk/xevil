@@ -21,11 +21,11 @@
 
 // "world.cpp"
 
-#if X11
-#ifndef NO_PRAGMAS
-#pragma implementation "world.cpp"
-#endif
-#endif
+//#if X11
+//#ifndef NO_PRAGMAS
+//#pragma implementation "world.cpp"
+//#endif
+//#endif
 
 // Include Files.
 #include "stdafx.h"

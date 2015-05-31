@@ -613,7 +613,7 @@ void UDPOutStream::create_header() {
   // then put it back at the end.
   int bufPtrSave = bufPtr;
   bufPtr = 0;
-  write(XETP::versionStr,XETP::VERSION_LENGTH);
+  write((void *)XETP::versionStr,XETP::VERSION_LENGTH);
   write_int((u_int)c);
   bufPtr = bufPtrSave;
 }

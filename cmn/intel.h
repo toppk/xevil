@@ -346,7 +346,7 @@ typedef Human *HumanP;
 
 class Machine: public Intel {
 public:
-  Machine(WorldP w,LocatorP l,char *name,
+  Machine(WorldP w,LocatorP l,char const*name,
 	  const IntelOptions *ops,ITmask opMask);
 	  
   virtual IntelId get_master_intel_id();
@@ -464,7 +464,7 @@ typedef Machine *MachineP;
 
 class Enemy: public Machine {
 public:
-  Enemy(WorldP w,LocatorP l,char *name,
+  Enemy(WorldP w,LocatorP l,char const*name,
 	const IntelOptions *ops,ITmask opMask);
 
   static void set_reflexes_time(int time) {reflexesTime = time;}
@@ -491,7 +491,7 @@ typedef Enemy *EnemyP;
 
 class Neutral: public Machine {
 public:
-  Neutral(WorldP w,LocatorP l,char *name,
+  Neutral(WorldP w,LocatorP l,char const*name,
 	const IntelOptions *ops,ITmask opMask);
 	  
   virtual Boolean is_enemy();
@@ -522,7 +522,7 @@ protected:
 
 class DoppelIntel: public Neutral {
 public:
-	DoppelIntel(WorldP w,LocatorP l,char *name,
+	DoppelIntel(WorldP w,LocatorP l,char const*name,
     const IntelOptions *ops,ITmask opMask,
 	  IntelP master = NULL);
 	
@@ -572,7 +572,7 @@ private:
 // in choose_strategy() and go_get_em().
 class Pet: public DoppelIntel {
 public:
-  Pet(WorldP w,LocatorP l,char *name,
+  Pet(WorldP w,LocatorP l,char const*name,
 	    const IntelOptions *ops,ITmask opMask,
 	    IntelP master = NULL);
     
@@ -583,7 +583,7 @@ public:
 	IT_WEAPON_{some dir}, or to come back to him if command is IT_WEAPON_CENTER. 
 	This will also set p to be the new master. */
 
-	static char *mode_string(int mode);
+	static char const*mode_string(int mode);
 	/* NOTE: For debugging. */
 
 

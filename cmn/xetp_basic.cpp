@@ -33,7 +33,7 @@
 #include "xetp_basic.h"
 
 
-char *XETPBasic::versionStr = "XETP1.00";
+char const*XETPBasic::versionStr = "XETP1.00";
 // 0.10 released with special RedHat version
 // 0.12 for 2.0b5
 // 0.15 for 2.0b6

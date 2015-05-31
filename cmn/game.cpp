@@ -1997,7 +1997,7 @@ void Game::award_bonuses_now() {
       continue;
     }
 
-    char* awardMsg = NULL;
+    char const* awardMsg = NULL;
     int count = 0;
     while (!awardMsg && count < AWARD_BONUS_TRIES) {
       count++;

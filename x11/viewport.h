@@ -348,7 +348,7 @@ protected:
   /* NOTE: Will draw everything if redrawArena is true, else just what has
      changed. */
 
-  void draw_string(const Pos &pos,char *msg);
+  void draw_string(const Pos &pos,char const*msg);
   /* EFFECTS: Draw string msg using current GC on arena with upper left of
      character at position pos. */
 

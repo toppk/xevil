@@ -52,7 +52,7 @@ public:
   // All values are big-endian
   enum {HEADER_LENGTH = 3};  // 8
   enum {VERSION_LENGTH = 8};  // streams.h depends on this value.
-  static char *versionStr;
+  static char const*versionStr;
 
   // The ':' syntax gives the size in bytes of each component.  :String means
   // use Utils::string_read(), Utils::string_write(), etc.

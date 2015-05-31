@@ -74,7 +74,7 @@ typedef char *CMN_BITS_ID;
 
 typedef XEvent *CMN_EVENTDATA;
 
-typedef char *CMN_COLOR;
+typedef char const*CMN_COLOR;
 
 
 

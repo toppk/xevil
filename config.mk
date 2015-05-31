@@ -27,9 +27,9 @@ OBJ_DIR		=   $(DEPTH)/x11/release
 TARGETS	    =   xevil
 LIBS = -lX11 -lXpm
 CC = clang++
-CC = g++
+#CC = g++
 
-CFLAGS = -Wno-deprecated -DUSE_RANDOM -DXEVIL_KEYSET=UIlinux -DUSE_UINT_NET_LENGTH
+CFLAGS = -Wno-deprecated -Wno-deprecated-declarations -DUSE_RANDOM -DXEVIL_KEYSET=UIlinux -DUSE_UINT_NET_LENGTH
 # For a debug build, DEBUG_OPT should be -g
 # For a release build, DEBUG_OPT should be -O
 # Also look at the comment about $(STRIP) in the toplevel makefile for

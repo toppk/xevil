@@ -931,7 +931,7 @@ void Human::_set_lives(int val) {
 
 
 
-Machine::Machine(WorldP w,LocatorP l,char *name,const IntelOptions *ops,
+Machine::Machine(WorldP w,LocatorP l,char const*name,const IntelOptions *ops,
 		 ITmask opMask) 
 : Intel(w,l,name,ops,opMask)
 {
@@ -1829,7 +1829,7 @@ void Machine::use_items(Boolean &commandSet,PhysicalP p) {
 
 
 
-Enemy::Enemy(WorldP w,LocatorP l,char *name,
+Enemy::Enemy(WorldP w,LocatorP l,char const*name,
 	const IntelOptions *ops,ITmask opMask)
     :Machine(w,l,name,ops,opMask) {}
   
@@ -1854,7 +1854,7 @@ int Enemy::reflexesTime = DEFAULT_REFLEXES_TIME;
 
 
 
-Neutral::Neutral(WorldP w,LocatorP l,char *name,
+Neutral::Neutral(WorldP w,LocatorP l,char const*name,
 	const IntelOptions *ops,ITmask opMask)
 	  :Machine(w,l,name,ops,opMask) {}
   
@@ -1906,7 +1906,7 @@ void SealIntel::choose_strategy(PhysicalP p)
 
 
 
-DoppelIntel::DoppelIntel(WorldP w,LocatorP l,char *name,
+DoppelIntel::DoppelIntel(WorldP w,LocatorP l,char const*name,
 	  const IntelOptions *ops,ITmask opMask,IntelP master)
 		:Neutral(w,l,name,ops,opMask) {
   assert(master);
@@ -2073,7 +2073,7 @@ ITmask DoppelIntel::suggestedMask =
 
 
 
-Pet::Pet(WorldP w,LocatorP l,char *name,
+Pet::Pet(WorldP w,LocatorP l,char const*name,
 	const IntelOptions *ops,ITmask opMask,IntelP master)
 	  :DoppelIntel(w,l,name,ops,opMask,master) {
 	mode = Heel;
@@ -2308,7 +2308,7 @@ Boolean Pet::filter_target(PhysicalP candidate) {
 
 
 
-char *Pet::mode_string(int mode) {
+char const*Pet::mode_string(int mode) {
 	switch (mode) {
 		case Heel:		
 			return "Heel";

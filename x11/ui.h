@@ -402,7 +402,7 @@ class Ui: public IDifficultyCallback,
   // The callbacks to export to the Viewport.
   static ViewportCallback viewportCallbacks[VIEWPORT_CB_NUM];
 
-  static char* helpMessage;
+  static char const* helpMessage;
 };
 
 #endif

@@ -1752,7 +1752,7 @@ ViewportCallback Ui::viewportCallbacks[VIEWPORT_CB_NUM] = {
 
 
 
-char* Ui::helpMessage = 
+char const* Ui::helpMessage = 
 "For full instructions, including NETWORK PLAY, see "
 "http://www.xevil.com/docs/instructions.html\n"
 "\n"

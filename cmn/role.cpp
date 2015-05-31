@@ -3262,8 +3262,8 @@ int Server::find_connection(const IntelId& iId) {
 void Server::send_udp_server_pong(IGameManager* manager,LocatorP locator,
                                   CMN_SOCKET udpSock,
                                   CMN_SOCKADDR_IN* destAddr) {
-  static char* unknownString = "<unknown>";
-  static char* serverString = "<server>";
+  static char const* unknownString = "<unknown>";
+  static char const* serverString = "<server>";
 
 
   // Temporary stream.
